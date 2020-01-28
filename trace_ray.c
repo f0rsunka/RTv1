@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:29:49 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/27 22:13:58 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/28 17:43:38 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vector2d intersect_ray_sphere(t_vector3d *camera, t_vector3d *D, t_sphere *sph
 	discriminant = k2 * k2 - 4 * k1 * k3;
 	if (discriminant < 0)
 	{
-		res = (t_vector2d)(inf, inf);
+		res = (t_vector2d)(0, 0);
 		return (res);
 	}
 	t.x = (- k2 + sqrt(discriminant)) / (2 * k1);
@@ -42,24 +42,41 @@ t_vector2d intersect_ray_sphere(t_vector3d *camera, t_vector3d *D, t_sphere *sph
 	return (t);
 }
 
-int		trace_ray(t_camera *camera, t_vector3d *D, double t_min, double t_max)
+/*
+** trace_ray - вычисляет пересечение луча с каждой сферой, и возвращает цвет сферы
+** в ближайшей точке пересечения, которая находится в требуемом интервале t
+*/ 
+
+t_color		trace_ray(t_camera *camera, t_vector3d *D, double t_min, double t_max, t_sphere *sphere)
 {
-	//!! double t1, t2; ??double????
-	t_vector2d t; 
-	closest_t = inf; //?? mb tut t_max
+	//?? double t1, t2;
+	t_sphere *closest_sphere;
+	t_vector2d t;
+	t_color c;
+	int i = 0;
+
+	// closest_t = inf; //?? mb tut t_max
+	closest_t = t_max;
 	closest_sphere = NULL;
-	for sphere in scene.spheres
+	while (i < 2)
 	{
-		t.x = intersect_ray_sphere(camera, D, sphere);
-		t.y = intersect_ray_sphere(camera, D, sphere);
-		if ((t1 >= t_min && t1 <= t_max) && t1 < closest_t)
-			closest_t = t1;
-			closest_sphere = sphere;
-		if ((t2 >= t_min && t2 <= t_max) && t2 < cllosest_t)
-			closest_t = t2;
-			closest_sphere = sphere;
+		t = intersect_ray_sphere(camera, D, sphere[i]);
+		if ((t.x >= t_min && t.x <= t_max) && t.x < closest_t)
+		{
+			closest_t = t.x;
+			closest_sphere = sphere[i];
+		}
+		if ((t.y >= t_min && t.y <= t_max) && t.y < closest_t)
+		{
+			closest_t = t.y;
+			closest_sphere = sphere[i];
+		}
+		i++;
 	}
 	if (closest_sphere == NULL)
-		return (BACKGROUND_COLOR);
-	return closest_sphere.color;
+	{
+		c = (t_color){255, 255, 255};
+		return (c);
+	}
+	return (closest_sphere->color);
 }
