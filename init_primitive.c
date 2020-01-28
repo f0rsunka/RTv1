@@ -6,13 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 22:26:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 16:33:30 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/28 19:54:22 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv.h"
+#include "rtv1.h"
 
-t_sphere *new_sphere(t_vector3d center, double radius, t_vector3d color)
+t_sphere *new_sphere(t_vector3d center, double radius, t_color color)
 {
 	t_sphere *sphere;
 

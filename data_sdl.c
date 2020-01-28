@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:38:30 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 15:40:26 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/28 20:09:12 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,29 @@
 
 SDL_Renderer	*init_sdl(t_sdl *sdl)
 {
-	SDL_Window		*window = nullptr;
-	SDL_Renderer	*renderer = nullptr;
+	sdl->window = 0;
+	sdl->renderer = 0;
 
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
-		// std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		exit(99);
 	}
-	window = SDL_CreateWindow("Draw line", 100, 100, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == nullptr)
+	sdl->window = SDL_CreateWindow("Draw line", 100, 100, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+	if (!sdl->window)
 	{
-		// std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
 		exit(98);
 	}
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (renderer == nullptr)
+	sdl->renderer = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (!sdl->renderer)
 	{
-		// std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
 		exit(97);
 	}
-	renderer = SDL_GetRenderer(window);
-    if (renderer == nullptr)
+	sdl->renderer = SDL_GetRenderer(sdl->window);
+    if (!sdl->renderer)
 	{
-        // std::cerr << "SDL_GetRenderer Error: " << SDL_GetError() << std::endl;
        exit(96);
     }
-	return(renderer);
+	return(sdl->renderer);
 }
 
 void	destroy_sdl(t_sdl *sdl)

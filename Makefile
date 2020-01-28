@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/28 17:45:12 by cvernius          #+#    #+#              #
-#    Updated: 2020/01/28 17:53:17 by cvernius         ###   ########.fr        #
+#    Updated: 2020/01/28 19:50:50 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,14 @@ SDLLFLAGS := $(shell sdl2-config --libs)
 
 CFLAGS = -Wall -Wextra -Werror
 
-all:$(NAME)
+all: $(NAME)
 
 %.o: %.c
 	gcc -c $< -o $@ $(HEAD)
 
 $(NAME): $(OBJ)
 	make -C ./libft
-	gcc -o $(NAME) $(OBJ) -l Libft/ -lft $(CFLAGS) $(SDLCFLAGS) $(SDLLFLAGS)
+	gcc -o $(NAME) $(OBJ) -L libft/ -lft $(CFLAGS) $(SDLCFLAGS) $(SDLLFLAGS)
 
 clean:
 	rm -rf ./libft/*.o 

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 17:44:41 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/28 19:57:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,21 @@ t_sphere	*get_data_sphere()
 	t_sphere *mas;
 	
 	mas = create_mas();
-	mas[0].center = (t_vector3d){0, -1, 3};
-	mas[0].radius = 1;
-	mas[0].color = (t_vector3d){255, 0, 0};
+	mas[0] = *new_sphere((t_vector3d){0, -1, 3}, 1.0, (t_color){255, 0, 0});
+	mas[1] = *new_sphere((t_vector3d){2, 0, 4}, 1.0, (t_color){0, 0, 255});
+	mas[2] = *new_sphere((t_vector3d){-2, 0, 4}, 1.0, (t_color){0, 255, 0});
+
+	// mas[0].center = (t_vector3d){0, -1, 3};
+	// mas[0].radius = 1;
+	// mas[0].color = (t_vector3d){255, 0, 0};
 	
-	mas[1].center = (t_vector3d){2, 0, 4};
-	mas[1].radius = 1;
-	mas[1].color = (t_vector3d){0, 0, 255};
+	// mas[1].center = (t_vector3d){2, 0, 4};
+	// mas[1].radius = 1;
+	// mas[1].color = (t_vector3d){0, 0, 255};
 	
-	mas[2].center = (t_vector3d){-2, 0, 4};
-	mas[2].radius = 1;
-	mas[2].color = (t_vector3d){0, 255, 0};
+	// mas[2].center = (t_vector3d){-2, 0, 4};
+	// mas[2].radius = 1;
+	// mas[2].color = (t_vector3d){0, 255, 0};
 	return (mas);
 }
 
