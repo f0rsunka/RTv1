@@ -6,16 +6,16 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 19:58:24 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/28 20:59:06 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include <SDL/SDL.h>
 #ifndef RTV1_H
 # define RTV1_H
+#include <SDL.h>
 #include <stdlib.h>
 #include "libft/libft.h"
-#include <SDL.h>
 # define WIDTH 1800
 # define HEIGHT 1000
 // # define BACKGROUND_COLOR 255
