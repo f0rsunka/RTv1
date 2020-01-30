@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 20:59:06 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/30 20:03:33 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 # define RTV1_H
 #include <SDL.h>
 #include <stdlib.h>
-#include "libft/libft.h"
+#include <stdio.h> //!---------------------------------------------------------
+// #include "libft/libft.h"
 # define WIDTH 1800
 # define HEIGHT 1000
 // # define BACKGROUND_COLOR 255
@@ -68,14 +69,13 @@ typedef struct		s_sdl
 	SDL_Event		event;
 }					t_sdl;
 
-
-void	rtv_test(t_sdl *sdl, t_sphere *mas_sphere);
-t_color		trace_ray(t_vector3d *camera, t_vector3d *D, double t_min, t_sphere *sphere);
-t_vector3d *vec_diff(t_vector3d *v1, t_vector3d *v2);
-double	dot_product(t_vector3d *v1, t_vector3d *v2);
-t_sphere *new_sphere(t_vector3d center, double radius, t_color color);
-SDL_Renderer	*init_sdl(t_sdl *sdl);
-void	destroy_sdl(t_sdl *sdl);
-void	clear_window_sdl(t_sdl *sdl);
+void		rtv_test(t_sdl *sdl, t_sphere *mas_sphere);
+t_color		trace_ray(t_vector3d camera, t_vector3d *D, double t_min, t_sphere *sphere);
+t_vector3d 	*vec_diff(t_vector3d *v1, t_vector3d *v2);
+double		dot_product(t_vector3d *v1, t_vector3d *v2);
+t_sphere	new_sphere(t_vector3d center, double radius, t_color color);
+void		init_sdl(t_sdl *sdl);
+void		destroy_sdl(t_sdl *sdl);
+void		clear_window_sdl(t_sdl *sdl);
 
 #endif

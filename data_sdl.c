@@ -6,37 +6,31 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:38:30 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 20:09:12 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/30 18:40:40 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-SDL_Renderer	*init_sdl(t_sdl *sdl)
+void	init_sdl(t_sdl *sdl)
 {
-	sdl->window = 0;
-	sdl->renderer = 0;
-
-	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	printf("boop\n");
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
+		printf("sdl init failed!\n");
 		exit(99);
 	}
-	sdl->window = SDL_CreateWindow("Draw line", 100, 100, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+	printf("SDL_INIT was creation\n");
+	sdl->window = SDL_CreateWindow("RTV1", 100, 100, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 	if (!sdl->window)
 	{
 		exit(98);
 	}
-	sdl->renderer = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	sdl->renderer = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED);
 	if (!sdl->renderer)
 	{
 		exit(97);
 	}
-	sdl->renderer = SDL_GetRenderer(sdl->window);
-    if (!sdl->renderer)
-	{
-       exit(96);
-    }
-	return(sdl->renderer);
 }
 
 void	destroy_sdl(t_sdl *sdl)

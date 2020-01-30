@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/28 19:57:50 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/01/30 19:56:16 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,44 @@
 
 t_sphere *create_mas(void)
 {
-	t_sphere *mas_sphere;
-
-	if (!(mas_sphere = (t_sphere*)ft_memalloc(sizeof(t_sphere) * 2)))
-		return (NULL);
-	return (mas_sphere);
-}
-
-t_sphere	*get_data_sphere()
-{
 	t_sphere *mas;
-	
-	mas = create_mas();
-	mas[0] = *new_sphere((t_vector3d){0, -1, 3}, 1.0, (t_color){255, 0, 0});
-	mas[1] = *new_sphere((t_vector3d){2, 0, 4}, 1.0, (t_color){0, 0, 255});
-	mas[2] = *new_sphere((t_vector3d){-2, 0, 4}, 1.0, (t_color){0, 255, 0});
-
-	// mas[0].center = (t_vector3d){0, -1, 3};
-	// mas[0].radius = 1;
-	// mas[0].color = (t_vector3d){255, 0, 0};
-	
-	// mas[1].center = (t_vector3d){2, 0, 4};
-	// mas[1].radius = 1;
-	// mas[1].color = (t_vector3d){0, 0, 255};
-	
-	// mas[2].center = (t_vector3d){-2, 0, 4};
-	// mas[2].radius = 1;
-	// mas[2].color = (t_vector3d){0, 255, 0};
+	if (!(mas = (t_sphere*)malloc(sizeof(t_sphere) * 3)))
+		return (NULL);
 	return (mas);
 }
 
 int		main(void)
 {
-	t_sphere *mas_s;
+	t_sphere *mas_sphere;
 	t_sdl *sdl;
 	int finished;
+	int i = 0;
 
-	mas_s = get_data_sphere();
+	mas_sphere = create_mas();
+	printf("%p\n", mas_sphere);
+	mas_sphere[0] = (t_sphere){(t_vector3d){0, -1, 3}, 1.0, (t_color){255, 0, 0}};
+	printf("\n%p\n", mas_sphere[i]);
+	mas_sphere[1] = new_sphere((t_vector3d){2, 0, 4}, 1.0, (t_color){0, 0, 255});
+	mas_sphere[2] = new_sphere((t_vector3d){-2, 0, 4}, 1.0, (t_color){0, 255, 0});
+	printf("%f\n%f\n%f\n", mas_sphere[0].center.x, mas_sphere[0].center.y, mas_sphere[0].center.z);
 	finished = 0;
-	sdl = (t_sdl*)malloc(sizeof(t_sdl*));
-	sdl->renderer = init_sdl(sdl);
+	sdl = malloc(sizeof(t_sdl));
+	sdl->event = (SDL_Event){0};
+	init_sdl(sdl);
+	printf("SDL was initialized\n");
 	if (sdl->renderer)
 	{
-		clear_window_sdl(sdl);
-		rtv_test(sdl, mas_s);
-		SDL_RenderPresent(sdl->renderer);
-		while (SDL_PollEvent(&sdl->event))
+		while (!finished)
 		{
-			if (sdl->event.type == SDL_QUIT)
-				finished = 0;
+			clear_window_sdl(sdl);
+			rtv_test(sdl, &mas_sphere[0]);
+			printf("RTV_TEST_SUCCESSED\n");
+			SDL_RenderPresent(sdl->renderer);
+			while (SDL_PollEvent(&sdl->event))
+			{
+				if (sdl->event.type == SDL_QUIT)
+					finished = 1;
+			}
 		}
 		destroy_sdl(sdl);
 	}
