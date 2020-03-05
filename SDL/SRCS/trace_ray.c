@@ -6,23 +6,23 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:29:49 by cvernius          #+#    #+#             */
-/*   Updated: 2020/01/30 20:13:16 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:48:37 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_vector2d intersect_ray_sphere(t_vector3d camera, t_vector3d *D, t_sphere *sphere)
+t_vec2 intersect_ray_sphere(t_vec3 camera, t_vec3 *D, t_sphere *sphere)
 {
-	t_vector2d res;
-	t_vector3d C;
+	t_vec2 res;
+	t_vec3 C;
 	double R;
-	t_vector3d *Cam_C;
+	t_vec3 *Cam_C;
 	double k1;
 	double k2;
 	double k3;
 	double discriminant;
-	t_vector2d t;
+	t_vec2 t;
 
 	C = sphere->center;
 	R = sphere->radius;
@@ -33,7 +33,7 @@ t_vector2d intersect_ray_sphere(t_vector3d camera, t_vector3d *D, t_sphere *sphe
 	discriminant = k2 * k2 - 4 * k1 * k3;
 	if (discriminant < 0)
 	{
-		res = (t_vector2d){0, 0};
+		res = (t_vec2){0, 0};
 		return (res);
 	}
 	t.x = (- k2 + sqrt(discriminant)) / (2 * k1);
@@ -46,11 +46,11 @@ t_vector2d intersect_ray_sphere(t_vector3d camera, t_vector3d *D, t_sphere *sphe
 ** в ближайшей точке пересечения, которая находится в требуемом интервале t
 */ 
 
-t_color		trace_ray(t_vector3d camera, t_vector3d *D, double t_min, t_sphere *sphere)
+t_color		trace_ray(t_vec3 camera, t_vec3 *D, double t_min, t_sphere *sphere)
 {
 	//?? double t1, t2;
 	t_sphere *closest_sphere;
-	t_vector2d t;
+	t_vec2 t;
 	double closest_t;
 	t_color c;
 	int i = 0;

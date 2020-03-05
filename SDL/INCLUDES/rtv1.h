@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 22:25:44 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:49:08 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@
 // # define d 1
 # define t_max 100000.0
 
-typedef struct 	s_vector3d
+typedef struct 	s_vec3
 {
 	double		x;
 	double		y;
 	double		z;
-}				t_vector3d;
+}				t_vec3;
 
-typedef struct	s_vector2d
+typedef struct	s_vec2
 {
 	double		x;
 	double		y;
-}				t_vector2d;
+}				t_vec2;
 
 typedef struct	s_color
 {
@@ -46,7 +46,7 @@ typedef struct	s_color
 
 typedef struct	s_sphere
 {
-	t_vector3d	center;
+	t_vec3	center;
 	double		radius;
 	t_color		color;
 }				t_sphere;
@@ -79,10 +79,10 @@ typedef struct		s_mlx
 // }					t_sdl;
 
 void		rtv_test(t_sdl *sdl, t_sphere *mas_sphere);
-t_color		trace_ray(t_vector3d camera, t_vector3d *D, double t_min, t_sphere *sphere);
-t_vector3d 	*vec_diff(t_vector3d *v1, t_vector3d *v2);
-double		dot_product(t_vector3d *v1, t_vector3d *v2);
-t_sphere	new_sphere(t_vector3d center, double radius, t_color color);
+t_color		trace_ray(t_vec3 camera, t_vec3 *D, double t_min, t_sphere *sphere);
+t_vec3 	*vec_diff(t_vec3 *v1, t_vec3 *v2);
+double		dot_product(t_vec3 *v1, t_vec3 *v2);
+t_sphere	new_sphere(t_vec3 center, double radius, t_color color);
 void		init_sdl(t_sdl *sdl);
 void		destroy_sdl(t_sdl *sdl);
 void		clear_window_sdl(t_sdl *sdl);

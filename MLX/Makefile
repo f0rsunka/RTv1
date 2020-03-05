@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/04 22:23:01 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/05 22:02:09 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ_DIR = ./OBJ
 INCL_DIR = ./INCLUDES
 
 C_FILES = main.c rtv_test.c trace_ray.c vector_operations.c \
-		  init_primitive.c mlx_data.c key_press.c color.c
+		  init_primitive.c mlx_data.c key_press.c color.c init_rtv.c draw_background.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -35,7 +35,7 @@ MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
 
 CFLAGS = -Wall -Wextra
 # CFLAGS += -Werror
-# CFLAGS += -g
+CFLAGS += -g
 # CFLAGS += -O2
 
 all: $(OBJ_DIR) $(NAME)

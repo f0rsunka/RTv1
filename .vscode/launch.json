@@ -9,10 +9,10 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/RTV1",
+			"program": "${workspaceFolder}/MLX/rtv1",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
+			"cwd": "${workspaceFolder}/MLX",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"

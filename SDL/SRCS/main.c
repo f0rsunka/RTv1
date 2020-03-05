@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 18:06:16 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/05 19:48:37 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int		main(void)
 
 	mas_sphere = create_mas();
 	printf("%p\n", mas_sphere);
-	mas_sphere[0] = (t_sphere){(t_vector3d){0, -1, 3}, 1.0, (t_color){255, 0, 0}};
+	mas_sphere[0] = (t_sphere){(t_vec3){0, -1, 3}, 1.0, (t_color){255, 0, 0}};
 	printf("\n%p\n", mas_sphere[i]);
-	mas_sphere[1] = new_sphere((t_vector3d){2, 0, 4}, 1.0, (t_color){0, 0, 255});
-	mas_sphere[2] = new_sphere((t_vector3d){-2, 0, 4}, 1.0, (t_color){0, 255, 0});
+	mas_sphere[1] = new_sphere((t_vec3){2, 0, 4}, 1.0, (t_color){0, 0, 255});
+	mas_sphere[2] = new_sphere((t_vec3){-2, 0, 4}, 1.0, (t_color){0, 255, 0});
 	printf("%f\n%f\n%f\n", mas_sphere[0].center.x, mas_sphere[0].center.y, mas_sphere[0].center.z);
 	finished = 0;
 	sdl = malloc(sizeof(t_sdl));
