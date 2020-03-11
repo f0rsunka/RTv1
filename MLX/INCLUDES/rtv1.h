@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/05 21:37:08 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:06:44 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,32 @@
 #include "structs.h"
 #include "prototypes.h"
 #include "../MinilibX/mlx.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h> //!---------------------------------------------------------
-// #include "libft/libft.h"
 # define WIN_W 1800
 # define WIN_H 1000
 
+# define FOV M_PI / 2.0
 # define DX(W)(W / 2.0)
 # define DY(H)(H / 2.0)
 
 // # define WIN_W 1000
 // # define WIN_H 1000
 
-// # define BACKGROUND_COLOR 255
-// # define d 1
 # define T_MAX 100000.0
 # define FLT_MAX 930000.0
 
 # define BACKGROUND_COLOR (t_color){131, 120, 158}
 
-/** *********************************** **/
-/** *********************************** **/
-/**         defines for mlx             **/
-/** *********************************** **/
-/** *********************************** **/
+/*
+** *********************************** **
+** *********************************** **
+**         defines for mlx             **
+** *********************************** **
+** *********************************** **
+*/
 
 # define KEY_ESC 53
 // # define KEY_1 18

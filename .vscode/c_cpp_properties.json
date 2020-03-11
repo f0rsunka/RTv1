@@ -2,7 +2,8 @@
     "configurations": [
         {
             "includePath": [
-                "~/.brew/include"
+				"~/.brew/include",
+				"${workspaceFolder}/MLX/includes"
             ],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",

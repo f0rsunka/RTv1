@@ -1,23 +1,22 @@
-static double	calc_t(double a, double b, double d)
-{
-	double	t1;
-	double	t2;
-	double	min_t;
-	double	max_t;
-
-	t1 = (-b + sqrt(d)) / 2 * a;
-	t2 = (-b - sqrt(d)) / 2 * a;
-	min_t = (t1 < t2) ? t1 : t2;
-	max_t = (t1 > t2) ? t1 : t2;
-	return (min_t > EPSILON) ? min_t : max_t;
-}
 
 
 
 
 
-if (d < 0)
-		return (0);
-	t = calc_t(args.x, args.y, d);
-	if (t < EPSILON)
-		return (0);
+
+
+
+
+bool ray_intersect(const Vec3f &orig, const Vec3f &dir, float &t0) const {
+        Vec3f L = center - orig;
+        float tca = L*dir;
+        float d2 = L*L - tca*tca;
+        if (d2 > radius*radius) return false;
+        float thc = sqrtf(radius*radius - d2);
+        t0       = tca - thc;
+        float t1 = tca + thc;
+        if (t0 < 0) t0 = t1;
+        if (t0 < 0) return false;
+        return true;
+    }
+};
