@@ -3,7 +3,8 @@
         {
             "includePath": [
 				"~/.brew/include",
-				"${workspaceFolder}/MLX/includes"
+				"${workspaceFolder}/GLFW/include",
+				"${workspaceFolder}/GLFW_build/includes"
             ],
             "macFrameworkPath": [
                 "/System/Library/Frameworks",

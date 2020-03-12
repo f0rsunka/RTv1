@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/11 17:43:36 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/12 20:34:28 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ typedef struct		s_viewport
 	int				h;
 	int				d;
 }					t_viewport;
+
+typedef struct		s_light
+{
+	t_vec3			position;
+	float			intencity;
+}					t_light;
 
 typedef struct		s_mlx
 {

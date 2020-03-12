@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"rtv1.h": "c"
+		"rtv1.h": "c",
+		"prototypes.h": "c",
+		"glfw3.h": "c"
 	}
 }
