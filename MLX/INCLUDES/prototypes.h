@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/11 20:17:43 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/14 21:41:16 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /*
 ** *********************************** **
 ** *********************************** **
-**            func for mlx             **
+**                 mlx                 **
 ** *********************************** **
 ** *********************************** **
 */
@@ -39,7 +39,6 @@ int			draw_all_hook(t_rtv *r);
 
 void		render_sphere(t_rtv *rtv);
 void		init_spheres(t_rtv *r);
-// t_color		trace_ray(t_vec3 camera, t_vec3 D, double t_min, t_rtv *r);
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 point_3d, t_sphere *sphere, float *dist_to_sphere);
 t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
 
@@ -66,6 +65,21 @@ double		dot_product(t_vec3 v1, t_vec3 v2);
 t_vec3 		vec_add(t_vec3 v1, t_vec3 v2);
 t_vec3		vec_normalize(t_vec3 v);
 t_vec3		vec_add_const(t_vec3 v, float n);
+float		vec_length(t_vec3 v);
+
+/*
+** *********************************** **
+** *********************************** **
+**          quadratic_equation         **
+** *********************************** **
+** *********************************** **
+*/
+
+float		calculate_quadratic_equation(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2);
+float		calc_discriminant(float a, float b, float c);
+float		calc_b(t_vec3 length_cam_center, t_vec3 dir);
+float		calc_a(t_vec3 dir);
+float		calc_c(t_vec3 length_cam_center, float r);
 
 /*
 ** *********************************** **
@@ -77,15 +91,17 @@ t_vec3		vec_add_const(t_vec3 v, float n);
 
 t_vec3		init_camera(void);
 t_viewport	init_viewport(void);
+t_light		init_light(void);
 
 /*
 ** *********************************** **
 ** *********************************** **
-**         primary rendering     	   **
+**              lightning     		   **
 ** *********************************** **
 ** *********************************** **
 */
 
-void	draw_background(t_rtv *rtv);
+float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 vec_n);
+t_color	color_with_light(t_color col, float count_lights);
 
 #endif

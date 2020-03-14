@@ -6,27 +6,34 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/14 21:45:54 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/13 21:06:10 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-// now i compile ONLY with ambient lightning
-
-float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 vec_n)
+t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 {
-	float count_lights;
+	int		i;
+	int		j;
+	float	sphere_dist;
+	t_vec3	light_dir;
+	float	diffuse_light_intensity;
 
-	count_lights = 0.0f;
-	count_lights += r->light.intensity;
-	return (count_lights);
-}
-
-t_color	color_with_light(t_color col, float count_lights)
-{
-	col.r *= count_lights;
-	col.g *= count_lights;
-	col.b *= count_lights;
-	return (col);
+	i = 0;
+	while (i < r->count_objects)
+	{
+		sphere_dist = FLT_MAX;
+		if (intersect_ray_sphere(camera, dir, r->sphere[i], &sphere_dist))
+			return (r->sphere[i]->color);
+		j = 0;
+		whlie (j < r->count_lights)
+		{
+			light_dir = vec_normalize(vec_diff(r->light.position, sphere_dist));
+			diffuse_light_intensity += r->light.intensity * light_dir; //?
+			j++;
+		}
+		i++;
+	}
+	return (BACKGROUND_COLOR);
 }

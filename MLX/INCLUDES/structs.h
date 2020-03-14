@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/12 20:34:28 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/14 18:24:38 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,24 @@ typedef struct		s_sphere
 	t_color			color;
 }					t_sphere;
 
+typedef struct		s_coefficients
+{
+	float			a;
+	float			b;
+	float			c;
+}					t_coefficients;
+
+// typedef struct		s_intersect_sphere
+// {
+// 	t_vec3 			length_cam_center;
+// 	t_vec3			dir;
+// 	float			radius;
+// 	t_coefficients	c;
+// 	float			d;
+// 	float			t1;
+// 	float			t2;
+// }					t_intersect_sphere;
+
 // typedef struct	s_primitive
 // {
 
@@ -69,7 +87,7 @@ typedef struct		s_viewport
 typedef struct		s_light
 {
 	t_vec3			position;
-	float			intencity;
+	float			intensity;
 }					t_light;
 
 typedef struct		s_mlx
@@ -88,6 +106,8 @@ typedef struct 		s_rtv
 	t_vec3			point_in_3d;
 	t_sphere		**sphere;
 	int				count_objects;
+	t_light			light;
+	int				count_lights;
 }					t_rtv;
 
 #endif

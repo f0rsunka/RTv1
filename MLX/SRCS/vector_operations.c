@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 20:44:13 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/11 19:57:05 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/14 21:36:33 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,20 @@ t_vec3 vec_add_const(t_vec3 v, float n)
 	return ((t_vec3){v.x * n, v.y * n, v.z * n});
 }
 
+float	vec_length(t_vec3 v)
+{
+	float length;
+	
+	length = sqrt(dot_product(v, v));
+	return (length);
+}
+
 t_vec3	vec_normalize(t_vec3 v)
 {
 	float length;
 	t_vec3 nor_v;
-	
-	length = sqrt(dot_product(v, v));
+
+	length = vec_length(v);
 	nor_v.x = v.x / length;
 	nor_v.y = v.y / length;
 	nor_v.z = v.z / length;
