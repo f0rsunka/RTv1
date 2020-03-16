@@ -6,19 +6,20 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/14 21:44:50 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 16:46:58 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV1_H
 # define RTV1_H
-#include "structs.h"
-#include "prototypes.h"
-#include "../MinilibX/mlx.h"
-#include "../libft/libft.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdio.h> //!---------------------------------------------------------
+# include "../libvector/libvector.h"
+# include "../MinilibX/mlx.h"
+# include "../libft/libft.h"
+# include "structs.h"
+# include "prototypes.h"
+# include <stdlib.h>
+# include <math.h>
+# include <stdio.h> //!---------------------------------------------------------
 # define WIN_W 1800
 # define WIN_H 1000
 

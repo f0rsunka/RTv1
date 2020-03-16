@@ -6,13 +6,9 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:00:15 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/13 16:16:57 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 16:18:15 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// https://habr.com/ru/post/436790/
-// https://www.intuit.ru/studies/courses/70/70/lecture/2096?page=8
-// https://habr.com/ru/post/342510/
 
 #include "rtv1.h"
 

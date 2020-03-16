@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/14 21:41:16 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 16:33:45 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,6 @@ t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
 */
 
 int			get_color(t_color color);
-
-/*
-** *********************************** **
-** *********************************** **
-**            vector_operations        **
-** *********************************** **
-** *********************************** **
-*/
-
-t_vec3 		vec_diff(t_vec3 v1, t_vec3 v2);
-double		dot_product(t_vec3 v1, t_vec3 v2);
-t_vec3 		vec_add(t_vec3 v1, t_vec3 v2);
-t_vec3		vec_normalize(t_vec3 v);
-t_vec3		vec_add_const(t_vec3 v, float n);
-float		vec_length(t_vec3 v);
 
 /*
 ** *********************************** **

@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   dot_product.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:51:29 by cvernius         ###   ########.fr       */
+/*   Created: 2020/03/16 16:36:27 by cvernius          #+#    #+#             */
+/*   Updated: 2020/03/16 16:36:49 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "libvector.h"
 
-float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 vec_n)
+double	dot_product(t_vec3 v1, t_vec3 v2)
 {
-	float count_lights;
+	double dp;
 
-	count_lights = 0.0f;
-	count_lights += r->light.intensity;
-	return (count_lights);
-}
-
-t_color	color_with_light(t_color col, float count_lights)
-{
-	col.r *= count_lights;
-	col.g *= count_lights;
-	col.b *= count_lights;
-	return (col);
+	dp = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	return (dp);
 }

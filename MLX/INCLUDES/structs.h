@@ -6,20 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/14 18:24:38 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 16:50:43 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 #include "rtv1.h"
-
-typedef struct 		s_vec3
-{	
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
 
 typedef struct 		s_ivec3
 {	

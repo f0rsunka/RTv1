@@ -2,6 +2,8 @@
 	"files.associations": {
 		"rtv1.h": "c",
 		"prototypes.h": "c",
-		"glfw3.h": "c"
+		"glfw3.h": "c",
+		"mlx.h": "c",
+		"libvector.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/14 21:45:26 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/16 16:45:11 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ_DIR = ./obj
 
 INCL_DIR = ./includes
 
-C_FILES = main.c render_sphere.c vector_operations.c init_primitive.c \
+C_FILES = main.c render_sphere.c init_primitive.c \
 		  mlx_data.c key_press.c color.c init_rtv.c raytrace.c \
 		  calculate_quadratic_equation.c light.c
 
@@ -32,6 +32,8 @@ RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 MLX_FLAGS = -L ./MinilibX -lm -lmlx -framework OpenGL -framework AppKit
 
 LIBFT_FLAGS = -L ./libft -lft
+
+LIBVECTOR_FLAGS = -L ./libvector -lvector
 
 NON_EXISTET = tfbil
 
@@ -50,24 +52,27 @@ $(OBJ_DIR):
 
 $(NAME): $(RAW_OBJ_FILES)
 	@make -C ./MinilibX
+	@make -C ./libvector
 	@make -sC ./libft
-	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS) -o $(NAME)
-	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya peresobralsya  $(PINK)(*≧ω≦*)"
+	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) $(MLX_FLAGS) -o $(NAME)
+	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
 
 #### К о м п и л я ц и я ####
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
-	@gcc $(CFLAGS) -I $(INCL_DIR) -I ./MinilibX -I ./libft -c $< -o $@
+	@gcc $(CFLAGS) -I $(INCL_DIR) -I ./MinilibX -I ./libvector -I ./libft -c $< -o $@
 
 clean:
 	@rm -rf $(RAW_OBJ_FILES)
 	@rm -rf ./MinilibX/*.o
 	@rm -rf ./libft/*.o
+	@rm -rf ./libvector/*.o
 
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
 	@rm -rf ./MinilibX/libmlx.a
 	@rm -rf ./libft/libft.a
+	@rm -rf ./libvector/libvector.a
 
 re: fclean all

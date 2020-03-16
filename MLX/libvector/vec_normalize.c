@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   vec_normalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:51:29 by cvernius         ###   ########.fr       */
+/*   Created: 2020/03/16 16:35:33 by cvernius          #+#    #+#             */
+/*   Updated: 2020/03/16 16:36:03 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "libvector.h"
 
-float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 vec_n)
+t_vec3	vec_normalize(t_vec3 v)
 {
-	float count_lights;
+	float length;
+	t_vec3 nor_v;
 
-	count_lights = 0.0f;
-	count_lights += r->light.intensity;
-	return (count_lights);
-}
-
-t_color	color_with_light(t_color col, float count_lights)
-{
-	col.r *= count_lights;
-	col.g *= count_lights;
-	col.b *= count_lights;
-	return (col);
+	length = vec_length(v);
+	nor_v.x = v.x / length;
+	nor_v.y = v.y / length;
+	nor_v.z = v.z / length;
+	return (nor_v);
 }

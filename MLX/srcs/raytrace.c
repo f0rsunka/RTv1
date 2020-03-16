@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:12:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/14 21:41:51 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 16:20:05 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 {
 	int		i;
 	float	sphere_dist;
+	t_vec3	p;
+	t_vec3	normal;
+	t_vec3	normal_dir;
 
 	i = 0;
 	while (i < r->count_objects)
@@ -23,11 +26,10 @@ t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 		sphere_dist = FLT_MAX;
 		if (intersect_ray_sphere(camera, dir, r->sphere[i], &sphere_dist))
 		{
-			// return (r->sphere[i]->color);
-			t_vec3 p = vec_add(camera, vec_add_const(dir, sphere_dist));
-			t_vec3 vec_n = vec_diff(p, r->sphere[i]->center); //?
-			vec_n = vec_normalize(vec_n);
-			return (color_with_light(r->sphere[i]->color, calculate_lightning(r, dir, vec_n)));
+			p = vec_add(camera, vec_add_const(dir, sphere_dist));
+			normal = vec_diff(p, r->sphere[i]->center); //?
+			normal_dir = vec_normalize(normal);
+			return (color_with_light(r->sphere[i]->color, calculate_lightning(r, dir, normal_dir)));
 		}
 		i++;
 	}
