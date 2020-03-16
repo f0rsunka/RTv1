@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:32:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:48:25 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 19:15:44 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,25 @@ typedef struct 		s_vec3
 	double			y;
 	double			z;
 }					t_vec3;
+
+typedef struct 		s_ivec3
+{	
+	int				x;
+	int				y;
+	int				z;
+}					t_ivec3;
+
+typedef struct		s_vec2
+{
+	double			x;
+	double			y;
+}					t_vec2;
+
+typedef struct		s_ivec2
+{
+	int				x;
+	int				y;
+}					t_ivec2;
 
 /*
 ** *********************************** **

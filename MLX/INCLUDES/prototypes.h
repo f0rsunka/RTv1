@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:33:45 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 18:57:41 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int			draw_all_hook(t_rtv *r);
 */
 
 void		render_sphere(t_rtv *rtv);
-void		init_spheres(t_rtv *r);
-int 		intersect_ray_sphere(t_vec3 camera, t_vec3 point_3d, t_sphere *sphere, float *dist_to_sphere);
+int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
 t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
 
 /*
@@ -76,7 +75,8 @@ float		calc_c(t_vec3 length_cam_center, float r);
 
 t_vec3		init_camera(void);
 t_viewport	init_viewport(void);
-t_light		init_light(void);
+t_sphere	*init_sphere(t_rtv *r);
+t_light		*init_light(t_rtv *r);
 
 /*
 ** *********************************** **
@@ -87,6 +87,6 @@ t_light		init_light(void);
 */
 
 float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 vec_n);
-t_color	color_with_light(t_color col, float count_lights);
+t_color	add_light(t_color col, float count_lights);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:46:58 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 18:56:17 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,8 @@
 # include <stdio.h> //!---------------------------------------------------------
 # define WIN_W 1800
 # define WIN_H 1000
-
 # define FOV M_PI / 2.0
-# define DX(W)(W / 2.0)
-# define DY(H)(H / 2.0)
-
-# define T_MAX 100000.0
 # define FLT_MAX 930000.0
-
-# define PINK (t_color){191, 164, 255}
-# define BLUE (t_color){174, 196, 255}
-# define PURPLE (t_color){255, 222, 222}
-# define YELLOW (t_color){255, 255, 0}
-
-# define BACKGROUND_COLOR (t_color){131, 120, 158}
 
 /*
 ** *********************************** **
@@ -60,5 +48,31 @@
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
 # define ENTER 36
+
+/*
+** *********************************** **
+** *********************************** **
+**               color                 **
+** *********************************** **
+** *********************************** **
+*/
+
+# define PINK (t_color){191, 164, 255}
+# define BLUE (t_color){174, 196, 255}
+# define PURPLE (t_color){255, 222, 222}
+# define YELLOW (t_color){255, 255, 0}
+# define BACKGROUND_COLOR (t_color){131, 120, 158}
+
+/*
+** *********************************** **
+** *********************************** **
+**           type of lights            **
+** *********************************** **
+** *********************************** **
+*/
+
+# define AMBIENT "ambient\0"
+# define POINT "point\0"
+# define DIRECTIONAL "directional\0"
 
 #endif

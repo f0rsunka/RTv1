@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/16 16:45:11 by cvernius         ###   ########.fr        #
+#    Updated: 2020/03/16 19:52:35 by cvernius         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCL_DIR = ./includes
 
 C_FILES = main.c render_sphere.c init_primitive.c \
 		  mlx_data.c key_press.c color.c init_rtv.c raytrace.c \
-		  calculate_quadratic_equation.c light.c
+		  calculate_quadratic_equation.c init_light.c light.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

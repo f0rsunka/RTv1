@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:01:17 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/11 20:51:03 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 20:34:07 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		key_press(int k, t_rtv *r)
 {
 	(k == KEY_ESC ? exit(88) : 1);
-	// mlx_clear_window(r->mlx.mptr, r->mlx.wptr);
+	mlx_clear_window(r->mlx.mptr, r->mlx.wptr);
 	// // (k == KEY_W ? rtv_test(r) : 1);
 	render_sphere(r);
 	mlx_put_image_to_window(r->mlx.mptr, r->mlx.wptr, r->mlx.iptr, 0, 0);

@@ -6,32 +6,13 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:50:43 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 19:15:50 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 #include "rtv1.h"
-
-typedef struct 		s_ivec3
-{	
-	int				x;
-	int				y;
-	int				z;
-}					t_ivec3;
-
-typedef struct		s_vec2
-{
-	double			x;
-	double			y;
-}					t_vec2;
-
-typedef struct		s_ivec2
-{
-	int				x;
-	int				y;
-}					t_ivec2;
 
 typedef struct		s_color
 {
@@ -79,8 +60,10 @@ typedef struct		s_viewport
 
 typedef struct		s_light
 {
-	t_vec3			position;
+	char			*type;
 	float			intensity;
+	t_vec3			position;
+	t_vec3			direction;
 }					t_light;
 
 typedef struct		s_mlx
@@ -97,9 +80,9 @@ typedef struct 		s_rtv
 	t_vec3			camera;
 	t_viewport		viewport;
 	t_vec3			point_in_3d;
-	t_sphere		**sphere;
+	t_sphere		*sphere;
 	int				count_objects;
-	t_light			light;
+	t_light			*light;
 	int				count_lights;
 }					t_rtv;
 

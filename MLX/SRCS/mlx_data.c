@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 19:59:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/11 20:58:00 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/16 20:33:57 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ t_mlx	init_mlx(void)
 	return (mlx);
 }
 
-int		draw_all_hook(t_rtv *r)
-{
-	mlx_clear_window(r->mlx.mptr, r->mlx.wptr);
-	render_sphere(r);
-	mlx_put_image_to_window(r->mlx.mptr, r->mlx.wptr, r->mlx.iptr, 0, 0);
-	return (0);
-}
+// int		draw_all_hook(t_rtv *r)
+// {
+// 	mlx_clear_window(r->mlx.mptr, r->mlx.wptr);
+// 	render_sphere(r);
+// 	mlx_put_image_to_window(r->mlx.mptr, r->mlx.wptr, r->mlx.iptr, 0, 0);
+// 	return (0);
+// }
 
 void	check_hooks_loops(t_rtv *r)
 {
-	mlx_loop_hook(r->mlx.mptr, &draw_all_hook, &r->mlx);
+	// mlx_loop_hook(r->mlx.mptr, &draw_all_hook, &r->mlx);
 	mlx_hook(r->mlx.wptr, 2, 0, &key_press, &r->mlx);
 	mlx_hook(r->mlx.wptr, 17, 0, &close_hook, &r->mlx);
 	// mlx_hook(r->mlx.wptr, 3, 0, &key_unpress, &r->mlx);
