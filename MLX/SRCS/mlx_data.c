@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 19:59:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 20:33:57 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/17 15:39:26 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_mlx	init_mlx(void)
 	
 	if (!(mlx.mptr = mlx_init()))
 		exit(99);
-	if (!(mlx.wptr = mlx_new_window(mlx.mptr, WIN_W, WIN_H, "RTV1\0")))
+	if (!(mlx.wptr = mlx_new_window(mlx.mptr, WIN_W, WIN_H, "RTV1")))
 		exit(99);
 	if (!(mlx.iptr = mlx_new_image(mlx.mptr, WIN_W, WIN_H)))
 		exit(99);

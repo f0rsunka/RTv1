@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 20:13:22 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/17 15:33:54 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		main(void)
 	rtv = (t_rtv*)malloc(sizeof(t_rtv));
 	(rtv == NULL ? exit (99) : 1);
 	init_rtv(rtv);
+	render_sphere(rtv);
+	mlx_put_image_to_window(rtv->mlx.mptr, rtv->mlx.wptr, rtv->mlx.iptr, 0, 0);
 	check_hooks_loops(rtv);
 	return (0);
 }

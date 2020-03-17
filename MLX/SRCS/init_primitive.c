@@ -6,7 +6,7 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 22:26:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 20:12:02 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/17 17:51:27 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ void	sphere_data(t_sphere *sphere)
 	sphere[2].center = (t_vec3){-2.0, -1.0, 4.0};
 	sphere[2].radius = 1.0f;
 	sphere[3].color = YELLOW;
-	sphere[3].center = (t_vec3){-2.0, -1.0, 6.0};
-	sphere[3].radius = 5.0f;
-	// return (sphere);
+	sphere[3].center = (t_vec3){0.0, -10.0, 4.0};
+	sphere[3].radius = 39.0f;
 }
 
 t_sphere *init_sphere(t_rtv *r)
@@ -37,6 +36,5 @@ t_sphere *init_sphere(t_rtv *r)
 	s = (t_sphere*)malloc(sizeof(t_sphere) * r->count_objects);
 	(s == NULL ? exit (88) : 0);
 	sphere_data(s);
-	printf("radius = %f\n", s[0].radius);
 	return (s);
 }

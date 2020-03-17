@@ -6,36 +6,59 @@
 /*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 17:23:31 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 20:31:40 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/03/17 17:45:59 by cvernius         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void light_data(t_light *light)
+void	get_type(char *cnst, char *res)
+{
+	int i;
+	int n;
+
+	i = 0;
+	n = ft_strlen(cnst);
+	while (i < n)
+	{
+		res[i] = cnst[i];
+		i++;
+	}
+	res[i] = '\0';
+}
+
+void	light_data(t_light *light)
 {
 	t_light	ambient;
 	t_light	point;
 	t_light directional;
 
-	ambient.type = (char *)malloc(sizeof(char) * 8);
+	ambient.type = (char *)malloc(sizeof(char) * ft_strlen(AMBIENT));
 	(ambient.type == NULL ? exit (88) : 0);
-	ambient.type = ft_strdup(AMBIENT);
-	ambient.intensity = 0.3;
-	point.type = (char *)malloc(sizeof(char) * 6);
+	get_type(AMBIENT, ambient.type);
+	ambient.intensity = 0.2;
+	ambient.position = (t_vec3){0.0f, 0.0f, 0.0f};
+	ambient.direction = (t_vec3){0.0f, 0.0f, 0.0f};
+
+	point.type = (char *)malloc(sizeof(char) * ft_strlen(POINT));
 	(point.type == NULL ? exit (88) : 0);
-	point.type = ft_strdup(POINT);
-	point.intensity = 0.5;
-	point.position = (t_vec3){2.0f, 1.0f, 0.0f};
-	directional.type = (char *)malloc(sizeof(char) * 12);
+	get_type(POINT, point.type);
+	point.intensity = 0.6;
+	// point.position = (t_vec3){-1.0f, -4.0f, 5.0f};
+	point.position = (t_vec3){2.0, 1.0, 0.0f};
+	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
+
+	directional.type = (char *)malloc(sizeof(char) * ft_strlen(DIRECTIONAL));
 	(directional.type == NULL ? exit (88) : 0);
-	directional.type = ft_strdup(DIRECTIONAL);
+	get_type(DIRECTIONAL, directional.type);
 	directional.intensity = 0.2;
-	directional.direction = (t_vec3){1.0, 4.0, 4.0};
+	directional.direction = (t_vec3){1.0, 4.0, 4.0f};
+	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
+
 	light[0] = ambient;
 	light[1] = point;
+	// light[1] = directional;
 	light[2] = directional;
-	// return (light);
 }
 
 t_light	*init_light(t_rtv *r)
@@ -46,6 +69,5 @@ t_light	*init_light(t_rtv *r)
 	light = (t_light*)malloc(sizeof(light) * r->count_lights);
 	(light == NULL ? exit (88) : 1);
 	light_data(light);
-	printf("light,type = %s\nintens = %f\n", light[1].type, light[1].intensity);
 	return (light);
 }
