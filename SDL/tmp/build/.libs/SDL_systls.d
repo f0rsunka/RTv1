@@ -1,0 +1,24 @@
+build/SDL_systls.lo: \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/SDL_systls.c \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../../SDL_internal.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../../dynapi/SDL_dynapi.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../../dynapi/SDL_dynapi_overrides.h \
+ include/SDL_config.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_platform.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/begin_code.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/close_code.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_thread.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_stdinc.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_config.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_error.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_atomic.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_platform.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/include/SDL_mutex.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../SDL_systhread.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../../SDL_internal.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../SDL_thread_c.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../pthread/SDL_systhread_c.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../pthread/../../SDL_internal.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../../SDL_error_c.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../.././SDL_internal.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL_build/SDL/src/thread/pthread/../SDL_thread_c.h
