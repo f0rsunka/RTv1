@@ -21,8 +21,8 @@
 # include <math.h>
 # include <stdio.h> //!---------------------------------------------------------
 #define M_PI 3.14159265358979323846
-# define WIN_W 1800
-# define WIN_H 1000
+# define WIN_W 800
+# define WIN_H 600
 # define FOV (M_PI / 2.0)
 // # define FLT_MAX 930000.0
 

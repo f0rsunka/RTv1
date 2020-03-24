@@ -23,16 +23,16 @@ void	sphere_data(t_sphere *sphere)
 	sphere[2].color = PURPLE;
 	sphere[2].center = (t_vec3){-2.0, -1.0, 4.0};
 	sphere[2].radius = 1.0f;
-	// sphere[3].color = YELLOW;
-	// sphere[3].center = (t_vec3){0.0, -10.0, 4.0};
-	// sphere[3].radius = 39.0f;
+	sphere[3].color = YELLOW;
+	sphere[3].center = (t_vec3){5.0, 5.0, 1.0};
+	sphere[3].radius = 5.0f;
 }
 
 t_sphere *init_sphere(t_rtv *r)
 {
 	t_sphere *s;
 
-	r->count_objects = 3;
+	r->count_objects = 4;
 	s = (t_sphere*)malloc(sizeof(t_sphere) * r->count_objects);
 	(s == NULL ? exit (88) : 0);
 	sphere_data(s);

@@ -15,6 +15,7 @@
 void	init_rtv(t_rtv *rtv)
 {
 	rtv->sdl = init_sdl();
+	init_sphere(rtv);
 	rtv->camera = init_camera();
 	rtv->viewport = init_viewport();
 	rtv->sphere = init_sphere(rtv);
@@ -25,6 +26,7 @@ int		main_render(t_rtv *r)
 {
 	while (1)
 	{
+		// SDL_SetRenderTarget(r->sdl.renderer, NULL);
 		clear_window_sdl(r->sdl);
 		render_sphere(r);
 		SDL_RenderPresent(r->sdl.renderer);
@@ -33,13 +35,22 @@ int		main_render(t_rtv *r)
             if ((r->sdl.event.type == SDL_KEYDOWN &&
 				 r->sdl.event.key.keysym.sym == SDLK_ESCAPE) ||
                 (r->sdl.event.type == SDL_QUIT))
-            {
-                destroy_sdl(r->sdl);
-                return (0);
-            }
+			// if (r->sdl.event.type == SDL_QUIT)
+				// break ;
+				exit(88);
 		}
+		// clear_window_sdl(r->sdl);
+		// render_sphere(r);
+		// SDL_RenderPresent(r->sdl.renderer);
+		// while (SDL_PollEvent(&r->sdl.event))
+		// {
+        //     {
+		// 		break ;
+		// 		// exit(0);
+        //     }
+		// }
 	}
-	SDL_Quit();
+	destroy_sdl(r->sdl);
 	return (1);
 }
 
@@ -50,7 +61,6 @@ int		main(void)
 	rtv = (t_rtv*)malloc(sizeof(t_rtv));
 	(rtv == NULL ? exit (99) : 1);
 	init_rtv(rtv);
-	init_sphere(rtv);
 	main_render(rtv);
 	return (0);
 }

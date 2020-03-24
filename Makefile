@@ -78,7 +78,6 @@ $(OBJ_DIR):
 $(NAME): $(SDL_DIST) $(RAW_OBJ_FILES)
 	@make -C ./libvector
 	@make -sC ./libft
-	# @gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) $(SDL_FLAGS) -o $(NAME) $(SDL_LINK)
 	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
 
@@ -98,17 +97,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
 
 clean:
 	@rm -rf $(RAW_OBJ_FILES)
-	# @rm -rf ./MinilibX/*.o
-	# @rm -rf ./libft/*.o
-	# @rm -rf ./libvector/*.o
-	@rm -rf $(LIBS_O)
+	@rm -rf ./libft/*.o
+	@rm -rf ./libvector/*.o
 
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
-	# @rm -rf ./MinilibX/libmlx.a
-	# @rm -rf ./libft/libft.a
-	# @rm -rf ./libvector/libvector.a
-	@rm -rf $(LIBS_A)
+	@rm -rf ./libft/libft.a
+	@rm -rf ./libvector/libvector.a
 
 re: fclean all

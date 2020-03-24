@@ -12,56 +12,48 @@
 
 #include "rtv1.h"
 
-void	get_type(char *cnst, char *res)
-{
-	int i;
-	int n;
-
-	i = 0;
-	n = ft_strlen(cnst);
-	while (i < n)
-	{
-		res[i] = cnst[i];
-		i++;
-	}
-	res[i] = '\0';
-}
-
-void	light_data(t_light *light)
+t_light		ambient_data(void)
 {
 	t_light	ambient;
-	t_light	point;
-	t_light directional;
 
-	ambient.type = (char *)malloc(sizeof(char) * ft_strlen(AMBIENT) + 1);
-	(ambient.type == NULL ? exit (88) : 0);
-	get_type(AMBIENT, ambient.type);
+	ambient.type = ft_strdup(AMBIENT);
 	ambient.intensity = 0.2;
 	ambient.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	ambient.direction = (t_vec3){0.0f, 0.0f, 0.0f};
-
-	point.type = (char *)malloc(sizeof(char) * ft_strlen(POINT) + 1);
-	(point.type == NULL ? exit (88) : 0);
-	get_type(POINT, point.type);
-	point.intensity = 0.6;
-	// point.position = (t_vec3){-1.0f, -4.0f, 5.0f};
-	point.position = (t_vec3){2.0, 1.0, 0.0f};
-	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
-
-	directional.type = (char *)malloc(sizeof(char) * ft_strlen(DIRECTIONAL) + 1);
-	(directional.type == NULL ? exit (88) : 0);
-	get_type(DIRECTIONAL, directional.type);
-	directional.intensity = 0.2;
-	directional.direction = (t_vec3){1.0, 4.0, 4.0f};
-	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
-
-	light[0] = ambient;
-	light[1] = point;
-	// light[1] = directional;
-	light[2] = directional;
+	return (ambient);
 }
 
-t_light	*init_light(t_rtv *r)
+t_light		point_data(void)
+{
+	t_light	point;
+
+	point.type = ft_strdup(POINT);
+	point.intensity = 0.6;
+	point.position = (t_vec3){-2.0, 1.0, -4.0f};
+	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
+	return (point);
+}
+
+t_light		directional_data(void)
+{
+	t_light directional;
+
+	directional.type = ft_strdup(DIRECTIONAL);
+	directional.intensity = 0.6;
+	directional.direction = (t_vec3){1.0, 4.0, -4.0f};
+	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
+	return (directional);
+}
+
+void		light_data(t_light *light)
+{
+	light[0] = ambient_data();
+	light[1] = point_data();
+	// light[2] = (t_light){ft_strdup(POINT), 0.2, (t_vec3){2.0, 1.0, 4.0f}, (t_vec3){0.0f, 0.0f, 0.0f}};
+	light[2] = directional_data();
+}
+
+t_light		*init_light(t_rtv *r)
 {
 	t_light	*light;
 
