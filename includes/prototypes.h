@@ -52,7 +52,7 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 
 void		render_sphere(t_rtv *rtv);
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
-t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
+t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
 
 /*
 ** *********************************** **
@@ -99,7 +99,7 @@ t_light		*init_light(t_rtv *r);
 ** *********************************** **
 */
 
-float		calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 vec_n);
+float		calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 normal_dir, float s);
 t_color		add_light(t_color col, float count_lights);
 
 #endif

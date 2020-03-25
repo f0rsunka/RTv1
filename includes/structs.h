@@ -24,8 +24,9 @@ typedef struct		s_color
 typedef struct		s_sphere
 {
 	t_vec3			center;
-	double			radius;
+	float			radius;
 	t_color			color;
+	float			specular;
 }					t_sphere;
 
 typedef struct		s_coefficients
@@ -50,6 +51,12 @@ typedef struct		s_coefficients
 // {
 
 // }				t_primitive;
+
+typedef struct		s_closest_sphere
+{
+	t_sphere		*sphere;
+	float			dist;
+}					t_closest_sphere;
 
 typedef struct		s_viewport
 {

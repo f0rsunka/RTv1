@@ -29,7 +29,7 @@ void render_sphere(t_rtv *r)
 			coord.x =  (2 * (iter.x + 0.5) / (float)WIN_W - 1) * tan(FOV / 2.0) * WIN_W / (float)WIN_H;
             coord.y = -(2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
 			dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
-			col = cast_ray(r->camera, dir, r);
+			col = trace_ray(r->camera, dir, r);
 			put_pixel(r->sdl.renderer, iter.x, iter.y, col);
 			iter.x++;
 		}

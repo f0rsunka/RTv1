@@ -24,7 +24,7 @@
 # define WIN_W 800
 # define WIN_H 600
 # define FOV (M_PI / 2.0)
-// # define FLT_MAX 930000.0
+# define EPSILON 1e-16
 
 /*
 ** *********************************** **

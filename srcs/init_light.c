@@ -28,8 +28,9 @@ t_light		point_data(void)
 	t_light	point;
 
 	point.type = ft_strdup(POINT);
-	point.intensity = 0.6;
-	point.position = (t_vec3){-2.0, 1.0, -4.0f};
+	point.intensity = 0.4;
+	point.position = (t_vec3){2.0f, -1.5f, -3.0f};
+	// point.position = (t_vec3){-2.0, -0.4, -4.0f};
 	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (point);
 }
@@ -39,8 +40,10 @@ t_light		directional_data(void)
 	t_light directional;
 
 	directional.type = ft_strdup(DIRECTIONAL);
-	directional.intensity = 0.6;
-	directional.direction = (t_vec3){1.0, 4.0, -4.0f};
+	directional.intensity = 0.4;
+	// 1.0, 4.0, -4.0
+	// directional.direction = (t_vec3){1.0, -0.4, 1.0f};
+	directional.direction = (t_vec3){2.0f, -1.5f, -3.0f};
 	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (directional);
 }

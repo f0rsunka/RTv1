@@ -17,22 +17,26 @@ void	sphere_data(t_sphere *sphere)
 	sphere[0].color = PINK;
 	sphere[0].center = (t_vec3){0.0, 0.0, 3.0};
 	sphere[0].radius = 1.0f;
+	sphere[0].specular = 1000;
 	sphere[1].color = BLUE;
-	sphere[1].center = (t_vec3){2.0, -1.0, 4.0};
+	sphere[1].center = (t_vec3){1.2, 0.0, 3.0};
 	sphere[1].radius = 1.0f;
+	sphere[1].specular = 1000;
 	sphere[2].color = PURPLE;
 	sphere[2].center = (t_vec3){-2.0, -1.0, 4.0};
 	sphere[2].radius = 1.0f;
-	sphere[3].color = YELLOW;
-	sphere[3].center = (t_vec3){5.0, 5.0, 1.0};
-	sphere[3].radius = 5.0f;
+	sphere[2].specular = 1000;
+	// sphere[3].color = YELLOW;
+	// sphere[3].center = (t_vec3){0.0f, 24.9f, 17.0f};
+	// sphere[3].radius = 30.1f;
+	// sphere[3].specular = 700;
 }
 
 t_sphere *init_sphere(t_rtv *r)
 {
 	t_sphere *s;
 
-	r->count_objects = 4;
+	r->count_objects = 3;
 	s = (t_sphere*)malloc(sizeof(t_sphere) * r->count_objects);
 	(s == NULL ? exit (88) : 0);
 	sphere_data(s);

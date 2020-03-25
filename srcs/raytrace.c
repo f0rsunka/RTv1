@@ -32,27 +32,38 @@ t_vec3		get_normal_dir(t_vec3 camera, t_vec3 center_sphere, float sphere_dist, t
 	return (normal_dir);
 }
 
-t_color		cast_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
+t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 {
-	int		i;
-	float	sphere_dist;
-	t_vec3	normal_dir;
-	t_color	total_light;
+	int					i;
+	float				sphere_dist;
+	t_vec3				normal_dir;
+	t_color				total_light;
+	// t_sphere			*closest_sphere;
+	t_closest_sphere	closest;
 
 	i = 0;
+	// closest.sphere = NULL;
 	while (i < r->count_objects)
 	{
-		sphere_dist = FLT_MAX;
-		if (intersect_ray_sphere(camera, dir, r->sphere[i], &sphere_dist))
+		closest.dist = FLT_MAX;
+		if (intersect_ray_sphere(camera, dir, r->sphere[i], &closest.dist))
 		{
 			// return (r->sphere[i].color);
-			normal_dir = get_normal_dir(camera, r->sphere[i].center, sphere_dist, dir);
-			total_light = add_light(r->sphere[i].color, calculate_lightning(r, dir, normal_dir));
+			// closest.sphere = &r->sphere[i];
+			normal_dir = get_normal_dir(camera, r->sphere[i].center, closest.dist, dir);
+			total_light = add_light(r->sphere[i].color, calculate_lightning(r, dir, normal_dir, r->sphere[i].specular));
 			return (total_light);
 		}
 		i++;
 	}
-	return (BACKGROUND_COLOR);
+	// if (closest.sphere == NULL)
+		return (BACKGROUND_COLOR);
+	// else
+	// {
+	// 	normal_dir = get_normal_dir(camera, closest.sphere->center, closest.dist, dir);
+	// 	total_light = add_light(closest.sphere->color, calculate_lightning(r, dir, normal_dir));
+	// 	return (total_light);
+	// }
 }
 
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist)
