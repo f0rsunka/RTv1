@@ -35,20 +35,8 @@ int		main_render(t_rtv *r)
             if ((r->sdl.event.type == SDL_KEYDOWN &&
 				 r->sdl.event.key.keysym.sym == SDLK_ESCAPE) ||
                 (r->sdl.event.type == SDL_QUIT))
-			// if (r->sdl.event.type == SDL_QUIT)
-				// break ;
 				exit(88);
 		}
-		// clear_window_sdl(r->sdl);
-		// render_sphere(r);
-		// SDL_RenderPresent(r->sdl.renderer);
-		// while (SDL_PollEvent(&r->sdl.event))
-		// {
-        //     {
-		// 		break ;
-		// 		// exit(0);
-        //     }
-		// }
 	}
 	destroy_sdl(r->sdl);
 	return (1);
