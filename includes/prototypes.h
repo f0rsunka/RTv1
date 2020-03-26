@@ -63,6 +63,8 @@ t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
 */
 
 int			get_color(t_color color);
+t_color		transform_color(t_color col);
+float		transform_float(float digit);
 
 /*
 ** *********************************** **

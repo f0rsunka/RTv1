@@ -16,9 +16,9 @@
 
 typedef struct		s_color
 {
-	int				r;
-	int				g;
-	int				b;
+	float			r;
+	float			g;
+	float			b;
 }					t_color;
 
 typedef struct		s_sphere

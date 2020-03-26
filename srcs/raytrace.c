@@ -35,7 +35,7 @@ t_vec3		get_normal_dir(t_vec3 camera, t_vec3 center_sphere, float sphere_dist, t
 t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 {
 	int					i;
-	float				sphere_dist;
+	// float				sphere_dist;
 	t_vec3				normal_dir;
 	t_color				total_light;
 	// t_sphere			*closest_sphere;

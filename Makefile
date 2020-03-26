@@ -21,9 +21,17 @@ OBJ_DIR = ./obj
 
 INCL_DIR = ./includes
 
-C_FILES = main.c render_sphere.c init_primitive.c \
-		  sdl_data.c color.c init_rtv.c raytrace.c \
-		  calculate_quadratic_equation.c init_light.c light.c
+C_FILES = main.c \
+		  render_sphere.c \
+		  init_primitive.c \
+		  sdl_data.c \
+		  color.c \
+		  init_rtv.c \
+		  raytrace.c \
+		  calculate_quadratic_equation.c \
+		  init_light.c \
+		  light.c \
+		  put_pixel.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

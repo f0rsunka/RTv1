@@ -14,22 +14,22 @@
 
 void	sphere_data(t_sphere *sphere)
 {
-	sphere[0].color = PINK;
+	sphere[0].color = transform_color(PINK);
 	sphere[0].center = (t_vec3){0.0, 0.0, 3.0};
 	sphere[0].radius = 1.0f;
-	sphere[0].specular = 1000;
-	sphere[1].color = BLUE;
+	sphere[0].specular = transform_float(100.0f);
+	sphere[1].color = transform_color(BLUE);
 	sphere[1].center = (t_vec3){1.2, 0.0, 3.0};
 	sphere[1].radius = 1.0f;
-	sphere[1].specular = 1000;
-	sphere[2].color = PURPLE;
+	sphere[1].specular = transform_float(1000.0f);
+	sphere[2].color = transform_color(PURPLE);
 	sphere[2].center = (t_vec3){-2.0, -1.0, 4.0};
 	sphere[2].radius = 1.0f;
-	sphere[2].specular = 1000;
-	// sphere[3].color = YELLOW;
+	sphere[2].specular = transform_float(100.0f);
+	// sphere[3].color = transform_color(YELLOW);
 	// sphere[3].center = (t_vec3){0.0f, 24.9f, 17.0f};
 	// sphere[3].radius = 30.1f;
-	// sphere[3].specular = 700;
+	// sphere[3].specular = transform_float(100.0f);
 }
 
 t_sphere *init_sphere(t_rtv *r)

@@ -17,11 +17,29 @@ int		get_color(t_color color)
 	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
 
-void	put_pixel(SDL_Renderer *ren, int x, int y, t_color col)
+t_color	transform_color(t_color col)
 {
-	if (x < WIN_W && y < WIN_H)
+	if (col.r >= 1.0f && col.g >= 1.0f && col.b >= 1.0f)
 	{
-		SDL_SetRenderDrawColor(ren, col.r, col.g, col.b, 0xFF);
-		SDL_RenderDrawPoint(ren, x, y);
+		col.r = col.r / 255;
+		col.g = col.g / 255;
+		col.b = col.b / 255;
 	}
+	if (col.r < 1.0f && col.g < 1.0f && col.b < 1.0f)
+	{
+		col.r = col.r * 255;
+		col.g = col.g * 255;
+		col.b = col.b * 255;
+	}
+	return (col);
+}
+
+float	transform_float(float digit)
+{
+	if (digit >= 1)
+	{
+		while (floor(digit) != 0)
+			digit = digit / 10;
+	}
+	return (digit);
 }
