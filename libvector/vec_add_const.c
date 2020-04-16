@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libvector.h"
+#include "include/libvector.h"
 
 t_vec3		vec_add_const(t_vec3 v, float n)
 {

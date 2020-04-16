@@ -19,13 +19,13 @@ int		get_color(t_color color)
 
 t_color	transform_color(t_color col)
 {
-	if (col.r >= 1.0f && col.g >= 1.0f && col.b >= 1.0f)
+	if (col.r > 1.0f && col.g > 1.0f && col.b > 1.0f)
 	{
 		col.r = col.r / 255;
 		col.g = col.g / 255;
 		col.b = col.b / 255;
 	}
-	if (col.r < 1.0f && col.g < 1.0f && col.b < 1.0f)
+	else if (col.r <= 1.0f && col.g <= 1.0f && col.b <= 1.0f)
 	{
 		col.r = col.r * 255;
 		col.g = col.g * 255;
@@ -34,12 +34,8 @@ t_color	transform_color(t_color col)
 	return (col);
 }
 
-float	transform_float(float digit)
+float	transform_specular(float s)
 {
-	if (digit >= 1)
-	{
-		while (floor(digit) != 0)
-			digit = digit / 10;
-	}
-	return (digit);
+	s = 255 / s;
+	return (s);
 }

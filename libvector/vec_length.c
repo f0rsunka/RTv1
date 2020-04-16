@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libvector.h"
+#include "include/libvector.h"
 
 float	vec_length(t_vec3 v)
 {

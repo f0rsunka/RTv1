@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libvector.h"
+#include "include/libvector.h"
 
 double	dot_product(t_vec3 v1, t_vec3 v2)
 {

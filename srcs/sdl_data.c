@@ -24,7 +24,7 @@ t_sdl	init_sdl(void)
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 		sdl_error();
-	sdl.window = SDL_CreateWindow("RTV1", 100, 100, WIN_W, WIN_H, SDL_WINDOW_SHOWN);
+	sdl.window = SDL_CreateWindow("RTV1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIN_W, WIN_H, SDL_WINDOW_SHOWN);
 	if (!sdl.window)
 		sdl_error();
 	sdl.renderer = SDL_CreateRenderer(sdl.window, -1, SDL_RENDERER_ACCELERATED);

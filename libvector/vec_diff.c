@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libvector.h"
+#include "include/libvector.h"
 
 t_vec3 	vec_diff(t_vec3 v1, t_vec3 v2)
 {

@@ -21,7 +21,7 @@ float	calculate_quadratic_equation(t_vec3 length_cam_center, t_vec3 dir, float r
 	c.b = calc_b(length_cam_center, dir);
 	c.c = calc_c(length_cam_center, r);
 	d = calc_discriminant(c.a, c.b, c.c);
-	if (d < 0 || d < EPSILON)
+	if (d < 0)
 		return (0);
 	*t1 = (- c.b + sqrtf(d)) / (2 * c.a);
 	*t2 = (- c.b - sqrtf(d)) / (2 * c.a);

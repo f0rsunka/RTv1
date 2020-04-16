@@ -14,9 +14,16 @@
 
 void	put_pixel(SDL_Renderer *ren, int x, int y, t_color col)
 {
+	// int r;
+	// int g;
+	// int b;
+
+	// r = floor(col.r);
+	// g = floor(col.g);
+	// b = floor(col.b);
 	if (x < WIN_W && y < WIN_H)
 	{
-		SDL_SetRenderDrawColor(ren, floor(col.r), floor(col.g), floor(col.b), 0xFF);
+		SDL_SetRenderDrawColor(ren, col.r, col.g, col.b, 0xFF);
 		SDL_RenderDrawPoint(ren, x, y);
 	}
 }

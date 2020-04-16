@@ -64,7 +64,8 @@ t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r);
 
 int			get_color(t_color color);
 t_color		transform_color(t_color col);
-float		transform_float(float digit);
+// float		transform_float(float digit);
+float		transform_specular(float s);
 
 /*
 ** *********************************** **
@@ -101,7 +102,7 @@ t_light		*init_light(t_rtv *r);
 ** *********************************** **
 */
 
-float		calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 normal_dir, float s);
+float		calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 normal_dir, float s, t_vec3 p);
 t_color		add_light(t_color col, float count_lights);
 
 #endif
