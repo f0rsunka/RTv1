@@ -31,7 +31,9 @@ C_FILES = main.c \
 		  calculate_quadratic_equation.c \
 		  init_light.c \
 		  light.c \
-		  put_pixel.c
+		  put_pixel.c \
+		  diffuse.c \
+		  reflection.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

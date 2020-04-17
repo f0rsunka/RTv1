@@ -36,6 +36,6 @@ t_color	transform_color(t_color col)
 
 float	transform_specular(float s)
 {
-	s = 255 / s;
+	s = s / 255;
 	return (s);
 }

@@ -9,6 +9,8 @@
 		"cmath": "c",
 		"libft.h": "c",
 		"string": "c",
-		"thread": "c"
+		"thread": "c",
+		"unordered_map": "c",
+		"unordered_set": "c"
 	}
 }

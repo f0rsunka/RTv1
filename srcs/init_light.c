@@ -17,7 +17,7 @@ t_light		ambient_data(void)
 	t_light	ambient;
 
 	ambient.type = ft_strdup(AMBIENT);
-	ambient.intensity = 0.2;
+	ambient.intensity = 0.4;
 	ambient.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	ambient.direction = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (ambient);
@@ -28,8 +28,9 @@ t_light		point_data(void)
 	t_light	point;
 
 	point.type = ft_strdup(POINT);
-	point.intensity = 0.4;
-	point.position = (t_vec3){3.3f, -1.0f, -3.0f};
+	point.intensity = 0.2;
+	point.position = (t_vec3){-2.5f, -1.0f, -3.0f};
+	// point.position = (t_vec3){3.3f, -1.0f, -3.0f};
 	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (point);
 }
