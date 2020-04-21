@@ -17,7 +17,7 @@ void	init_rtv(t_rtv *rtv)
 	rtv->sdl = init_sdl();
 	init_sphere(rtv);
 	rtv->camera = init_camera();
-	rtv->viewport = init_viewport();
+	// rtv->viewport = init_viewport();
 	rtv->sphere = init_sphere(rtv);
 	rtv->light = init_light(rtv);
 }

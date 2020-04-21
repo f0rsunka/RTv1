@@ -32,16 +32,16 @@ t_vec3		get_normal_dir(t_vec3 p, t_vec3 center_sphere)
 
 float		get_count_light(t_closest_sphere closest, t_vec3 dir, t_rtv *r)
 {
-	t_vec3	p;
-	t_vec3	reverse_dir;
-	t_vec3	normal_dir;
-	float	count_light;
+	t_intersect intersect;
+	t_vec3		reverse_dir;
+	float		count_light;
 
-	p = vec_add(r->camera, vec_add_const(dir, closest.dist));
 	reverse_dir = vec_add_const(dir, -1);
-	normal_dir = get_normal_dir(r->camera, closest.sphere->center);
-	// count_light = calculate_lightning(r, dir, normal_dir, closest.sphere->specular, p);
-	count_light = calculate_lightning(r, reverse_dir, normal_dir, closest.sphere->specular, p);
+	intersect.p = vec_add(r->camera, vec_add_const(dir, closest.dist));
+	intersect.normal_dir = get_normal_dir(r->camera, closest.sphere->center);
+	intersect.material = closest.sphere->material;
+	// count_light = calculate_lightning(r, dir, normal_dir, closest.sphere->material.specular, p);
+	count_light = calculate_lightning(r, reverse_dir, intersect);
 	return (count_light);
 }
 
@@ -66,7 +66,7 @@ t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 	if (closest.sphere == NULL)
 		return (transform_color(BACKGROUND_COLOR));
 	count_light = get_count_light(closest, dir, r);
-	total_color = add_light(closest.sphere->color, count_light);
+	total_color = add_light(closest.sphere->material.color, count_light);
 	return (total_color);
 }
 

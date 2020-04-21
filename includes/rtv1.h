@@ -25,6 +25,13 @@
 # define WIN_H 600
 # define FOV (M_PI / 2.0)
 // # define EPSILON 1e-16
+# define SPHERE 0
+# define SPHERE 1
+# define SPHERE 2
+# define PLACE 3
+# define CONE 4
+# define CYLINDER 5
+# define COUNT_PRIMITIVE 6
 
 /*
 ** *********************************** **

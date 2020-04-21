@@ -20,10 +20,10 @@ t_vec3	init_camera(void)
 	return (camera);
 }
 
-t_viewport	init_viewport(void)
-{
-	t_viewport viewport;
+// t_viewport	init_viewport(void)
+// {
+// 	t_viewport viewport;
 
-	viewport = (t_viewport){1, 1, 1};
-	return (viewport);
-}
+// 	viewport = (t_viewport){1, 1, 1};
+// 	return (viewport);
+// }

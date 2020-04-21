@@ -12,19 +12,19 @@
 
 #include "rtv1.h"
 
-float	calculate_intensity(float light_intensity, t_vec3 light_dir, t_vec3 normal_dir, float s, t_vec3 view)
+float	calculate_intensity(float light_intensity, t_vec3 light_dir, t_intersect intersect, t_vec3 view)
 {
 	float	intensity;
 
 	intensity = 0.0f;
-	intensity += calculate_diffuse(light_intensity, light_dir, normal_dir);
-	if (s >= 0)
-		intensity += calculate_reflection(view, light_dir, normal_dir, light_intensity, s);
+	intensity += calculate_diffuse(light_intensity, light_dir, intersect.normal_dir);
+	if (intersect.material.specular >= 0)
+		intensity += calculate_reflection(view, light_dir, light_intensity, intersect);
 	// printf("intensity = %f\n", intensity);
 	return (intensity);
 }
 
-float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 normal_dir, float s, t_vec3 p)
+float	calculate_lightning(t_rtv *r, t_vec3 dir, t_intersect intersect)
 {
 	int		i;
 	float	total_intensity;
@@ -35,13 +35,13 @@ float	calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 normal_dir, float s, t_ve
 	while (i < r->count_lights)
 	{
 		if (!ft_strcmp(r->light[i].type, POINT))
-			light_dir = vec_diff(p, r->light[i].position);
+			light_dir = vec_diff(intersect.p, r->light[i].position);
 		if (!ft_strcmp(r->light[i].type, DIRECTIONAL))
 			light_dir = r->light[i].direction;
 		if (!ft_strcmp(r->light[i].type, AMBIENT))
 			total_intensity += r->light[i].intensity;
 		else
-			total_intensity += calculate_intensity(r->light[i].intensity, light_dir, normal_dir, s, dir);
+			total_intensity += calculate_intensity(r->light[i].intensity, light_dir, intersect, dir);
 		i++;
 	}
 	if (total_intensity > 1.0f)

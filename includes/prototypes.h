@@ -90,7 +90,7 @@ float		calc_c(t_vec3 length_cam_center, float r);
 */
 
 t_vec3		init_camera(void);
-t_viewport	init_viewport(void);
+// t_viewport	init_viewport(void);
 t_sphere	*init_sphere(t_rtv *r);
 t_light		*init_light(t_rtv *r);
 
@@ -102,9 +102,9 @@ t_light		*init_light(t_rtv *r);
 ** *********************************** **
 */
 
-float		calculate_lightning(t_rtv *r, t_vec3 dir, t_vec3 normal_dir, float s, t_vec3 p);
+float		calculate_lightning(t_rtv *r, t_vec3 dir, t_intersect intersect);
 t_color		add_light(t_color col, float count_lights);
 float		calculate_diffuse(float light_intensity, t_vec3 light_dir, t_vec3 normal_dir);
-float		calculate_reflection(t_vec3 view, t_vec3 light_dir, t_vec3 normal_dir, float light_intensity, float s);
+float		calculate_reflection(t_vec3 view, t_vec3 light_dir, float light_intensity, t_intersect intersect);
 
 #endif

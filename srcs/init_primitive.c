@@ -12,46 +12,47 @@
 
 #include "rtv1.h"
 
-void	sphere_data(t_sphere *sphere)
+void	init_cylinder(t_cylinder *cylinder)
 {
-	sphere[0].color = transform_color(PINK);
-	// sphere[0].center = (t_vec3){0.0, 0.0, 3.0};
-	sphere[0].center = (t_vec3){0.0, -1.0, 3.0};
-	sphere[0].radius = 1.0f;
-	sphere[0].specular = transform_specular(800.0f);
-	// sphere[0].specular = 500.0f;
 
-
-
-	sphere[1].color = transform_color(BLUE);
-	// sphere[1].center = (t_vec3){1.2, 0.0, 3.0};
-	sphere[1].center = (t_vec3){-2.0, 1.0, 3.0};
-	sphere[1].radius = 1.0f;
-	// sphere[1].specular = 500.0f;
-	sphere[1].specular = transform_specular(800.0f);
-
-
-
-	sphere[2].color = transform_color(PURPLE);
-	// sphere[2].center = (t_vec3){-1.2f, 0.0, 3.0};
-	sphere[2].center = (t_vec3){2.0f, 1.0, 3.0};
-	sphere[2].radius = 1.0f;
-	// sphere[2].specular = 500.0f;
-	sphere[2].specular = transform_specular(800.0f);
-
-	// sphere[3].color = transform_color(YELLOW);
-	// sphere[3].center = (t_vec3){0.0f, 24.9f, 17.0f};
-	// sphere[3].radius = 30.1f;
-	// sphere[3].specular = transform_specular(100.0f);
 }
 
-t_sphere *init_sphere(t_rtv *r)
+void	init_cone(t_cone *cone)
 {
-	t_sphere *s;
 
-	r->count_objects = 3;
-	s = (t_sphere*)malloc(sizeof(t_sphere) * r->count_objects);
-	(s == NULL ? exit (88) : 0);
-	sphere_data(s);
-	return (s);
+}
+
+void	init_place(t_place *place)
+{
+
+}
+
+void	init_primitive(void)
+{
+	int		i;
+	t_scene *scene;
+	t_scene	*tmp;
+
+	i = 0;
+	while (i < COUNT_PRIMITIVE)
+	{
+		scene = (t_scene*)malloc(sizeof(t_scene));
+		(scene == NULL ? exit(99) : 1);
+		if (i >= 0 && i <= 2)
+		{
+			choice_sphere(i, scene->object);
+		}
+		if (i == 3)
+			init_place(scene->object);
+		if (i == 4)
+			init_cone(scene->object);
+		if (i == 5)
+			init_cylinder(scene->object);
+		if (i == 0)
+			scene->next = NULL;
+		else
+			scene->next = tmp;
+		i++;
+		tmp = scene;
+	}
 }
