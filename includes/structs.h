@@ -23,15 +23,29 @@ typedef struct		s_color
 
 typedef struct 		s_material
 {
+	t_vec2			a;
 	t_color			color;
 	float			specular;
 }					t_material;
 
+typedef struct		s_sphere
+{
+	t_vec3			center;
+	float			radius;
+	t_material		material;
+}					t_sphere;
+
+typedef struct		s_closest_sphere
+{
+	t_sphere		*sphere;
+	float			dist;
+}					t_closest_sphere;
 
 typedef struct		s_intersect
 {
+	t_closest_sphere s;
 	t_vec3			p;
-	t_vec3			normal_dir;
+	t_vec3			normal;
 	t_material		material;
 }					t_intersect;
 
@@ -40,11 +54,7 @@ typedef struct		s_intersect
 
 // }				t_primitive;
 
-typedef struct		s_closest_sphere
-{
-	t_sphere		*sphere;
-	float			dist;
-}					t_closest_sphere;
+
 
 // typedef struct		s_viewport
 // {
@@ -76,12 +86,6 @@ typedef struct 		s_scene
 	struct s_scene	*next;
 }					t_scene;
 
-typedef struct		s_sphere
-{
-	t_vec3			center;
-	float			radius;
-	t_material		material;
-}					t_sphere;
 
 typedef struct		s_coefficients
 {
@@ -112,7 +116,6 @@ typedef struct 		s_rtv
 	t_vec3			camera;
 	t_scene			*scene;
 	// t_viewport		viewport;
-	t_vec3			point_in_3d;
 	t_light			*light;
 	int				count_lights;
 }					t_rtv;

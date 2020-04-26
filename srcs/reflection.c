@@ -11,8 +11,8 @@ float	calculate_reflection(t_vec3 view, t_vec3 light_dir, float light_intensity,
 	float	intensity;
 	float	x;
 
-	dot_l_n = dot_product(light_dir, intersect.normal_dir);
-	reflection = vec_diff(light_dir, vec_add_const(vec_add_const(intersect.normal_dir, 2.0f), dot_l_n));
+	dot_l_n = dot_product(light_dir, intersect.normal);
+	reflection = vec_diff(light_dir, vec_add_const(vec_add_const(intersect.normal, 2.0f), dot_l_n));
 	dot_r_v = dot_product(reflection, view);
 	if (dot_r_v <= 0)
 		return (0.0f);

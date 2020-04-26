@@ -20,74 +20,46 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-t_vec3		get_normal_dir(t_vec3 p, t_vec3 center_sphere)
-{
-	t_vec3	normal;
-	t_vec3	normal_dir;
-	
-	normal = vec_diff(center_sphere, p);
-	normal_dir = vec_normalize(normal);
-	return (normal_dir);
-}
-
-float		get_count_light(t_closest_sphere closest, t_vec3 dir, t_rtv *r)
-{
-	t_intersect intersect;
-	t_vec3		reverse_dir;
-	float		count_light;
-
-	reverse_dir = vec_add_const(dir, -1);
-	intersect.p = vec_add(r->camera, vec_add_const(dir, closest.dist));
-	intersect.normal_dir = get_normal_dir(r->camera, closest.sphere->center);
-	intersect.material = closest.sphere->material;
-	// count_light = calculate_lightning(r, dir, normal_dir, closest.sphere->material.specular, p);
-	count_light = calculate_lightning(r, reverse_dir, intersect);
-	return (count_light);
-}
-
 t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 {
-	int					i;
-	t_color				total_color;
+	t_color				color;
 	t_closest_sphere	closest;
-	float				count_light;
+	t_scene				*start_list;
+	t_scene				*tmp;
+	float				tmp_dist;
+	float				intersect_res;
 
-	i = 0;
 	closest.dist = FLT_MAX;
+	tmp_dist = FLT_MAX - 1;
 	closest.sphere = NULL;
-	while (i < r->count_objects)
+	start_list = r->scene;
+			// tmp_dist = 0.0f;
+	while (tmp != NULL)
 	{
-		if (intersect_ray_sphere(camera, dir, r->sphere[i], &closest.dist))
+		if (r->scene->type == SPHERE)
 		{
-			closest.sphere = &r->sphere[i];
+			intersect_res = intersect_ray_sphere(camera, dir, *(t_sphere *)r->scene->object, &tmp_dist);
+			if (intersect_res && tmp_dist < closest.dist)
+			{
+				closest.dist = tmp_dist;
+				closest.sphere = (t_sphere *)r->scene->object;
+				// r->scene = start_list;
+				// color = add_light(closest.sphere->material.color, closest, dir, r);
+				// return (color);
+			}
 		}
-		i++;
+		tmp = r->scene->next;
+		r->scene = tmp;
 	}
+	r->scene = start_list;
 	if (closest.sphere == NULL)
 		return (transform_color(BACKGROUND_COLOR));
-	count_light = get_count_light(closest, dir, r);
-	total_color = add_light(closest.sphere->material.color, count_light);
-	return (total_color);
+	// color = add_light(closest.sphere->material.color, closest, dir, r);
+	color = (t_color){closest.dist / 255, closest.dist / 255, closest.dist / 255};
+	return (color);
 }
 
-int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist)
-{
-	t_vec3	length_cam_center;
-	float	t1;
-	float	t2;
+// int		scene_intersect()
+// {
 
-	length_cam_center = vec_diff(camera, sphere.center);
-	if (!calculate_quadratic_equation(length_cam_center, dir, sphere.radius, &t1, &t2))
-		return (0);
-	if (t1 < *sphere_dist && t1 >= 0)
-	{
-		*sphere_dist = t1;
-		return (1);
-	}
-	if (t2 < *sphere_dist && t2 >= 0)
-	{
-		*sphere_dist = t2;
-		return (1);
-	}
-	return (0);
-}
+// }

@@ -11,6 +11,7 @@
 		"string": "c",
 		"thread": "c",
 		"unordered_map": "c",
-		"unordered_set": "c"
+		"unordered_set": "c",
+		"math.h": "c"
 	}
 }

@@ -21,17 +21,15 @@
 # include <math.h>
 # include <stdio.h> //!---------------------------------------------------------
 # define M_PI 3.14159265358979323846
-# define WIN_W 1000
-# define WIN_H 600
+# define WIN_W 1024
+# define WIN_H 768
 # define FOV (M_PI / 2.0)
 // # define EPSILON 1e-16
 # define SPHERE 0
-# define SPHERE 1
-# define SPHERE 2
-# define PLACE 3
-# define CONE 4
-# define CYLINDER 5
-# define COUNT_PRIMITIVE 6
+# define PLACE 1
+# define CONE 2
+# define CYLINDER 3
+# define COUNT_PRIMITIVE 3
 
 /*
 ** *********************************** **

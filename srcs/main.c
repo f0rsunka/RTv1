@@ -15,10 +15,9 @@
 void	init_rtv(t_rtv *rtv)
 {
 	rtv->sdl = init_sdl();
-	init_sphere(rtv);
+	init_primitive(rtv);
 	rtv->camera = init_camera();
 	// rtv->viewport = init_viewport();
-	rtv->sphere = init_sphere(rtv);
 	rtv->light = init_light(rtv);
 }
 
@@ -28,7 +27,7 @@ int		main_render(t_rtv *r)
 	{
 		// SDL_SetRenderTarget(r->sdl.renderer, NULL);
 		clear_window_sdl(r->sdl);
-		render_sphere(r);
+		render(r);
 		SDL_RenderPresent(r->sdl.renderer);
 		while (SDL_PollEvent(&r->sdl.event))
 		{

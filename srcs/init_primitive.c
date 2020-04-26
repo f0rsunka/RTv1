@@ -12,22 +12,22 @@
 
 #include "rtv1.h"
 
-void	init_cylinder(t_cylinder *cylinder)
+void	init_cylinder(t_scene *scene)
 {
-
+	scene->type = CYLINDER;
 }
 
-void	init_cone(t_cone *cone)
+void	init_cone(t_scene *scene)
 {
-
+	scene->type = CONE;
 }
 
-void	init_place(t_place *place)
+void	init_place(t_scene *scene)
 {
-
+	scene->type = PLACE;
 }
 
-void	init_primitive(void)
+void	init_primitive(t_rtv *r)
 {
 	int		i;
 	t_scene *scene;
@@ -37,17 +37,15 @@ void	init_primitive(void)
 	while (i < COUNT_PRIMITIVE)
 	{
 		scene = (t_scene*)malloc(sizeof(t_scene));
-		(scene == NULL ? exit(99) : 1);
+		(scene == NULL ? exit(8) : 1);
 		if (i >= 0 && i <= 2)
-		{
-			choice_sphere(i, scene->object);
-		}
+			choice_sphere(i, scene);
 		if (i == 3)
-			init_place(scene->object);
+			init_place(scene);
 		if (i == 4)
-			init_cone(scene->object);
+			init_cone(scene);
 		if (i == 5)
-			init_cylinder(scene->object);
+			init_cylinder(scene);
 		if (i == 0)
 			scene->next = NULL;
 		else
@@ -55,4 +53,5 @@ void	init_primitive(void)
 		i++;
 		tmp = scene;
 	}
+	r->scene = scene;
 }
