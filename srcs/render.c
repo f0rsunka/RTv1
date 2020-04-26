@@ -30,7 +30,7 @@ void render(t_rtv *r)
             coord.y = -(2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
 			dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
 			col = trace_ray(r->camera, dir, r);
-			printf("\n***\nbef %f %f %f\n", col.r, col.g, col.b);
+			// printf("\n***\nbef %f %f %f\n", col.r, col.g, col.b);
 			col = transform_color(col);
 			// printf("aft %f %f %f\n", col.r, col.g, col.b);
 			put_pixel(r->sdl.renderer, iter.x, iter.y, col);

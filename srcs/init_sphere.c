@@ -4,7 +4,7 @@
 void	init_sphere_0(t_sphere *sphere)
 {
 	// sphere->color = transform_color(PINK);
-	sphere->center = (t_vec3){0.0, -1.0, 4.0};
+	sphere->center = (t_vec3){0.0, -1.0, 6.0};
 	// sphere->center = (t_vec3){6.0, 2.0, 0.0};
 	sphere->radius = 2.0f;
 	// sphere->material.specular = transform_specular(800.0f);

@@ -55,7 +55,8 @@ t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
 	if (closest.sphere == NULL)
 		return (transform_color(BACKGROUND_COLOR));
 	// color = add_light(closest.sphere->material.color, closest, dir, r);
-	color = (t_color){closest.dist / 255, closest.dist / 255, closest.dist / 255};
+	// color = (t_color){closest.dist / 255, closest.dist / 255, closest.dist / 255};
+	color = closest.sphere->material.color;
 	return (color);
 }
 
