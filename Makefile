@@ -31,11 +31,12 @@ C_FILES = main.c \
 		  raytrace.c \
 		  intersect_sphere.c \
 		  calculate_quadratic_equation.c \
-		  light.c \
-		  diffuse.c \
-		  reflection.c \
 		  color.c \
 		  put_pixel.c \
+		  light.c \
+		  normal_sphere.c \
+		  diffuse.c \
+		  reflection.c \
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

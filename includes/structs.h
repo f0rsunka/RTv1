@@ -35,19 +35,19 @@ typedef struct		s_sphere
 	t_material		material;
 }					t_sphere;
 
-typedef struct		s_closest_sphere
+typedef struct		s_closest_obj
 {
-	t_sphere		*sphere;
+	void			*obj;
 	float			dist;
-}					t_closest_sphere;
+}					t_closest_obj;
 
-typedef struct		s_intersect
-{
-	t_closest_sphere s;
-	t_vec3			p;
-	t_vec3			normal;
-	t_material		material;
-}					t_intersect;
+// typedef struct		s_intersect
+// {
+// 	t_closest_sphere s;
+// 	t_vec3			p;
+// 	t_vec3			normal;
+// 	t_material		material;
+// }					t_intersect;
 
 // typedef struct	s_primitive
 // {
@@ -81,7 +81,7 @@ typedef struct		s_sdl
 typedef struct 		s_scene
 {
 	void			*object;
-	size_t			size;
+	// size_t			size;
 	int				type;
 	struct s_scene	*next;
 }					t_scene;
@@ -109,11 +109,19 @@ typedef struct		s_cylinder
 	
 }					t_cylinder;
 
+typedef struct		s_ray
+{
+	t_vec3			dir;
+	t_vec3			reverse_dir;
+	t_vec3			p;
+	t_vec3			normal;
+}					t_ray;
 
 typedef struct 		s_rtv
 {
 	t_sdl			sdl;
 	t_vec3			camera;
+	t_ray			ray;
 	t_scene			*scene;
 	// t_viewport		viewport;
 	t_light			*light;

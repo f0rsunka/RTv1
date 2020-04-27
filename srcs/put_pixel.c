@@ -21,13 +21,6 @@ void	put_pixel(SDL_Renderer *ren, int x, int y, t_color col)
 	r = floor(col.r);
 	g = floor(col.g);
 	b = floor(col.b);
-	// printf("%d %d %d\n", r, g, b);
-	if (r < 10 && g < 10 && b < 10)
-	{
-		r *= 10;
-		b *= 10;
-		g *= 10;
-	}
 	if (x < WIN_W && y < WIN_H)
 	{
 		SDL_SetRenderDrawColor(ren, r, g, b, 0xFF);

@@ -12,7 +12,7 @@
 
 #include "include/libvector.h"
 
-t_vec3		vec_add_const(t_vec3 v, float n)
+t_vec3		mult_vec_const(t_vec3 v, float n)
 {
 	return ((t_vec3){v.x * n, v.y * n, v.z * n});
 }

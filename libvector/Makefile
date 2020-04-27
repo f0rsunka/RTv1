@@ -12,7 +12,7 @@
 
 NAME = libvector.a
 
-SRC = vec_add.c vec_add_const.c vec_diff.c dot_product.c vec_length.c \
+SRC = vec_add.c mult_vec_const.c vec_diff.c dot_product.c vec_length.c \
 	  vec_normalize.c 
 
 OBJ = $(SRC:.c=.o)

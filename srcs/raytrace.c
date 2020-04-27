@@ -20,47 +20,49 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-t_color		trace_ray(t_vec3 camera, t_vec3 dir, t_rtv *r)
-{
-	t_color				color;
-	t_closest_sphere	closest;
-	t_scene				*start_list;
-	t_scene				*tmp;
-	float				tmp_dist;
-	float				intersect_res;
 
-	closest.dist = FLT_MAX;
-	tmp_dist = FLT_MAX - 1;
-	closest.sphere = NULL;
-	start_list = r->scene;
-			// tmp_dist = 0.0f;
-	while (tmp != NULL)
+// Ошибка в том, что где-то неверно стоит указатель. Свет есть только на сфере, которая инициализирована последней.
+
+int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+{
+	float				intersect_res;
+	float				tmp_dist;
+
+	tmp_dist = 0.0f;
+	intersect_res = intersect_ray_sphere(r->camera, r->ray.dir, *(t_sphere *)current->object, &tmp_dist);
+	if (intersect_res && tmp_dist < closest->dist)
 	{
-		if (r->scene->type == SPHERE)
-		{
-			intersect_res = intersect_ray_sphere(camera, dir, *(t_sphere *)r->scene->object, &tmp_dist);
-			if (intersect_res && tmp_dist < closest.dist)
-			{
-				closest.dist = tmp_dist;
-				closest.sphere = (t_sphere *)r->scene->object;
-				// r->scene = start_list;
-				// color = add_light(closest.sphere->material.color, closest, dir, r);
-				// return (color);
-			}
-		}
-		tmp = r->scene->next;
-		r->scene = tmp;
+		closest->dist = tmp_dist;
+		closest->obj = (t_sphere *)current->object;
 	}
-	r->scene = start_list;
-	if (closest.sphere == NULL)
-		return (transform_color(BACKGROUND_COLOR));
-	// color = add_light(closest.sphere->material.color, closest, dir, r);
-	// color = (t_color){closest.dist / 255, closest.dist / 255, closest.dist / 255};
-	color = closest.sphere->material.color;
-	return (color);
+	if (closest->obj == NULL)
+		return (0);
+	else
+		return (1);
 }
 
-// int		scene_intersect()
-// {
+t_color		trace_ray(t_rtv *r)
+{
+	t_color				color;
+	t_closest_obj		closest;
+	t_scene				*tmp;
+	t_scene				*current;
 
-// }
+	closest.dist = FLT_MAX;
+	closest.obj = NULL;
+	current = r->scene;
+	while (current != NULL)
+	{
+		if (current->type == SPHERE)
+		{
+			if (sphere_intersect(r, current, &closest) == 1)
+				color = calculate_lightning(r, closest);
+		}
+		tmp = current->next;
+		current = tmp;
+	}
+	if (closest.obj == NULL)
+		return (float_to_byte(BACKGROUND_COLOR));
+	// color = calculate_lightning(r, closest);
+	return (color);
+}

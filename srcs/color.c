@@ -17,20 +17,19 @@ int		get_color(t_color color)
 	return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
 
-t_color	transform_color(t_color col)
+t_color float_to_byte(t_color col)
 {
-	if (col.r > 1.0f && col.g > 1.0f && col.b > 1.0f)
-	{
-		col.r = col.r / 255;
-		col.g = col.g / 255;
-		col.b = col.b / 255;
-	}
-	else if (col.r <= 1.0f && col.g <= 1.0f && col.b <= 1.0f)
-	{
-		col.r = col.r * 255;
-		col.g = col.g * 255;
-		col.b = col.b * 255;
-	}
+	col.r = col.r / 255;
+	col.g = col.g / 255;
+	col.b = col.b / 255;
+	return (col);
+}
+
+t_color byte_to_float(t_color col)
+{
+	col.r = col.r * 255;
+	col.g = col.g * 255;
+	col.b = col.b * 255;
 	return (col);
 }
 

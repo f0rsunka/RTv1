@@ -16,7 +16,6 @@ void render(t_rtv *r)
 {
 	t_ivec2	iter;
 	t_vec2 	coord;
-	t_vec3	dir;
 	t_color col;
 
 	iter = (t_ivec2){0, 0};
@@ -28,11 +27,9 @@ void render(t_rtv *r)
 		{
 			coord.x =  (2 * (iter.x + 0.5) / (float)WIN_W - 1) * tan(FOV / 2.0) * WIN_W / (float)WIN_H;
             coord.y = -(2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
-			dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
-			col = trace_ray(r->camera, dir, r);
-			// printf("\n***\nbef %f %f %f\n", col.r, col.g, col.b);
-			col = transform_color(col);
-			// printf("aft %f %f %f\n", col.r, col.g, col.b);
+			r->ray.dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
+			col = trace_ray(r);
+			col = byte_to_float(col);
 			put_pixel(r->sdl.renderer, iter.x, iter.y, col);
 			iter.x++;
 		}

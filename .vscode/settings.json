@@ -12,6 +12,8 @@
 		"thread": "c",
 		"unordered_map": "c",
 		"unordered_set": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"hash_map": "c",
+		"hash_set": "c"
 	}
 }
