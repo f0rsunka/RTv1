@@ -38,7 +38,7 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 
 t_vec3		init_camera(void);
 // t_viewport	init_viewport(void);
-t_light		*init_light(t_rtv *r);
+t_light		*init_light(void);
 
 /*
 ** *********************************** **

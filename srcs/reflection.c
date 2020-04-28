@@ -15,6 +15,7 @@ void	calculate_reflection(t_ray ray, t_light light, float specular, float *inten
 	dot_r_v = dot_product(reflection, ray.reverse_dir);
 	if (dot_r_v > 0)
 	{
+		printf("dd\n");
 		len_r = vec_length(reflection);
 		len_v = vec_length(ray.reverse_dir);
 		x = (dot_r_v / (len_r * len_v));

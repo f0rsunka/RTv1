@@ -30,6 +30,7 @@
 # define CONE 2
 # define CYLINDER 3
 # define COUNT_PRIMITIVE 3
+# define COUNT_LIGHTS 3
 
 /*
 ** *********************************** **
@@ -60,8 +61,8 @@
 ** *********************************** **
 */
 
-# define AMBIENT "ambient\0"
-# define POINT "point\0"
-# define DIRECTIONAL "directional\0"
+# define AMBIENT "a"
+# define POINT "p"
+# define DIRECTIONAL "d"
 
 #endif

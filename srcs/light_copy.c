@@ -149,3 +149,31 @@ void	add_light(t_color *col, float intensity)
 	col->g *= intensity;
 	col->b *= intensity;
 }
+
+
+/**************************/
+
+void	iterate_light(t_rtv *r, t_material material, float *intensity)
+{
+	int		i;
+	t_vec3 light_dir;
+
+	i = 0;
+	while (i < r->count_lights)
+	{
+		// printf("i = %d\nt = %s\n", i, r->light[i].type);
+		// printf("r->ray.p = %f %f %f\n", r->ray.p.x, r->ray.p.y, r->ray.p.z);
+		if (!ft_strcmp(r->light[i].type, POINT))
+			r->light[i].direction = vec_diff(r->ray.p, r->light[i].position);
+		if (!ft_strcmp(r->light[i].type, DIRECTIONAL))
+			r->light[i].direction = r->light[i].direction;
+		if (!ft_strcmp(r->light[i].type, AMBIENT))
+			*intensity += r->light[i].intensity;
+		else
+			calculate_types_light(r, r->light[i], material, intensity);
+		i++;
+	}
+	if (*intensity > 1.0f)
+		*intensity = 1.0f;
+	// printf("%f\n", *intensity);
+}

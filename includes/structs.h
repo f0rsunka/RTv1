@@ -125,7 +125,6 @@ typedef struct 		s_rtv
 	t_scene			*scene;
 	// t_viewport		viewport;
 	t_light			*light;
-	int				count_lights;
 }					t_rtv;
 
 #endif

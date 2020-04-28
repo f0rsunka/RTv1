@@ -12,9 +12,9 @@
 
 #include "include/libvector.h"
 
-double	dot_product(t_vec3 v1, t_vec3 v2)
+float	dot_product(t_vec3 v1, t_vec3 v2)
 {
-	double dp;
+	float dp;
 
 	dp = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 	return (dp);

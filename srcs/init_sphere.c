@@ -3,7 +3,7 @@
 
 void	init_sphere_0(t_sphere *sphere)
 {
-	sphere->center = (t_vec3){0.0, -1.0, 6.0};
+	sphere->center = (t_vec3){0.0, 1.0, 6.0};
 	sphere->radius = 2.0f;
 	sphere->material.color = float_to_byte(PINK);
 	sphere->material.specular = 50.0f;
@@ -12,7 +12,7 @@ void	init_sphere_0(t_sphere *sphere)
 
 void	init_sphere_1(t_sphere *sphere)
 {
-	sphere->center = (t_vec3){-2.0, 1.0, 4.0};
+	sphere->center = (t_vec3){-2.0, -1.0, 4.0};
 	sphere->radius = 2.0f;
 	sphere->material.color = float_to_byte(BLUE);
 	sphere->material.specular = 50.0f;
@@ -21,8 +21,17 @@ void	init_sphere_1(t_sphere *sphere)
 
 void	init_sphere_2(t_sphere *sphere)
 {
-	sphere->center = (t_vec3){2.0f, 1.0, 4.0};
+	sphere->center = (t_vec3){2.0f, -1.0, 4.0};
 	sphere->radius = 2.0f;
+	sphere->material.color = float_to_byte(PURPLE);
+	sphere->material.specular = 10.0f;
+	sphere->material.a = (t_vec2){0.9f, 0.1f};
+}
+
+void	init_sphere_3(t_sphere *sphere)
+{
+	sphere->center = (t_vec3){0.0f, -501.0f, 0.0f};
+	sphere->radius = 500.0f;
 	sphere->material.color = float_to_byte(PURPLE);
 	sphere->material.specular = 10.0f;
 	sphere->material.a = (t_vec2){0.9f, 0.1f};
@@ -40,5 +49,3 @@ void	init_sphere(int i, t_scene *scene)
 	if (i == 2)
 		init_sphere_2((t_sphere *)scene->object);
 }
-
-// Все сферы рисуются цветом, который инициализируется в init_sphere_2.

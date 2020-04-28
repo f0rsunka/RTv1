@@ -22,6 +22,7 @@
 
 
 // Ошибка в том, что где-то неверно стоит указатель. Свет есть только на сфере, которая инициализирована последней.
+// Нет, походу ошибка вообще хз где. Свет есть только на сферe слева
 
 int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
@@ -30,7 +31,7 @@ int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 
 	tmp_dist = 0.0f;
 	intersect_res = intersect_ray_sphere(r->camera, r->ray.dir, *(t_sphere *)current->object, &tmp_dist);
-	if (intersect_res && tmp_dist < closest->dist)
+	if (intersect_res && tmp_dist < closest->dist && tmp_dist > 0)
 	{
 		closest->dist = tmp_dist;
 		closest->obj = (t_sphere *)current->object;
@@ -55,14 +56,16 @@ t_color		trace_ray(t_rtv *r)
 	{
 		if (current->type == SPHERE)
 		{
-			if (sphere_intersect(r, current, &closest) == 1)
-				color = calculate_lightning(r, closest);
+			sphere_intersect(r, current, &closest);
 		}
 		tmp = current->next;
 		current = tmp;
 	}
 	if (closest.obj == NULL)
 		return (float_to_byte(BACKGROUND_COLOR));
-	// color = calculate_lightning(r, closest);
+	// printf("clos.obj->center = %f %f %f\n", ((t_sphere *)closest.obj)->center.x, ((t_sphere *)closest.obj)->center.y, ((t_sphere *)closest.obj)->center.z);
+	// printf("dist = %f\n", closest.dist);
+	color = calculate_lightning(r, closest);
+	// color = ((t_sphere *)closest.obj)->material.color;
 	return (color);
 }

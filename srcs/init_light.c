@@ -28,9 +28,9 @@ t_light		point_data(void)
 	t_light	point;
 
 	point.type = ft_strdup(POINT);
-	point.intensity = 0.2;
-	point.position = (t_vec3){-2.5f, -1.0f, -3.0f};
-	// point.position = (t_vec3){3.3f, -1.0f, -3.0f};
+	point.intensity = 0.4;
+	// point.position = (t_vec3){-2.0, 2.0, 4.0};
+	point.position = (t_vec3){0.0f, 3.0f, 1.0f};
 	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (point);
 }
@@ -40,8 +40,8 @@ t_light		directional_data(void)
 	t_light directional;
 
 	directional.type = ft_strdup(DIRECTIONAL);
-	directional.intensity = 0.4;
-	directional.direction = (t_vec3){9.0f, 6.0f, 7.0f};
+	directional.intensity = 0.2;
+	directional.direction = (t_vec3){5.0f, 5.0f, -5.0f};
 	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (directional);
 }
@@ -53,12 +53,11 @@ void		light_data(t_light *light)
 	light[2] = directional_data();
 }
 
-t_light		*init_light(t_rtv *r)
+t_light		*init_light(void)
 {
 	t_light	*light;
 
-	r->count_lights = 3;
-	light = (t_light*)malloc(sizeof(t_light) * r->count_lights);
+	light = (t_light*)malloc(sizeof(t_light) * COUNT_LIGHTS);
 	(light == NULL ? exit (88) : 1);
 	light_data(light);
 	return (light);

@@ -18,7 +18,7 @@ void	init_rtv(t_rtv *rtv)
 	init_primitive(rtv);
 	rtv->camera = init_camera();
 	// rtv->viewport = init_viewport();
-	rtv->light = init_light(rtv);
+	rtv->light = init_light();
 }
 
 int		main_render(t_rtv *r)
