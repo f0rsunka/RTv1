@@ -20,10 +20,6 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-
-// Ошибка в том, что где-то неверно стоит указатель. Свет есть только на сфере, которая инициализирована последней.
-// Нет, походу ошибка вообще хз где. Свет есть только на сферe слева
-
 int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
 	float				intersect_res;
@@ -63,8 +59,6 @@ t_color		trace_ray(t_rtv *r)
 	}
 	if (closest.obj == NULL)
 		return (float_to_byte(BACKGROUND_COLOR));
-	// printf("clos.obj->center = %f %f %f\n", ((t_sphere *)closest.obj)->center.x, ((t_sphere *)closest.obj)->center.y, ((t_sphere *)closest.obj)->center.z);
-	// printf("dist = %f\n", closest.dist);
 	color = calculate_lightning(r, closest);
 	// color = ((t_sphere *)closest.obj)->material.color;
 	return (color);

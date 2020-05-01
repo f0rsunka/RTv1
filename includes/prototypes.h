@@ -95,12 +95,6 @@ float		calc_c(t_vec3 length_cam_center, float r);
 ** *********************************** **
 */
 
-// float		get_light(t_closest_sphere closest, t_vec3 dir, t_rtv *r);
-// t_color		add_light(t_color col, t_closest_sphere closest, t_vec3 dir, t_rtv *r);
-// float		calculate_lightning(t_rtv *r, t_vec3 dir, t_intersect intersect, t_vec3 p);
-// float		calculate_diffuse(float light_intensity, t_vec3 light_dir, t_vec3 normal_dir);
-// float		calculate_reflection(t_vec3 view, t_vec3 light_dir, float light_intensity, t_intersect intersect);
-
 t_color 	calculate_lightning(t_rtv *r, t_closest_obj closest);
 t_vec3		get_normal_sphere(t_vec3 p, t_vec3 center_sphere);
 void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
@@ -119,5 +113,15 @@ int			get_color(t_color color);
 t_color		float_to_byte(t_color col);
 t_color		byte_to_float(t_color col);
 float		transform_specular(float s);
+
+/*
+** *********************************** **
+** *********************************** **
+**               shadow       		   **
+** *********************************** **
+** *********************************** **
+*/
+
+int			is_shadow(t_rtv *r, t_vec3 light_dir);
 
 #endif

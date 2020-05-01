@@ -21,5 +21,5 @@ int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sp
 		*sphere_dist = t2;
 		return (1);
 	}
-	return (1);
+	return (0);
 }
