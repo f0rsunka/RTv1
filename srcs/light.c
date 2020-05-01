@@ -14,12 +14,17 @@
 
 void	calculate_types_light(t_rtv *r, t_light light, t_material material, float *intensity)
 {
+	float diffuse_int = 0.0f;
+	float spec_int = 0.0f;
+
 	calculate_diffuse(light, r->ray.normal, intensity);
+	// printf("\n\n***\nbefore = %f\n", *intensity);
 	// *intensity *= material.a.x;
 	if (material.specular >= 0)
 	{
 		calculate_reflection(r->ray, light, material.specular, intensity);
 	// 	*intensity *= material.a.y;
+		// printf("\nafter  = %f\n", *intensity);
 	}
 	// printf("%f\n", *intensity);
 	// printf("ray->normal = %f %f %f\n", r->ray.normal);

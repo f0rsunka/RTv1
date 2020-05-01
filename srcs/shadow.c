@@ -15,6 +15,11 @@
 hit = orig + dir*dist_i;
             N = (hit - spheres[i].center).normalize();
 
+
+
+-reflect(-light_dir, N)
+
+
 Vec3f reflect(const Vec3f &I, const Vec3f &N) {
     return I - N*2.f*(I*N);
 }

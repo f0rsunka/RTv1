@@ -112,13 +112,13 @@ clean:
 	@rm -rf $(RAW_OBJ_FILES)
 	@rm -rf ./libft/*.o
 	@rm -rf ./libvector/*.o
-	# @rm -rf $(SDL_DIR)/tmp
+	@rm -rf $(SDL_DIR)/tmp
 
 fclean: clean
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
 	@rm -rf ./libft/libft.a
 	@rm -rf ./libvector/libvector.a
-	# @rm -rf $(SDL_DIST)
+	@rm -rf $(SDL_DIST)
 
 re: fclean all
