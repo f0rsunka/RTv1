@@ -1,0 +1,31 @@
+build/SDL_waylandtouch.lo: \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/SDL_waylandtouch.c \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../SDL_internal.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../dynapi/SDL_dynapi.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../dynapi/SDL_dynapi_overrides.h \
+ include/SDL_config.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/include/SDL_platform.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/include/begin_code.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/include/close_code.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/include/SDL_log.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/include/SDL_stdinc.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/include/SDL_config.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/SDL_waylandtouch.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/SDL_waylandvideo.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/SDL_waylanddyn.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/SDL_waylandsym.h \
+ gen/wayland-client-protocol.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/SDL_touch_c.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../SDL_internal.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_touch.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_stdinc.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_error.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/begin_code.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/close_code.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_video.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_pixels.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_endian.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_rect.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_rwops.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_surface.h \
+ /home/f0rsunka/Documents/school21/rtv1/SDL/src/video/wayland/../../events/../../include/SDL_blendmode.h

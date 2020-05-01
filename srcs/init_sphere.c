@@ -48,4 +48,6 @@ void	init_sphere(int i, t_scene *scene)
 		init_sphere_1((t_sphere *)scene->object);
 	if (i == 2)
 		init_sphere_2((t_sphere *)scene->object);
+	if (i == 3)
+		init_sphere_3((t_sphere *)scene->object);
 }
