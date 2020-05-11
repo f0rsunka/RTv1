@@ -26,6 +26,7 @@ typedef struct 		s_material
 	t_vec2			a;
 	t_color			color;
 	float			specular;
+	float			reflective;
 }					t_material;
 
 typedef struct		s_sphere
@@ -48,13 +49,6 @@ typedef struct		s_closest_obj
 // 	t_vec3			normal;
 // 	t_material		material;
 // }					t_intersect;
-
-// typedef struct	s_primitive
-// {
-
-// }				t_primitive;
-
-
 
 // typedef struct		s_viewport
 // {
@@ -115,12 +109,29 @@ typedef struct		s_ray
 	t_vec3			reverse_dir;
 	t_vec3			p;
 	t_vec3			normal;
+	t_vec3			reflect_ray;
 }					t_ray;
+
+typedef struct		s_trace
+{
+	t_vec3			from;
+	t_vec3			to;
+	float			dist_min;
+}					t_trace;
+
+typedef struct		s_collision
+{
+	void			*obj;
+	t_color			col;
+	t_color			reflected_color;
+}					t_collision;
 
 typedef struct 		s_rtv
 {
 	t_sdl			sdl;
 	t_vec3			camera;
+	t_trace			trace;
+	t_closest_obj	closest;
 	t_ray			ray;
 	t_scene			*scene;
 	// t_viewport		viewport;

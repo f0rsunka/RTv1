@@ -16,12 +16,13 @@ void	calculate_types_light(t_rtv *r, t_light light, t_material material, float *
 {
 	calculate_diffuse(light, r->ray.normal, intensity);
 	if (material.specular >= 0)
-		calculate_reflection(r->ray, light, material.specular, intensity);
+		calculate_specular(r->ray, light, material.specular, intensity);
 }
 
 void	iterate_light(t_rtv *r, t_material material, float *intensity)
 {
-	int	i;
+	int		i;
+	t_color	shadow;
 
 	i = 0;
 	while (i < COUNT_LIGHTS)
@@ -40,11 +41,12 @@ void	iterate_light(t_rtv *r, t_material material, float *intensity)
 		}
 		else
 		{
-			if (!is_shadow(r, r->light[i].direction))
+			trace_zero(r);
+			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)r->light[i].direction, (float)0.001f};
+			// if (trace_ray(r, DEPTH_TRACE).obj == NULL)
+			// if (compare_color(trace_ray(r).col, BACKGROUND_COLOR) == 1)
+			if (is_shadow(r) == 0)
 				calculate_types_light(r, r->light[i], material, intensity);
-			// else
-			// 	*intensity += 0.1f;
-			// printf("intensity = %f\n", *intensity);
 		}
 		i++;
 	}

@@ -20,16 +20,6 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-t_vec3	calculate_reflect_ray(t_vec3 r, t_vec3 normal)
-{
-	float	dot_n_r;
-	t_vec3	reflect_ray;
-
-	dot_n_r = dot_product(r, normal);
-	reflect_ray = vec_diff(r, mult_vec_const(mult_vec_const(normal, 2), dot_n_r));
-	return (reflect_ray);
-}
-
 int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
 	float				intersect_res;
@@ -48,9 +38,9 @@ int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
-t_collision		trace_ray(t_rtv *r, int depth)
+t_color		trace_ray(t_rtv *r)
 {
-	t_collision			collision;
+	t_color				color;
 	t_closest_obj		closest;
 	t_scene				*tmp;
 	t_scene				*current;
@@ -67,19 +57,15 @@ t_collision		trace_ray(t_rtv *r, int depth)
 		tmp = current->next;
 		current = tmp;
 	}
-	collision.obj = closest.obj;
 	if (closest.obj == NULL)
 	{
-		collision.col = BACKGROUND_COLOR;
-		return (collision);
+		return (BACKGROUND_COLOR);
 	}
-	collision.col = calculate_lightning(r, closest);
+	color = calculate_lightning(r, closest);
 	// if (depth <= 0 || ((t_sphere *)closest.obj)->material.reflective <= 0)
-	// 	return (collision);
-	// r->ray.reflect_ray = calculate_reflect_ray(r->ray.dir, r->ray.normal);
-	// r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)r->ray.reflect_ray, (float)0.001f};
-	// collision = trace_ray(r, depth - 1);
-	// collision.reflected_color = calculate_reflected_color(collision.col, ((t_sphere *)closest.obj)->material.reflective, collision.reflected_color);
-	return (collision);
+	// 	return (color);
+	// reflect_ray = calculate_reflect_ray();
+	// reflected_color = TraceRay(P, R, 0.001, inf, depth - 1);
+	return (color);
 	// color = ((t_sphere *)closest.obj)->material.color;
 }

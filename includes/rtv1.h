@@ -31,7 +31,7 @@
 # define CYLINDER 3
 # define COUNT_PRIMITIVE 3
 # define COUNT_LIGHTS 3
-
+# define DEPTH_TRACE 1
 /*
 ** *********************************** **
 ** *********************************** **
@@ -40,18 +40,12 @@
 ** *********************************** **
 */
 
-// # define PINK (t_color){191, 164, 255}
-// # define BLUE (t_color){174, 196, 255}
-// # define PURPLE (t_color){255, 202, 249}
-// # define YELLOW (t_color){255, 255, 0}
-# define BACKGROUND_COLOR (t_color){131, 120, 158}
-
 # define PURPLE (t_color){191, 164, 255}
 # define BLUE (t_color){174, 196, 255}
-// # define PURPLE (t_color){255, 202, 249}
 # define PINK (t_color){255, 202, 249}
-// # define PINK (t_color){24, 67, 249}
 # define YELLOW (t_color){255, 255, 0}
+# define LILAC (t_color){131, 120, 158}
+# define BACKGROUND_COLOR float_to_byte(LILAC)
 
 /*
 ** *********************************** **

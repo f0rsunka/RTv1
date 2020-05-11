@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-void ray_normalize(t_ray *ray)
+void ray_zero(t_ray *ray)
 {
 	ray->dir = (t_vec3){0.0f, 0.0f, 0.0f};
 	ray->normal = (t_vec3){0.0f, 0.0f, 0.0f};
@@ -20,11 +20,25 @@ void ray_normalize(t_ray *ray)
 	ray->reverse_dir = (t_vec3){0.0f, 0.0f, 0.0f};
 }
 
+void trace_zero(t_rtv *r)
+{
+	r->trace.from = (t_vec3){0.0f, 0.0f, 0.0f};
+	r->trace.to = (t_vec3){0.0f, 0.0f, 0.0f};
+	r->trace.dist_min = 0.0f;
+}
+
+// void init_trace(t_trace *trace, t_vec3 from, t_vec3 to, float dist_min)
+// {
+// 	trace->from = from;
+// 	trace->to = to;
+// 	trace->dist_min = dist_min;
+// }
+
 void render(t_rtv *r)
 {
 	t_ivec2	iter;
 	t_vec2 	coord;
-	t_color col;
+	t_color color;
 
 	iter = (t_ivec2){0, 0};
 	coord = (t_vec2){0.0f, 0.0f};
@@ -35,11 +49,14 @@ void render(t_rtv *r)
 		{
 			coord.x = (2 * (iter.x + 0.5) / (float)WIN_W - 1) * tan(FOV / 2.0) * WIN_W / (float)WIN_H;
             coord.y = (2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
-			ray_normalize(&r->ray);
+			ray_zero(&r->ray);
 			r->ray.dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
-			col = trace_ray(r);
-			col = byte_to_float(col);
-			put_pixel(r->sdl.renderer, iter.x, iter.y, col);
+			trace_zero(r);
+			r->trace = (t_trace){r->camera, r->ray.dir, 0.0f};
+			// init_trace(&r->trace, r->camera, r->ray.dir, 0.0f);
+			color = trace_ray(r, DEPTH_TRACE).col;
+			color = byte_to_float(color);
+			put_pixel(r->sdl.renderer, iter.x, iter.y, color);
 			iter.x++;
 		}
 		iter.y++;

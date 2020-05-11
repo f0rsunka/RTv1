@@ -70,8 +70,11 @@ int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sp
 */
 
 void		render(t_rtv *rtv);
-t_color		trace_ray(t_rtv *r);
-
+t_collision	trace_ray(t_rtv *r, int depth);
+// t_color		trace_ray(t_rtv *r);
+void 		init_trace(t_trace *trace, t_vec3 from, t_vec3 to, float dist_min);
+void		trace_zero(t_rtv *r);
+int			sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 
 /*
 ** *********************************** **
@@ -98,7 +101,7 @@ float		calc_c(t_vec3 length_cam_center, float r);
 t_color 	calculate_lightning(t_rtv *r, t_closest_obj closest);
 t_vec3		get_normal_sphere(t_vec3 p, t_vec3 center_sphere);
 void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
-void		calculate_reflection(t_ray ray, t_light light, float specular, float *intensity);
+void		calculate_specular(t_ray ray, t_light light, float specular, float *intensity);
 void		add_light(t_color col, t_color *res_col, float intensity);
 
 /*
@@ -112,7 +115,8 @@ void		add_light(t_color col, t_color *res_col, float intensity);
 int			get_color(t_color color);
 t_color		float_to_byte(t_color col);
 t_color		byte_to_float(t_color col);
-float		transform_specular(float s);
+int			compare_color(t_color c1, t_color c2);
+t_color		calculate_reflected_color(t_color col, float r, t_color refl_col);
 
 /*
 ** *********************************** **
@@ -122,6 +126,7 @@ float		transform_specular(float s);
 ** *********************************** **
 */
 
-int			is_shadow(t_rtv *r, t_vec3 light_dir);
+int			is_shadow(t_rtv *r);
+// t_collision		is_shadow(t_rtv *r);
 
 #endif

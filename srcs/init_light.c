@@ -49,8 +49,8 @@ t_light		directional_data(void)
 void		light_data(t_light *light)
 {
 	light[0] = ambient_data();
-	light[1] = point_data();
-	light[2] = directional_data();
+	light[1] = directional_data();
+	light[2] = point_data();
 }
 
 t_light		*init_light(void)
