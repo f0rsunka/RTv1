@@ -31,7 +31,8 @@
 # define CYLINDER 3
 # define COUNT_PRIMITIVE 3
 # define COUNT_LIGHTS 3
-# define DEPTH_TRACE 1
+# define DEG2RAD (M_PI / 180.f)
+
 /*
 ** *********************************** **
 ** *********************************** **

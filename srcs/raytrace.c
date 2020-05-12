@@ -48,7 +48,7 @@ int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
-t_collision		trace_ray(t_rtv *r, int depth)
+t_collision		trace_ray(t_rtv *r)
 {
 	t_collision			collision;
 	t_closest_obj		closest;
@@ -74,12 +74,5 @@ t_collision		trace_ray(t_rtv *r, int depth)
 		return (collision);
 	}
 	collision.col = calculate_lightning(r, closest);
-	// if (depth <= 0 || ((t_sphere *)closest.obj)->material.reflective <= 0)
-	// 	return (collision);
-	// r->ray.reflect_ray = calculate_reflect_ray(r->ray.dir, r->ray.normal);
-	// r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)r->ray.reflect_ray, (float)0.001f};
-	// collision = trace_ray(r, depth - 1);
-	// collision.reflected_color = calculate_reflected_color(collision.col, ((t_sphere *)closest.obj)->material.reflective, collision.reflected_color);
 	return (collision);
-	// color = ((t_sphere *)closest.obj)->material.color;
 }

@@ -22,7 +22,6 @@ void	calculate_types_light(t_rtv *r, t_light light, t_material material, float *
 void	iterate_light(t_rtv *r, t_material material, float *intensity)
 {
 	int		i;
-	t_color	shadow;
 
 	i = 0;
 	while (i < COUNT_LIGHTS)
@@ -43,8 +42,6 @@ void	iterate_light(t_rtv *r, t_material material, float *intensity)
 		{
 			trace_zero(r);
 			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)r->light[i].direction, (float)0.001f};
-			// if (trace_ray(r, DEPTH_TRACE).obj == NULL)
-			// if (compare_color(trace_ray(r).col, BACKGROUND_COLOR) == 1)
 			if (is_shadow(r) == 0)
 				calculate_types_light(r, r->light[i], material, intensity);
 		}
@@ -61,7 +58,7 @@ t_color calculate_lightning(t_rtv *r, t_closest_obj closest)
 
 	intensity = 0.0f;
 	r->ray.reverse_dir = mult_vec_const(r->ray.dir, -1);
-	r->ray.p = vec_add(r->camera, mult_vec_const(r->ray.reverse_dir, closest.dist));
+	r->ray.p = vec_add(r->camera.dir, mult_vec_const(r->ray.reverse_dir, closest.dist));
 	r->ray.normal = get_normal_sphere(r->ray.p, ((t_sphere *)closest.obj)->center);
 	iterate_light(r, ((t_sphere *)closest.obj)->material, &intensity);
 	add_light(((t_sphere *)closest.obj)->material.color, &col, intensity);

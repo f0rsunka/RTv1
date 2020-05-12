@@ -8,7 +8,6 @@ void	init_sphere_0(t_sphere *sphere)
 	sphere->material.color = float_to_byte(PINK);
 	sphere->material.specular = 50.0f;
 	sphere->material.reflective = 0.2;
-	// sphere->material.a = (t_vec2){0.6f, 0.3f};
 }
 
 void	init_sphere_1(t_sphere *sphere)
@@ -18,7 +17,6 @@ void	init_sphere_1(t_sphere *sphere)
 	sphere->material.color = float_to_byte(BLUE);
 	sphere->material.specular = 50.0f;
 	sphere->material.reflective = 0.3;
-	// sphere->material.a = (t_vec2){0.6f, 0.3f};
 }
 
 void	init_sphere_2(t_sphere *sphere)
@@ -28,7 +26,6 @@ void	init_sphere_2(t_sphere *sphere)
 	sphere->material.color = float_to_byte(PURPLE);
 	sphere->material.specular = 10.0f;
 	sphere->material.reflective = 0.4;
-	// sphere->material.a = (t_vec2){0.9f, 0.1f};
 }
 
 void	init_sphere_3(t_sphere *sphere)
@@ -38,7 +35,6 @@ void	init_sphere_3(t_sphere *sphere)
 	sphere->material.color = float_to_byte(PURPLE);
 	sphere->material.specular = 10.0f;
 	sphere->material.reflective = 0.5;
-	// sphere->material.a = (t_vec2){0.9f, 0.1f};
 }
 
 void	init_sphere(int i, t_scene *scene)

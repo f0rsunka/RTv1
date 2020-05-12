@@ -37,7 +37,8 @@ C_FILES = main.c \
 		  normal_sphere.c \
 		  diffuse.c \
 		  specular.c \
-		  shadow.c
+		  shadow.c \
+		  camera.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

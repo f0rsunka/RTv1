@@ -41,13 +41,3 @@ int		compare_color(t_color c1, t_color c2)
 		return (0);
 	return (1);
 }
-
-t_color	calculate_reflected_color(t_color col, float r, t_color refl_col)
-{
-	t_color res_col;
-
-	add_light(col, &col, 1 - r);
-	add_light(refl_col, &refl_col, r);
-	res_col = (t_color){col.r + refl_col.r, col.g + refl_col.g, col.b + refl_col.b};
-	return (res_col);
-}

@@ -12,12 +12,11 @@
 
 #include "rtv1.h"
 
-t_vec3	init_camera(void)
+void	init_camera(t_rtv *r)
 {
-	t_vec3 camera;
-
-	camera = (t_vec3){0.0f, 0.0f, 0.0f};
-	return (camera);
+	r->camera.dir = (t_vec3){1.0f, 1.0f, 1.0f};
+	r->camera.angle = (t_vec3){0.0f, 0.0f, 0.0f};
+	r->camera.was_pressed = 0;
 }
 
 // t_viewport	init_viewport(void)
