@@ -17,6 +17,7 @@ void	init_rtv(t_rtv *rtv)
 	rtv->sdl = init_sdl();
 	init_primitive(rtv);
 	init_camera(rtv);
+	init_flags(rtv);
 	// rtv->viewport = init_viewport();
 	rtv->light = init_light();
 }
@@ -32,7 +33,7 @@ int		main_render(t_rtv *r)
 		while (SDL_PollEvent(&r->sdl.event))
 		{
 			if (r->sdl.event.type == SDL_KEYDOWN)
-				event_camera(r);
+				events(r);
             if ((r->sdl.event.type == SDL_KEYDOWN &&
 				 r->sdl.event.key.keysym.sym == SDLK_ESCAPE) ||
                 (r->sdl.event.type == SDL_QUIT))

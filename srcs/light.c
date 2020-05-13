@@ -58,7 +58,7 @@ t_color calculate_lightning(t_rtv *r, t_closest_obj closest)
 
 	intensity = 0.0f;
 	r->ray.reverse_dir = mult_vec_const(r->ray.dir, -1);
-	r->ray.p = vec_add(r->camera.dir, mult_vec_const(r->ray.reverse_dir, closest.dist));
+	r->ray.p = vec_add(r->camera, mult_vec_const(r->ray.reverse_dir, closest.dist));
 	r->ray.normal = get_normal_sphere(r->ray.p, ((t_sphere *)closest.obj)->center);
 	iterate_light(r, ((t_sphere *)closest.obj)->material, &intensity);
 	add_light(((t_sphere *)closest.obj)->material.color, &col, intensity);

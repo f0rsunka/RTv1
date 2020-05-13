@@ -99,6 +99,8 @@ typedef struct		s_ray
 	t_vec3			reverse_dir;
 	t_vec3			p;
 	t_vec3			normal;
+	t_vec3			angle;
+	t_vec3			offset;
 }					t_ray;
 
 typedef struct		s_trace
@@ -115,23 +117,23 @@ typedef struct		s_collision
 	t_color			reflected_color;
 }					t_collision;
 
-typedef struct		s_camera
+typedef struct 		s_flag
 {
-	t_vec3			dir;
-	t_vec3			angle;
-	int				was_pressed;
-}					t_camera;
+	int				is_move;
+	int				is_rotate;
+}					t_flag;
 
 typedef struct 		s_rtv
 {
 	t_sdl			sdl;
-	t_camera		camera;
+	t_vec3			camera;
 	t_trace			trace;
 	t_closest_obj	closest;
 	t_ray			ray;
 	t_scene			*scene;
 	// t_viewport		viewport;
 	t_light			*light;
+	t_flag			flag;
 }					t_rtv;
 
 #endif

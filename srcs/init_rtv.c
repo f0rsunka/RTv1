@@ -14,9 +14,29 @@
 
 void	init_camera(t_rtv *r)
 {
-	r->camera.dir = (t_vec3){1.0f, 1.0f, 1.0f};
-	r->camera.angle = (t_vec3){0.0f, 0.0f, 0.0f};
-	r->camera.was_pressed = 0;
+	r->camera = (t_vec3){0.0f, 0.0f, 0.0f};
+}
+
+void	init_flags(t_rtv *r)
+{
+	r->flag.is_move = 0;
+	r->flag.is_rotate = 0;
+}
+
+void	ray_zero(t_ray *ray)
+{
+	ray->dir = (t_vec3){0.0f, 0.0f, 0.0f};
+	ray->normal = (t_vec3){0.0f, 0.0f, 0.0f};
+	ray->p = (t_vec3){0.0f, 0.0f, 0.0f};
+	ray->reverse_dir = (t_vec3){0.0f, 0.0f, 0.0f};
+	ray->angle = (t_vec3){0.0f, 0.0f, 0.0f};
+}
+
+void	trace_zero(t_rtv *r)
+{
+	r->trace.from = (t_vec3){0.0f, 0.0f, 0.0f};
+	r->trace.to = (t_vec3){0.0f, 0.0f, 0.0f};
+	r->trace.dist_min = 0.0f;
 }
 
 // t_viewport	init_viewport(void)

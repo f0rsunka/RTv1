@@ -31,12 +31,16 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 /*
 ** *********************************** **
 ** *********************************** **
-**           init primitive      	   **
+**              init smth         	   **
 ** *********************************** **
 ** *********************************** **
 */
 
 void		init_primitive(t_rtv *r);
+void		init_flags(t_rtv *r);
+void		init_camera(t_rtv *r);
+void		ray_zero(t_ray *ray);
+void		trace_zero(t_rtv *r);
 
 /*
 ** *********************************** **
@@ -59,8 +63,6 @@ int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sp
 
 void		render(t_rtv *rtv);
 t_collision	trace_ray(t_rtv *r);
-void 		init_trace(t_trace *trace, t_vec3 from, t_vec3 to, float dist_min);
-void		trace_zero(t_rtv *r);
 int			sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 
 /*
@@ -103,8 +105,6 @@ void		add_light(t_color col, t_color *res_col, float intensity);
 int			get_color(t_color color);
 t_color		float_to_byte(t_color col);
 t_color		byte_to_float(t_color col);
-int			compare_color(t_color c1, t_color c2);
-t_color		calculate_reflected_color(t_color col, float r, t_color refl_col);
 
 /*
 ** *********************************** **
@@ -119,12 +119,12 @@ int			is_shadow(t_rtv *r);
 /*
 ** *********************************** **
 ** *********************************** **
-**               camera       		   **
+**               move       		   **
 ** *********************************** **
 ** *********************************** **
 */
 
-void		init_camera(t_rtv *r);
-void		event_camera(t_rtv *r);
-void		rotate(t_camera *c);
+void		rotate(t_ray *ray);
+void		events(t_rtv *r);
+
 #endif

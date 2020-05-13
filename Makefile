@@ -38,7 +38,8 @@ C_FILES = main.c \
 		  diffuse.c \
 		  specular.c \
 		  shadow.c \
-		  camera.c
+		  affine_transform.c \
+		  events.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

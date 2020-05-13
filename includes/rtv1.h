@@ -21,8 +21,12 @@
 # include <math.h>
 # include <stdio.h> //!---------------------------------------------------------
 # define M_PI 3.14159265358979323846
-# define WIN_W 1024
-# define WIN_H 768
+// # define WIN_W 1024
+// # define WIN_H 768
+
+# define WIN_W 700
+# define WIN_H 500
+
 # define FOV (M_PI / 2.0)
 // # define EPSILON 1e-16
 # define SPHERE 0
