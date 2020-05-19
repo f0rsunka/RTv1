@@ -29,7 +29,6 @@ void	ray_zero(t_ray *ray)
 	ray->normal = (t_vec3){0.0f, 0.0f, 0.0f};
 	ray->p = (t_vec3){0.0f, 0.0f, 0.0f};
 	ray->reverse_dir = (t_vec3){0.0f, 0.0f, 0.0f};
-	ray->angle = (t_vec3){0.0f, 0.0f, 0.0f};
 }
 
 void	trace_zero(t_rtv *r)
@@ -37,6 +36,16 @@ void	trace_zero(t_rtv *r)
 	r->trace.from = (t_vec3){0.0f, 0.0f, 0.0f};
 	r->trace.to = (t_vec3){0.0f, 0.0f, 0.0f};
 	r->trace.dist_min = 0.0f;
+}
+
+void	closest_zero(t_closest_obj *cl)
+{
+	cl->obj = NULL;
+	cl->type = 0;
+	cl->dist = FLT_MAX;
+	cl->mat.color = (t_color){0.0f, 0.0f, 0.0f};
+	cl->mat.specular = 0.0f;
+	cl->color = (t_color){0.0f, 0.0f, 0.0f};
 }
 
 // t_viewport	init_viewport(void)

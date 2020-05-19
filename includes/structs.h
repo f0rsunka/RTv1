@@ -25,7 +25,6 @@ typedef struct 		s_material
 {
 	t_color			color;
 	float			specular;
-	float			reflective;
 }					t_material;
 
 typedef struct		s_sphere
@@ -35,10 +34,30 @@ typedef struct		s_sphere
 	t_material		material;
 }					t_sphere;
 
+typedef struct		s_place
+{
+
+}					t_place;
+
+typedef struct		s_cone
+{
+	t_material		material;
+}					t_cone;
+
+typedef struct		s_cylinder
+{
+	float			radius;
+	t_vec3			offset;
+	t_material		material;
+}					t_cylinder;
+
 typedef struct		s_closest_obj
 {
 	void			*obj;
+	int				type;
 	float			dist;
+	t_material		mat;
+	t_color			color;
 }					t_closest_obj;
 
 // typedef struct		s_viewport
@@ -78,21 +97,6 @@ typedef struct		s_coefficients
 	float			c;
 }					t_coefficients;
 
-typedef struct		s_place
-{
-
-}					t_place;
-
-typedef struct		s_cone
-{
-
-}					t_cone;
-
-typedef struct		s_cylinder
-{
-	
-}					t_cylinder;
-
 typedef struct		s_ray
 {
 	t_vec3			dir;
@@ -100,7 +104,6 @@ typedef struct		s_ray
 	t_vec3			p;
 	t_vec3			normal;
 	t_vec3			angle;
-	t_vec3			offset;
 }					t_ray;
 
 typedef struct		s_trace
@@ -109,13 +112,6 @@ typedef struct		s_trace
 	t_vec3			to;
 	float			dist_min;
 }					t_trace;
-
-typedef struct		s_collision
-{
-	void			*obj;
-	t_color			col;
-	t_color			reflected_color;
-}					t_collision;
 
 typedef struct 		s_flag
 {

@@ -25,14 +25,14 @@ void render(t_rtv *r)
 		iter.x = 0;
 		while (iter.x < WIN_W)
 		{
-			// ray_zero(&r->ray);
+			ray_zero(&r->ray);
 			trace_zero(r);
 			coord.x = (2 * (iter.x + 0.5) / (float)WIN_W - 1) * tan(FOV / 2.0) * WIN_W / (float)WIN_H;
             coord.y = (2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
 			r->ray.dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
 			rotate(&r->ray);
 			r->trace = (t_trace){r->camera, r->ray.dir, 0.0f};
-			color = trace_ray(r).col;
+			color = trace_ray(r).color;
 			color = byte_to_float(color);
 			put_pixel(r->sdl.renderer, iter.x, iter.y, color);
 			iter.x++;

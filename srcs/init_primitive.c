@@ -14,11 +14,21 @@
 
 void	init_cylinder(t_scene *scene)
 {
+	scene->object = (t_cylinder *)malloc(sizeof(t_cylinder));
+	scene->object == NULL ? exit(88) : 0;
+	((t_cylinder *)scene->object)->radius = 1.0f;
+	((t_cylinder *)scene->object)->offset = (t_vec3){2.0f, 0.0f, -5.0f};
+	((t_cylinder *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
+	((t_cylinder *)scene->object)->material.specular = 50.0f;
 	scene->type = CYLINDER;
 }
 
 void	init_cone(t_scene *scene)
 {
+	scene->object = (t_cone *)malloc(sizeof(t_cone));
+	scene->object == NULL ? exit(88) : 0;
+	((t_cone *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
+	((t_cone *)scene->object)->material.specular = 50.0f;
 	scene->type = CONE;
 }
 
@@ -38,13 +48,13 @@ void	init_primitive(t_rtv *r)
 	{
 		scene = (t_scene*)malloc(sizeof(t_scene));
 		(scene == NULL ? exit(8) : 1);
-		if (i >= 0 && i <= 3)
+		if (i == 1) // && i <= 2)
 			init_sphere(i, scene);
 		// if (i == 3)
 		// 	init_place(scene);
-		if (i == 4)
-			init_cone(scene);
-		if (i == 5)
+		// if (i == 4)
+		// 	init_cone(scene);
+		if (i == 0)
 			init_cylinder(scene);
 		if (i == 0)
 			scene->next = NULL;

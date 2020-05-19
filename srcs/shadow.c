@@ -24,9 +24,9 @@ int		is_shadow(t_rtv *r)
 	while (current != NULL)
 	{
 		if (current->type == SPHERE)
-		{
 			sphere_intersect(r, current, &closest);
-		}
+		if (current->type == CYLINDER)
+			cylinder_intersect(r, current, &closest);
 		tmp = current->next;
 		current = tmp;
 	}

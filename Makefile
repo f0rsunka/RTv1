@@ -29,12 +29,13 @@ C_FILES = main.c \
 		  init_sphere.c \
 		  render.c \
 		  raytrace.c \
-		  intersect_sphere.c \
-		  calculate_quadratic_equation.c \
+		  intersect_primitive.c \
+		  quadratic_equation_sphere.c \
+		  quadratic_equation_cylinder.c \
 		  color.c \
 		  put_pixel.c \
 		  light.c \
-		  normal_sphere.c \
+		  normal.c \
 		  diffuse.c \
 		  specular.c \
 		  shadow.c \

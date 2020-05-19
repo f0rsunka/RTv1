@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-float	calculate_quadratic_equation(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2)
+float	quadratic_equation_sphere(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2)
 {
 	t_coefficients	c;
 	float			d;

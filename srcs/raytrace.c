@@ -20,20 +20,10 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-t_vec3	calculate_reflect_ray(t_vec3 r, t_vec3 normal)
+int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
-	float	dot_n_r;
-	t_vec3	reflect_ray;
-
-	dot_n_r = dot_product(r, normal);
-	reflect_ray = vec_diff(r, mult_vec_const(mult_vec_const(normal, 2), dot_n_r));
-	return (reflect_ray);
-}
-
-int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
-{
-	float				intersect_res;
-	float				tmp_dist;
+	float	intersect_res;
+	float	tmp_dist;
 
 	tmp_dist = 0.0f;
 	intersect_res = intersect_ray_sphere(r->trace.from, r->trace.to, *(t_sphere *)current->object, &tmp_dist);
@@ -48,31 +38,59 @@ int		sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
-t_collision		trace_ray(t_rtv *r)
+int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
-	t_collision			collision;
+	float	intersect_res;
+	float	tmp_dist;
+
+	tmp_dist = 0.0f;
+	intersect_res = intersect_ray_cylinder(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
+	// intersect_res = intersect_ray_cylinder(r->trace.from, r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
+	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
+	{
+		closest->dist = tmp_dist;
+		closest->obj = (t_cylinder *)current->object;
+	}
+	if (closest->obj == NULL)
+		return (0);
+	else
+		return (1);
+}
+
+t_closest_obj	trace_ray(t_rtv *r)
+{
 	t_closest_obj		closest;
 	t_scene				*tmp;
 	t_scene				*current;
 
-	closest.dist = FLT_MAX;
-	closest.obj = NULL;
+	closest_zero(&closest);
 	current = r->scene;
 	while (current != NULL)
 	{
 		if (current->type == SPHERE)
 		{
-			sphere_intersect(r, current, &closest);
+			if (sphere_intersect(r, current, &closest))
+			{
+				closest.type = SPHERE;
+				closest.mat = ((t_sphere *)closest.obj)->material;
+			}
+		}
+		if (current->type == CYLINDER)
+		{
+			if (cylinder_intersect(r, current, &closest))
+			{
+				closest.type = CYLINDER;
+				closest.mat = ((t_cylinder *)closest.obj)->material;
+			}
 		}
 		tmp = current->next;
 		current = tmp;
 	}
-	collision.obj = closest.obj;
 	if (closest.obj == NULL)
 	{
-		collision.col = BACKGROUND_COLOR;
-		return (collision);
+		closest.color = BACKGROUND_COLOR;
+		return (closest);
 	}
-	collision.col = calculate_lightning(r, closest);
-	return (collision);
+	closest.color = calculate_lightning(r, closest);
+	return (closest);
 }
