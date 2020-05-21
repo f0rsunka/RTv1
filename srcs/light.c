@@ -41,9 +41,8 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 		}
 		else
 		{
-			if (type == CYLINDER)
-				light_dir = mult_vec_const(r->light[i].direction, -1);
-			// ((CYLINDER == type) ? ((light_dir = mult_vec_const(r->light[i].direction, -1))) : 0);
+			light_dir = r->light[i].direction;
+			light_dir = mult_vec_const(r->light[i].direction, -1);
 			trace_zero(r);
 			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)light_dir, (float)0.001f};
 			if (is_shadow(r) == 0)

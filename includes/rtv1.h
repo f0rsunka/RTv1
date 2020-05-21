@@ -30,11 +30,11 @@
 # define FOV (M_PI / 2.0)
 // # define EPSILON 1e-16
 
-# define SPHERE 10
-# define PLACE 20
+# define SPHERE 20
+# define PLACE 90
 # define CYLINDER 30
 # define CONE 40
-# define COUNT_PRIMITIVE 1
+# define COUNT_PRIMITIVE 4
 # define COUNT_LIGHTS 3
 # define DEG2RAD (M_PI / 180.f)
 

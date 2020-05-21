@@ -48,7 +48,7 @@ void	init_primitive(t_rtv *r)
 	{
 		scene = (t_scene*)malloc(sizeof(t_scene));
 		(scene == NULL ? exit(8) : 1);
-		if (i == 1) // && i <= 2)
+		if (i >= 1 && i <= 3)
 			init_sphere(i, scene);
 		// if (i == 3)
 		// 	init_place(scene);

@@ -31,6 +31,8 @@ int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	{
 		closest->dist = tmp_dist;
 		closest->obj = (t_sphere *)current->object;
+		closest->type = SPHERE;
+		closest->mat = ((t_sphere *)closest->obj)->material;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -45,11 +47,12 @@ int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 
 	tmp_dist = 0.0f;
 	intersect_res = intersect_ray_cylinder(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
-	// intersect_res = intersect_ray_cylinder(r->trace.from, r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
 	{
 		closest->dist = tmp_dist;
 		closest->obj = (t_cylinder *)current->object;
+		closest->type = CYLINDER;
+		closest->mat = ((t_cylinder *)closest->obj)->material;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -69,19 +72,11 @@ t_closest_obj	trace_ray(t_rtv *r)
 	{
 		if (current->type == SPHERE)
 		{
-			if (sphere_intersect(r, current, &closest))
-			{
-				closest.type = SPHERE;
-				closest.mat = ((t_sphere *)closest.obj)->material;
-			}
+			sphere_intersect(r, current, &closest);
 		}
 		if (current->type == CYLINDER)
 		{
-			if (cylinder_intersect(r, current, &closest))
-			{
-				closest.type = CYLINDER;
-				closest.mat = ((t_cylinder *)closest.obj)->material;
-			}
+			cylinder_intersect(r, current, &closest);
 		}
 		tmp = current->next;
 		current = tmp;
