@@ -53,29 +53,14 @@ int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, flo
 int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist)
 {
 	float denom = dot_product(plane.normal, dir);
-	if (abs(denom) > 0.0001f) // your favorite epsilon
+	if (fabsf(denom) > 0.0001f) // your favorite epsilon
 	{
 		float t = dot_product(vec_diff(plane.center, camera), plane.normal) / denom;
-		if (t >= 0) return 1; // you might want to allow an epsilon here too
+		if (t >= 0) 
+		{
+			*plane_dist = t;
+			return 1; // you might want to allow an epsilon here too
+		}
 	}
 	return 0;
-	// t_vec3	length_cam_center;
-	// float	t1;
-	// float	t2;
-
-	// *plane_dist = 0.0f;
-	// length_cam_center = vec_diff(camera, plane.center);
-	// if (!quadratic_equation_plane(length_cam_center, dir, plane.radius, &t1, &t2))
-	// 	return (0);
-	// if (t1 < t2 && t1 >= 0)
-	// {
-	// 	*plane_dist = t1;
-	// 	return (1);
-	// }
-	// if (t2 < t1 && t2 >= 0)
-	// {
-	// 	*plane_dist = t2;
-	// 	return (1);
-	// }
-	// return (0);
 }

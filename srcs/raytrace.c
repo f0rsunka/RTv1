@@ -66,7 +66,7 @@ int				plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_plane(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_plane *)current->object, &tmp_dist);
+	intersect_res = intersect_ray_plane(r->trace.from, r->trace.to, *(t_plane *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
 	{
 		closest->dist = tmp_dist;

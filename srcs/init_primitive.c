@@ -34,6 +34,12 @@ void	init_cone(t_scene *scene)
 
 void	init_plane(t_scene *scene)
 {
+	scene->object = (t_plane *)malloc(sizeof(t_plane));
+	scene->object == NULL ? exit(88) : 0;
+	((t_plane *)scene->object)->center = (t_vec3){0.0f, 0.0f, 5.f};
+	((t_plane *)scene->object)->normal = (t_vec3){1.0f, -0.5f, 1.f};
+	((t_plane *)scene->object)->material.color = float_to_byte(LIGHT_GRAY);
+	((t_plane *)scene->object)->material.specular = 50.0f;
 	scene->type = PLANE;
 }
 
@@ -48,7 +54,7 @@ void	init_primitive(t_rtv *r)
 	{
 		scene = (t_scene*)malloc(sizeof(t_scene));
 		(scene == NULL ? exit(8) : 1);
-		if (i >= 1 && i <= 3)
+		if (i >= 1 && i <= 2)
 			init_sphere(i, scene);
 		if (i == 3)
 			init_plane(scene);
