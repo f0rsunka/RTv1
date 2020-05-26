@@ -32,9 +32,9 @@ void	init_cone(t_scene *scene)
 	scene->type = CONE;
 }
 
-void	init_place(t_scene *scene)
+void	init_plane(t_scene *scene)
 {
-	scene->type = PLACE;
+	scene->type = PLANE;
 }
 
 void	init_primitive(t_rtv *r)
@@ -50,8 +50,8 @@ void	init_primitive(t_rtv *r)
 		(scene == NULL ? exit(8) : 1);
 		if (i >= 1 && i <= 3)
 			init_sphere(i, scene);
-		// if (i == 3)
-		// 	init_place(scene);
+		if (i == 3)
+			init_plane(scene);
 		// if (i == 4)
 		// 	init_cone(scene);
 		if (i == 0)

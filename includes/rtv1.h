@@ -24,14 +24,14 @@
 // # define WIN_W 1024
 // # define WIN_H 768
 
-# define WIN_W 700
-# define WIN_H 500
+# define WIN_W 320
+# define WIN_H 240
 
 # define FOV (M_PI / 2.0)
 // # define EPSILON 1e-16
 
 # define SPHERE 20
-# define PLACE 90
+# define PLANE 90
 # define CYLINDER 30
 # define CONE 40
 # define COUNT_PRIMITIVE 4

@@ -34,10 +34,10 @@ typedef struct		s_sphere
 	t_material		material;
 }					t_sphere;
 
-typedef struct		s_place
+typedef struct		s_plane
 {
-
-}					t_place;
+	t_material		material;
+}					t_plane;
 
 typedef struct		s_cone
 {
