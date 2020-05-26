@@ -36,6 +36,8 @@ typedef struct		s_sphere
 
 typedef struct		s_plane
 {
+	t_vec3			center;
+	t_vec3			normal;
 	t_material		material;
 }					t_plane;
 
