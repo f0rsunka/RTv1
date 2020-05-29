@@ -56,6 +56,9 @@ int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane
 	if (fabsf(denom) > 0.0001f) // your favorite epsilon
 	{
 		float t = dot_product(vec_diff(plane.center, camera), plane.normal) / denom;
+		if (t > 10) {
+		    return 0;
+		}
 		if (t >= 0) 
 		{
 			*plane_dist = t;
