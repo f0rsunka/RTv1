@@ -22,7 +22,7 @@
 
 int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
-	float	intersect_res;
+	int	intersect_res;
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
@@ -42,7 +42,7 @@ int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 
 int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 {
-	float	intersect_res;
+	int	intersect_res;
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
@@ -60,6 +60,91 @@ int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
+int				cone_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+{
+	int	intersect_res;
+	float	tmp_dist;
+   
+	tmp_dist = 0.0f;
+	// intersect_res = intersect_ray_cone(mult_vec_const(r->trace.from, -1), r->trace.to, (t_cone *)current->object, &tmp_dist);
+	intersect_res = intersect_ray_cone(r->trace.from, r->trace.to, (t_cone *)current->object, &tmp_dist);
+	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
+	{
+	// printf("%d\n", intersect_res);
+		closest->dist = tmp_dist;
+		closest->obj = (t_cone *)current->object;
+		closest->type = CONE;
+		closest->mat = ((t_cone *)closest->obj)->material;
+	}
+	if (closest->obj == NULL)
+		return (0);
+	else
+		return (1);
+}
+
+// int				plane_intersect_1(t_rtv *r, t_scene *current, t_closest_obj *closest)
+// {
+// 	float	intersect_res;
+// 	float	tmp_dist;
+
+// 	tmp_dist = 0.0f;
+// 	intersect_res = intersect_ray_plane_1((*(t_plane *)current->object), r->trace.from, r->trace.to, &tmp_dist);
+// 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
+// 	{
+// 		// printf("imhere\n");
+// 		closest->dist = tmp_dist;
+// 		closest->obj = (t_plane *)current->object;
+// 		closest->type = PLANE_1;
+// 		closest->mat = ((t_plane *)closest->obj)->material;
+// 	}
+// 	if (closest->obj == NULL)
+// 		return (0);
+// 	else
+// 		return (1);
+// }
+
+// int				plane_intersect_2(t_rtv *r, t_scene *current, t_closest_obj *closest)
+// {
+// 	float	intersect_res;
+// 	float	tmp_dist;
+
+// 	tmp_dist = 0.0f;
+// 	intersect_res = intersect_ray_plane_2((*(t_plane *)current->object), r->trace.from, r->trace.to, &tmp_dist);
+// 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
+// 	{
+// 		// printf("imhere\n");
+// 		closest->dist = tmp_dist;
+// 		closest->obj = (t_plane *)current->object;
+// 		closest->type = PLANE_2;
+// 		closest->mat = ((t_plane *)closest->obj)->material;
+// 	}
+// 	if (closest->obj == NULL)
+// 		return (0);
+// 	else
+// 		return (1);
+// }
+
+// int				plane_intersect_3(t_rtv *r, t_scene *current, t_closest_obj *closest)
+// {
+// 	float	intersect_res;
+// 	float	tmp_dist;
+
+// 	tmp_dist = 0.0f;
+// 	intersect_res = intersect_ray_plane_3((*(t_plane *)current->object), r->trace.from, r->trace.to, &tmp_dist);
+// 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
+// 	{
+// 		// printf("imhere\n");
+// 		closest->dist = tmp_dist;
+// 		closest->obj = (t_plane *)current->object;
+// 		closest->type = PLANE_3;
+// 		closest->mat = ((t_plane *)closest->obj)->material;
+// 	}
+// 	if (closest->obj == NULL)
+// 		return (0);
+// 	else
+// 		return (1);
+// }
+
 t_closest_obj	trace_ray(t_rtv *r)
 {
 	t_closest_obj		closest;
@@ -68,6 +153,7 @@ t_closest_obj	trace_ray(t_rtv *r)
 
 	closest_zero(&closest);
 	current = r->scene;
+	(current == NULL ? exit (88) : 0);
 	while (current != NULL)
 	{
 		if (current->type == SPHERE)
@@ -78,6 +164,22 @@ t_closest_obj	trace_ray(t_rtv *r)
 		{
 			cylinder_intersect(r, current, &closest);
 		}
+		if (current->type == CONE)
+		{
+			cone_intersect(r, current, &closest);
+		}
+		// if (current->type == PLANE_1)
+		// {
+		// 	plane_intersect_1(r, current, &closest);
+		// }
+		// if (current->type == PLANE_2)
+		// {
+		// 	plane_intersect_2(r, current, &closest);
+		// }
+		// if (current->type == PLANE_3)
+		// {
+		// 	plane_intersect_3(r, current, &closest);
+		// }
 		tmp = current->next;
 		current = tmp;
 	}
@@ -86,6 +188,11 @@ t_closest_obj	trace_ray(t_rtv *r)
 		closest.color = BACKGROUND_COLOR;
 		return (closest);
 	}
+	// if (closest.type == CONE)
+	// {
+	// 	closest.color = ((t_cone *)closest.obj)->material.color;
+	// 	return (closest);
+	// }
 	closest.color = calculate_lightning(r, closest);
 	return (closest);
 }

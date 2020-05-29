@@ -30,8 +30,8 @@ C_FILES = main.c \
 		  render.c \
 		  raytrace.c \
 		  intersect_primitive.c \
-		  quadratic_equation_sphere.c \
-		  quadratic_equation_cylinder.c \
+		  quadratic_equation.c \
+		  calculate_coefficients.c \
 		  color.c \
 		  put_pixel.c \
 		  light.c \

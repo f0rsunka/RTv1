@@ -58,9 +58,12 @@ void		render(t_rtv *rtv);
 t_closest_obj	trace_ray(t_rtv *r);
 int			sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int			cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
+int			cone_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
+int			plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
 int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
-
+int 		intersect_ray_cone(t_vec3 camera, t_vec3 dir, t_cone *cone, float *cone_dist);
+int			intersect_ray_plane(t_plane plane, t_vec3 camera, t_vec3 dir, float *plane_dist);
 /*
 ** *********************************** **
 ** *********************************** **
@@ -69,8 +72,9 @@ int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, flo
 ** *********************************** **
 */
 
-float		quadratic_equation_sphere(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2);
-float		quadratic_equation_cylinder(t_vec3 ofs, t_vec3 dir, float *t1, float *t2);
+int			quadratic_equation_sphere(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2);
+int			quadratic_equation_cylinder(t_vec3 ofs, t_vec3 dir, float *t1, float *t2);;
+int			quadratic_equation_cone(t_cone cone, t_vec3 camera, t_vec3 ofs, t_vec3 center, t_vec3 dir, float *t1, float *t2);
 float		calc_discriminant(float a, float b, float c);
 float		calc_a(t_vec3 dir);
 float		calc_b(t_vec3 length_cam_center, t_vec3 dir);

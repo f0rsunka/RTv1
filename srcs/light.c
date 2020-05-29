@@ -58,7 +58,7 @@ void	init_point(t_closest_obj cl, t_vec3 camera, t_rtv *r)
 {
 	if (cl.type == SPHERE)
 		r->ray.p = vec_add(camera, mult_vec_const(r->ray.reverse_dir, cl.dist));
-	if (cl.type == CYLINDER)
+	if (cl.type == CYLINDER || cl.type == PLANE_1 || cl.type == PLANE_2 || cl.type == PLANE_3)
 		r->ray.p = vec_add(mult_vec_const(camera, -1), mult_vec_const(r->ray.dir, cl.dist));
 }
 

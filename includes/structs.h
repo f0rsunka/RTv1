@@ -27,30 +27,6 @@ typedef struct 		s_material
 	float			specular;
 }					t_material;
 
-typedef struct		s_sphere
-{
-	t_vec3			center;
-	float			radius;
-	t_material		material;
-}					t_sphere;
-
-typedef struct		s_place
-{
-
-}					t_place;
-
-typedef struct		s_cone
-{
-	t_material		material;
-}					t_cone;
-
-typedef struct		s_cylinder
-{
-	float			radius;
-	t_vec3			offset;
-	t_material		material;
-}					t_cylinder;
-
 typedef struct		s_closest_obj
 {
 	void			*obj;
@@ -89,7 +65,6 @@ typedef struct 		s_scene
 	struct s_scene	*next;
 }					t_scene;
 
-
 typedef struct		s_coefficients
 {
 	float			a;
@@ -118,6 +93,34 @@ typedef struct 		s_flag
 	int				is_move;
 	int				is_rotate;
 }					t_flag;
+
+typedef struct		s_sphere
+{
+	t_vec3			center;
+	float			radius;
+	t_material		material;
+}					t_sphere;
+
+typedef struct		s_plane
+{
+	t_vec3			major_vec;
+	t_vec3			normal;
+	t_material		material;
+}					t_plane;
+
+typedef struct		s_cone
+{
+	t_vec3			offset;
+	t_coefficients	c;
+	t_material		material;
+}					t_cone;
+
+typedef struct		s_cylinder
+{
+	float			radius;
+	t_vec3			offset;
+	t_material		material;
+}					t_cylinder;
 
 typedef struct 		s_rtv
 {
