@@ -38,7 +38,7 @@ void	init_sphere(int i, t_scene *scene)
 	scene->object = (t_sphere*)malloc(sizeof(t_sphere));
 	(scene->object == NULL ? exit(88) : 14);
 	scene->type = SPHERE;
-	if (i == 1)
+	if (i == 0)
 		init_sphere_0((t_sphere *)scene->object);
 	if (i == 2)
 		init_sphere_1((t_sphere *)scene->object);

@@ -79,12 +79,15 @@ endif
 
 NON_EXISTET = tfbil
 
-CFLAGS = -Wall -Wextra
+CFLAGS += -Wall -Wextra
 # CFLAGS += -Werror
 CFLAGS += -g
 # CFLAGS += -O2
 
 all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
+
+debug:
+	CFLAGS="-g -fno-omit-frame-pointer" $(MAKE) all
 
 $(NON_EXISTET):
 	@make -C ./libft

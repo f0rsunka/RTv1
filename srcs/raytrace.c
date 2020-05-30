@@ -82,26 +82,25 @@ int				cone_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
-// int				plane_intersect_1(t_rtv *r, t_scene *current, t_closest_obj *closest)
-// {
-// 	float	intersect_res;
-// 	float	tmp_dist;
+int				plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+{
+	float	intersect_res;
+	float	tmp_dist;
 
-// 	tmp_dist = 0.0f;
-// 	intersect_res = intersect_ray_plane_1((*(t_plane *)current->object), r->trace.from, r->trace.to, &tmp_dist);
-// 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
-// 	{
-// 		// printf("imhere\n");
-// 		closest->dist = tmp_dist;
-// 		closest->obj = (t_plane *)current->object;
-// 		closest->type = PLANE_1;
-// 		closest->mat = ((t_plane *)closest->obj)->material;
-// 	}
-// 	if (closest->obj == NULL)
-// 		return (0);
-// 	else
-// 		return (1);
-// }
+	tmp_dist = 0.0f;
+	intersect_res = intersect_ray_plane(r->trace.from, r->trace.to, *(t_plane *)current->object, &tmp_dist);
+	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
+	{
+		closest->dist = tmp_dist;
+		closest->obj = (t_plane *)current->object;
+		closest->type = PLANE;
+		closest->mat = ((t_plane *)closest->obj)->material;
+	}
+	if (closest->obj == NULL)
+		return (0);
+	else
+		return (1);
+}
 
 t_closest_obj	trace_ray(t_rtv *r)
 {
@@ -126,11 +125,10 @@ t_closest_obj	trace_ray(t_rtv *r)
 		{
 			cone_intersect(r, current, &closest);
 		}
-		// if (current->type == PLANE_1)
-		// {
-		// 	plane_intersect_1(r, current, &closest);
-		// }
-
+		if (current->type == PLANE)
+		{
+			plane_intersect(r, current, &closest);
+		}
 		tmp = current->next;
 		current = tmp;
 	}

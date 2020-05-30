@@ -1,3 +1,10 @@
 .DS_Store
 *.o
 .vscode
+SDL/dist/
+libft/libft.a
+libvector/libvector.a
+rtv1
+.idea/
+SDL/tmp/
+compile_commands.json

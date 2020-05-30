@@ -63,7 +63,8 @@ int			plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
 int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
 int 		intersect_ray_cone(t_vec3 camera, t_vec3 dir, t_cone *cone, float *cone_dist);
-int			intersect_ray_plane(t_plane plane, t_vec3 camera, t_vec3 dir, float *plane_dist);
+int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
+
 /*
 ** *********************************** **
 ** *********************************** **
