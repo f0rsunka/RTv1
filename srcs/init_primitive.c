@@ -30,7 +30,7 @@ void	init_cone(t_scene *scene)
 	scene->object = (t_cone *)malloc(sizeof(t_cone));
 	scene->object == NULL ? exit(88) : 0;
 	// ((t_cone *)scene->object)->offset = (t_vec3){5.0f, 3.0f, -5.0f};
-	((t_cone *)scene->object)->offset = (t_vec3){6.0f, 2.0f, 2.0f};
+	((t_cone *)scene->object)->offset = (t_vec3){6.0f, 2.0f, 6.324555320336759f};
 	// ((t_cone *)scene->object)->c = (t_coefficients){3.0f, 1.0f, -1.0f};
 	((t_cone *)scene->object)->material.color = float_to_byte(VINOUS);
 	((t_cone *)scene->object)->material.specular = 50.0f;
@@ -45,26 +45,6 @@ void	init_plane_1(t_scene *scene)
 	((t_plane *)scene->object)->material.color = float_to_byte(VINOUS);
 	((t_plane *)scene->object)->material.specular = 50.0f;
 	scene->type = PLANE_1;
-}
-
-void	init_plane_2(t_scene *scene)
-{
-	scene->object = (t_plane *)malloc(sizeof(t_plane));
-	scene->object == NULL ? exit(88) : 0;
-	((t_plane *)scene->object)->major_vec = (t_vec3){0.0f, 0.0f, 0.0f};
-	((t_plane *)scene->object)->material.color = float_to_byte(GRAY);
-	((t_plane *)scene->object)->material.specular = 50.0f;
-	scene->type = PLANE_2;
-}
-
-void	init_plane_3(t_scene *scene)
-{
-	scene->object = (t_plane *)malloc(sizeof(t_plane));
-	scene->object == NULL ? exit(88) : 0;
-	((t_plane *)scene->object)->normal = (t_vec3){0.0f, 0.0f, 0.0f};
-	((t_plane *)scene->object)->material.color = float_to_byte(YELLOW);
-	((t_plane *)scene->object)->material.specular = 50.0f;
-	scene->type = PLANE_3;
 }
 
 void	init_primitive(t_rtv *r)
