@@ -121,10 +121,10 @@ t_closest_obj	trace_ray(t_rtv *r)
 		{
 			cylinder_intersect(r, current, &closest);
 		}
-		if (current->type == CONE)
-		{
-			cone_intersect(r, current, &closest);
-		}
+		// if (current->type == CONE)
+		// {
+		// 	cone_intersect(r, current, &closest);
+		// }
 		if (current->type == PLANE)
 		{
 			plane_intersect(r, current, &closest);

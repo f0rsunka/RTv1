@@ -97,27 +97,27 @@ float	calc_div(float a, float b)
 // 	return (1);
 // }
 
-int	quadratic_equation_cone(t_cone cone, t_vec3 camera, t_vec3 center, t_vec3 ofs, t_vec3 dir, float *t1, float *t2)
-{
-	t_coefficients	c;
-	float			d;
+// int	quadratic_equation_cone(t_cone cone, t_vec3 camera, t_vec3 center, t_vec3 ofs, t_vec3 dir, float *t1, float *t2)
+// {
+// 	t_coefficients	c;
+// 	float			d;
 
-	dir.z *= -1;
-	ofs.z *= -1;
-	c.a = calc_a(dir);
-	// printf("\n\nSTART\n\nc.a = %f\n", c.a);
-	c.b = calc_b(ofs, dir);
-	// printf("\nc.b = %f\n", c.b);
-	c.c = calc_c(ofs, 0);
-	// printf("\nc.c = %f\n\nFINISH\n\n", c.c);
-	d = calc_discriminant(c.a, c.b, c.c);
-	// printf("%f\n", d);
-	if (d < 0)
-		return (0);
-	*t1 = (- c.b + sqrtf(d)) / (2 * c.a);
-	*t2 = (- c.b - sqrtf(d)) / (2 * c.a);
-	return (1);
-}
+// 	dir.z *= -1;
+// 	ofs.z *= -1;
+// 	c.a = calc_a(dir);
+// 	// printf("\n\nSTART\n\nc.a = %f\n", c.a);
+// 	c.b = calc_b(ofs, dir);
+// 	// printf("\nc.b = %f\n", c.b);
+// 	c.c = calc_c(ofs, 0);
+// 	// printf("\nc.c = %f\n\nFINISH\n\n", c.c);
+// 	d = calc_discriminant(c.a, c.b, c.c);
+// 	// printf("%f\n", d);
+// 	if (d < 0)
+// 		return (0);
+// 	*t1 = (- c.b + sqrtf(d)) / (2 * c.a);
+// 	*t2 = (- c.b - sqrtf(d)) / (2 * c.a);
+// 	return (1);
+// }
 
 
 // int	quadratic_equation_cone(t_cone cone, t_vec3 camera, t_vec3 center, t_vec3 ofs, t_vec3 dir, float *t1, float *t2)
