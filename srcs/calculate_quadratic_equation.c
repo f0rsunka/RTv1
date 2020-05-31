@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate_equation.c 	                            :+:      :+:    :+:   */
+/*   calculate_quadratic_equation.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/14 15:53:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/14 15:54:22 by cvernius         ###   ########.fr       */
+/*   Created: 2020/05/31 17:13:06 by f0rsunka          #+#    #+#             */
+/*   Updated: 2020/05/31 17:13:19 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-float	quadratic_equation_sphere(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2)
+float	quadratic_equation(t_vec3 ofs, t_vec3 dir, float r, float *t1, float *t2)
 {
 	t_coefficients	c;
 	float			d;
 
 	c.a = calc_a(dir);
-	c.b = calc_b(length_cam_center, dir);
-	c.c = calc_c(length_cam_center, r);
+	c.b = calc_b(ofs, dir);
+	c.c = calc_c(ofs, r);
 	d = calc_discriminant(c.a, c.b, c.c);
 	if (d < 0)
 		return (0);
@@ -36,14 +36,6 @@ float	calc_discriminant(float a, float b, float c)
 	return (d);
 }
 
-float	calc_b(t_vec3 length_cam_center, t_vec3 dir)
-{
-	float b;
-
-	b = 2 * dot_product(length_cam_center, dir);
-	return (b);
-}
-
 float	calc_a(t_vec3 dir)
 {
 	float a;
@@ -52,10 +44,18 @@ float	calc_a(t_vec3 dir)
 	return (a);
 }
 
-float	calc_c(t_vec3 length_cam_center, float r)
+float	calc_b(t_vec3 ofs, t_vec3 dir)
+{
+	float b;
+
+	b = 2 * dot_product(ofs, dir);
+	return (b);
+}
+
+float	calc_c(t_vec3 ofs, float r)
 {
 	float c;
 
-	c = dot_product(length_cam_center, length_cam_center) - r * r;
+	c = dot_product(ofs, ofs) - r * r;
 	return (c);
 }

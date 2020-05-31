@@ -20,23 +20,40 @@
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h> //!---------------------------------------------------------
-# define M_PI 3.14159265358979323846
 // # define WIN_W 1024
 // # define WIN_H 768
 
 # define WIN_W 700
 # define WIN_H 500
 
+# define M_PI 3.14159265358979323846
 # define FOV (M_PI / 2.0)
+# define DEG2RAD (M_PI / 180.f)
 // # define EPSILON 1e-16
+
+/*
+** *********************************** **
+** *********************************** **
+**            count anything           **
+** *********************************** **
+** *********************************** **
+*/
+
+# define COUNT_PRIMITIVE 6
+# define COUNT_LIGHTS 3
+
+/*
+** *********************************** **
+** *********************************** **
+**            primitives               **
+** *********************************** **
+** *********************************** **
+*/
 
 # define SPHERE 20
 # define PLANE 90
 # define CYLINDER 30
 # define CONE 40
-# define COUNT_PRIMITIVE 6
-# define COUNT_LIGHTS 3
-# define DEG2RAD (M_PI / 180.f)
 
 /*
 ** *********************************** **
@@ -54,7 +71,7 @@
 # define BACKGROUND_COLOR float_to_byte(LILAC)
 # define BRIGHT_PURPLE (t_color){186, 151, 255}
 # define ROSE_PINK (t_color){255, 112, 165}
-# define INDEPENDENCE (t_color){115, 106, 146}
+# define INDEPENDENCE (t_color){224, 215, 255}
 
 /*
 ** *********************************** **

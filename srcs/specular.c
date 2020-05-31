@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   specular.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/31 17:15:13 by f0rsunka          #+#    #+#             */
+/*   Updated: 2020/05/31 17:23:29 by f0rsunka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "rtv1.h"
 
@@ -11,7 +22,7 @@ void	calculate_specular(t_ray ray, t_light light, float specular, float *intensi
 	float	x;
 
 	dot_l_n = dot_product(light.direction, ray.normal);
-	spec = vec_diff(light.direction, mult_vec_const(ray.normal, dot_l_n * 2.0f));
+	spec = vec_diff(mult_vec_const(ray.normal, dot_l_n * 2.0f), light.direction);
 	dot_r_v = dot_product(spec, ray.dir);
 	if (dot_r_v > 0)
 	{

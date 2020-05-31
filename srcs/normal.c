@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normal.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/31 17:15:03 by f0rsunka          #+#    #+#             */
+/*   Updated: 2020/05/31 17:23:24 by f0rsunka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "rtv1.h"
 
 void		get_normal_sphere(t_vec3 p, t_vec3 center_sphere, t_vec3 *normal)
 {
-	*normal = vec_diff(center_sphere, p);
+	*normal = vec_diff(p, center_sphere);
 }
 
 void		get_normal_cylinder(t_vec3 p, t_vec3 offset, t_vec3 *normal)
 {
-	*normal = vec_diff(offset, p);
+	*normal = vec_diff(p, offset);
 	normal->y = 0.0f;
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_primitive.c                                   :+:      :+:    :+:   */
+/*   init_primitives.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 22:26:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 17:51:27 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:45:33 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,21 @@ void	init_cone(t_scene *scene)
 	scene->type = CONE;
 }
 
-void	init_plane(t_scene *scene, t_vec3 center, t_vec3 offset, t_vec3 normal, t_color color)
+t_plane	*init_plane(t_vec3 offset, t_vec3 coef, t_vec3 normal, t_color color)
 {
-	scene->object = (t_plane *)malloc(sizeof(t_plane));
-	scene->object == NULL ? exit(88) : 0;
-	((t_plane *)scene->object)->center = (t_vec3){center.x, center.y, center.z};
-	((t_plane *)scene->object)->offset = (t_vec3){offset.x, offset.y, offset.z};
-	((t_plane *)scene->object)->normal = (t_vec3){normal.x, normal.y, normal.z};
-	((t_plane *)scene->object)->material.color = float_to_byte((t_color){color.r, color.g, color.b});
-	((t_plane *)scene->object)->material.specular = 50.0f;
-	scene->type = PLANE;
+	t_plane *plane;
+	
+	plane = (t_plane *)malloc(sizeof(t_plane));
+	plane == NULL ? exit(88) : 0;
+	plane->offset = (t_vec3){offset.x, offset.y, offset.z};
+	plane->coef = (t_vec3){coef.x, coef.y, coef.z};
+	plane->normal = (t_vec3){normal.x, normal.y, normal.z};
+	plane->material.color = float_to_byte((t_color){color.r, color.g, color.b});
+	plane->material.specular = 50.0f;
+	return (plane);
 }
 
-void	init_primitive(t_rtv *r)
+void	init_primitives(t_rtv *r)
 {
 	int		i;
 	t_scene *scene;
@@ -60,10 +62,16 @@ void	init_primitive(t_rtv *r)
 		if (i == 3)
 			init_cylinder(scene);
 		if (i == 4)
-			init_plane(scene, (t_vec3){0, -1, 0}, (t_vec3){0.0f, 0.0f, -9.0f}, (t_vec3){0, 1, 0}, (t_color)ROSE_PINK);
+		{
+			scene->object = init_plane((t_vec3){0.0f, 0.0f, -19.0f}, (t_vec3){0.0f, 0.0f, -1.0f}, (t_vec3){0.0f, 0.0f, -1.0f}, (t_color)ROSE_PINK);
+			scene->type = PLANE;
+		}
+		if (i == 5)
+		{
+			scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
+			scene->type = PLANE;
+		}
 		// if (i == 5)
-		// 	init_plane(scene, (t_vec3){0, 0, -5}, (t_vec3){0.0f, 2.0f, 0.0f}, (t_vec3){0, 0, 5}, (t_color)INDEPENDENCE);
-		// if (i == 4)
 		// 	init_cone(scene);
 		if (i == 0)
 			scene->next = NULL;

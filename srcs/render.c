@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_sphere.c                                    :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:00:15 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 17:45:45 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:49:05 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void render(t_rtv *r)
 		while (iter.x < WIN_W)
 		{
 			ray_zero(&r->ray);
-			trace_zero(r);
+			trace_zero(&r->trace);
 			coord.x = (2 * (iter.x + 0.5) / (float)WIN_W - 1) * tan(FOV / 2.0) * WIN_W / (float)WIN_H;
             coord.y = (2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
 			r->ray.dir = vec_normalize((t_vec3){coord.x, coord.y, -1});

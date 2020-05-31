@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 15:35:32 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:50:23 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 	{
 		if (!ft_strcmp(r->light[i].type, POINT))
 		{
-			r->light[i].direction = vec_diff(r->ray.p, r->light[i].position);
+			r->light[i].direction = vec_diff(r->light[i].position, r->ray.p);
 		}
 		if (!ft_strcmp(r->light[i].type, DIRECTIONAL))
 		{
@@ -43,7 +43,7 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 		{
 			light_dir = r->light[i].direction;
 			light_dir = mult_vec_const(r->light[i].direction, -1);
-			trace_zero(r);
+			trace_zero(&r->trace);
 			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)light_dir, (float)0.001f};
 			if (is_shadow(r) == 0)
 				calculate_types_light(r, r->light[i], material, intensity);

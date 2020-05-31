@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
+#    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/16 19:52:35 by cvernius         ###   ########.fr        #
+#    Updated: 2020/05/31 17:53:54 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,12 @@ C_FILES = main.c \
 		  init_rtv.c \
 		  init_light.c \
 		  sdl_data.c \
-		  init_primitive.c \
+		  init_primitives.c \
 		  init_sphere.c \
 		  render.c \
 		  raytrace.c \
-		  intersect_primitive.c \
-		  quadratic_equation_sphere.c \
-		  quadratic_equation_cylinder.c \
+		  intersect_primitives.c \
+		  calculate_quadratic_equation.c \
 		  color.c \
 		  put_pixel.c \
 		  light.c \
@@ -59,21 +58,13 @@ detected_OS := $(shell uname)
 
 ifeq ($(detected_OS),Linux)
 
-	# LIBS_A := ./libft/libft.a ./libvector/libvector.a -lOpenCL
 	SDL_FLAGS := -lOpenCL
-	# LIBS_O := ./libft/*.o ./libvector/*.o ./mlx_libs/minilibx/*.o
-	# LIBMAKE := ./mlx_libs/minilibx
-	# MLX_FLAGS := -L ./mlx_libs/minilibx -lmlx_Linux -lXext -lX11 -lm
 
 endif
 
 ifeq ($(detected_OS),Darwin) 
 
-	# LIBS_A = ./libft/libft.a ./libvector/libvector.a -framework OpenCL
 	SDL_FLAGS = -framework OpenCL
-	# LIBS_O = ./libft/*.o ./libvector/*.o ./mlx_libs/minilibx_macos/*.o
-	# LIBMAKE = ./mlx_libs/minilibx_macos
-	# MLX_FLAGS = -L ./mlx_libs/minilibx_macos -lm -lmlx -framework OpenGL -framework Appkit
 
 endif
 

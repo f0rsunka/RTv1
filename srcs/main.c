@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 15:33:54 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:52:30 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	init_rtv(t_rtv *rtv)
 {
 	rtv->sdl = init_sdl();
-	init_primitive(rtv);
+	init_primitives(rtv);
 	init_camera(rtv);
-	init_flags(rtv);
+	init_flags(&rtv->flag);
 	ray_zero(&rtv->ray);
 	rtv->light = init_light();
 }

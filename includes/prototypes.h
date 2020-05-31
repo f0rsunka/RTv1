@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 18:57:41 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/05/31 17:50:05 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 ** *********************************** **
 */
 
-void		init_primitive(t_rtv *r);
+void		init_primitives(t_rtv *r);
 void		init_sphere(int i, t_scene *scene);
-void		init_flags(t_rtv *r);
+void		init_flags(t_flag *flag);
 void		init_camera(t_rtv *r);
 void		ray_zero(t_ray *ray);
-void		trace_zero(t_rtv *r);
+void		trace_zero(t_trace *trace);
 void		closest_zero(t_closest_obj *cl);
 
 /*
@@ -59,6 +59,7 @@ int			cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
 int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
 int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
+int			intersect_ray_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
 
 /*
 ** *********************************** **
@@ -68,12 +69,11 @@ int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane
 ** *********************************** **
 */
 
-float		quadratic_equation_sphere(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2);
-float		quadratic_equation_cylinder(t_vec3 ofs, t_vec3 dir, float *t1, float *t2);
+float		quadratic_equation(t_vec3 ofs, t_vec3 dir, float r, float *t1, float *t2);
 float		calc_discriminant(float a, float b, float c);
 float		calc_a(t_vec3 dir);
-float		calc_b(t_vec3 length_cam_center, t_vec3 dir);
-float		calc_c(t_vec3 length_cam_center, float r);
+float		calc_b(t_vec3 ofs, t_vec3 dir);
+float		calc_c(t_vec3 ofs, float r);
 
 /*
 ** *********************************** **
