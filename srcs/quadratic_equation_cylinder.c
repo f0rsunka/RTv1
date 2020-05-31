@@ -16,4 +16,3 @@ float	quadratic_equation_cylinder(t_vec3 ofs, t_vec3 dir, float *t1, float *t2)
 	*t2 = (- c.b - sqrtf(d)) / (2 * c.a);
 	return (1);
 }
-

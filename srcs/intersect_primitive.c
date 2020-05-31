@@ -49,3 +49,57 @@ int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, flo
 	}
 	return (0);
 }
+
+// int		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist)
+// {
+// 	float t;
+// 	float dot_r_n;
+// 	t_vec3 p;
+
+// 	t = -1 * (camera.y / dir.y);
+// 	p = mult_vec(camera, mult_vec_const(dir, t));
+// 	dot_r_n = dot_product(p, plane.normal);
+// 	if (dot_r_n > 0)
+// 	*plane_dist = 0.0f;
+// 	if (t >= 0)
+// 	{
+// 		*plane_dist = t;
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
+int		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist)
+{
+	float t;
+	t_vec3 ofs;
+
+	ofs = vec_diff(plane.offset, camera);
+	t = ofs.x / dir.x + ofs.y / dir.y + ofs.z / dir.z;
+	t *= -1;
+	if (t >= 0) 
+	{
+		*plane_dist = t;
+		return (1); // you might want to allow an epsilon here too
+	}
+	return (0);
+}
+
+// int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist)
+// {
+// 	float denom;
+	
+// 	denom = dot_product(plane.normal, dir);
+// 	if (fabsf(denom) > 0.0001f) // your favorite epsilon
+// 	{
+// 		float t = dot_product(vec_diff(plane.center, camera), plane.normal) / denom;
+// 		if (t > 10)
+// 		    return 0;
+// 		if (t >= 0) 
+// 		{
+// 			*plane_dist = t;
+// 			return 1; // you might want to allow an epsilon here too
+// 		}
+// 	}
+// 	return 0;
+// }

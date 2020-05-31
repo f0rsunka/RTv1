@@ -15,8 +15,6 @@
 #include "rtv1.h"
 #include "structs.h"
 
-// t_vec3		get_normal_sphere(t_vec3 p, t_vec3 center_sphere);
-
 /*
 ** *********************************** **
 ** *********************************** **
@@ -60,6 +58,7 @@ int			sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int			cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
 int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
+int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
 
 /*
 ** *********************************** **

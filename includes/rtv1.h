@@ -31,10 +31,10 @@
 // # define EPSILON 1e-16
 
 # define SPHERE 20
-# define PLACE 90
+# define PLANE 90
 # define CYLINDER 30
 # define CONE 40
-# define COUNT_PRIMITIVE 4
+# define COUNT_PRIMITIVE 6
 # define COUNT_LIGHTS 3
 # define DEG2RAD (M_PI / 180.f)
 
@@ -53,6 +53,8 @@
 # define LILAC (t_color){131, 120, 158}
 # define BACKGROUND_COLOR float_to_byte(LILAC)
 # define BRIGHT_PURPLE (t_color){186, 151, 255}
+# define ROSE_PINK (t_color){255, 112, 165}
+# define INDEPENDENCE (t_color){115, 106, 146}
 
 /*
 ** *********************************** **

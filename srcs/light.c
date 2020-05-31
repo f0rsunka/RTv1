@@ -56,7 +56,7 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 
 void	init_point(t_closest_obj cl, t_vec3 camera, t_rtv *r)
 {
-	if (cl.type == SPHERE)
+	if (cl.type == SPHERE || cl.type == PLANE)
 		r->ray.p = vec_add(camera, mult_vec_const(r->ray.reverse_dir, cl.dist));
 	if (cl.type == CYLINDER)
 		r->ray.p = vec_add(mult_vec_const(camera, -1), mult_vec_const(r->ray.dir, cl.dist));

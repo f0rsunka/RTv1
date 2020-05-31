@@ -14,7 +14,8 @@ NAME = libvector.a
 
 SRC = vec_add.c mult_vec_const.c vec_diff.c dot_product.c vec_length.c \
 	  vec_normalize.c \
-	  mult_vec.c
+	  mult_vec.c \
+	  division_vec.c
 
 OBJ = $(SRC:.c=.o)
 
