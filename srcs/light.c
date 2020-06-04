@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/05/31 17:50:23 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 18:20:44 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	calculate_types_light(t_rtv *r, t_light light, t_material material, float *
 		calculate_specular(r->ray, light, material.specular, intensity);
 }
 
+// if (is_shadow(r) == 1) - если найден объекты
+
 void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 {
 	int		i;
@@ -29,10 +31,11 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 	{
 		if (!ft_strcmp(r->light[i].type, POINT))
 		{
-			r->light[i].direction = vec_diff(r->light[i].position, r->ray.p);
+			r->light[i].direction = vec_diff(r->ray.p, r->light[i].position);
 		}
 		if (!ft_strcmp(r->light[i].type, DIRECTIONAL))
 		{
+			r->light[i].position = vec_diff(r->ray.p, r->light[i].position);
 			r->light[i].direction = r->light[i].direction;
 		}
 		if (!ft_strcmp(r->light[i].type, AMBIENT))
@@ -41,12 +44,27 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 		}
 		else
 		{
+			t_vec3 p_to_light;
+			float dist_p_to_light;
+			float dist_p_to_obj;
+
+			p_to_light = vec_diff(r->light[i].position, r->ray.p);
+			dist_p_to_light = sqrtf(dot_product(p_to_light, p_to_light));
 			light_dir = r->light[i].direction;
 			light_dir = mult_vec_const(r->light[i].direction, -1);
 			trace_zero(&r->trace);
-			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)light_dir, (float)0.001f};
-			if (is_shadow(r) == 0)
+			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)light_dir, (float)0.001f, DIST_MAX};
+			if (is_shadow(r).obj == 0)
 				calculate_types_light(r, r->light[i], material, intensity);
+
+
+			// dist_p_to_obj = is_shadow(r).dist;
+			// if (dist_p_to_obj > 0.0f)
+			// {
+			// 	// dist_p_to_obj = is_shadow(r).dist;
+			// 	if (dist_p_to_light < dist_p_to_obj)
+			// 		calculate_types_light(r, r->light[i], material, intensity);
+			// }
 		}
 		i++;
 	}
@@ -56,10 +74,12 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 
 void	init_point(t_closest_obj cl, t_vec3 camera, t_rtv *r)
 {
-	if (cl.type == SPHERE || cl.type == PLANE)
-		r->ray.p = vec_add(camera, mult_vec_const(r->ray.reverse_dir, cl.dist));
+	if (cl.type == SPHERE)
+		r->ray.p = vec_add(camera, mult_vec_const(r->ray.dir, cl.dist));
 	if (cl.type == CYLINDER)
-		r->ray.p = vec_add(mult_vec_const(camera, -1), mult_vec_const(r->ray.dir, cl.dist));
+		r->ray.p = vec_add(camera, mult_vec_const(r->ray.dir, cl.dist));
+	if (cl.type == PLANE)
+		r->ray.p = vec_add(camera, mult_vec_const(r->ray.dir, cl.dist));
 }
 
 t_color calculate_lightning(t_rtv *r, t_closest_obj closest)

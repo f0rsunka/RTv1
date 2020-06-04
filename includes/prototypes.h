@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/05/31 17:50:05 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 18:06:54 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ void		render(t_rtv *rtv);
 t_closest_obj	trace_ray(t_rtv *r);
 int			sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
 int			cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
-int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
-int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
-int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
-int			intersect_ray_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
+int			plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
+int 		is_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
+int 		is_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
+int 		is_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
+int			is_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
 
 /*
 ** *********************************** **
@@ -110,7 +111,7 @@ t_color		byte_to_float(t_color col);
 ** *********************************** **
 */
 
-int			is_shadow(t_rtv *r);
+t_closest_obj			is_shadow(t_rtv *r);
 
 /*
 ** *********************************** **

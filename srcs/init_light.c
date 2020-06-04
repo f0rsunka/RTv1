@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_light.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 17:23:31 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 17:45:59 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/04 16:59:40 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_light		point_data(void)
 
 	point.type = ft_strdup(POINT);
 	point.intensity = 0.3;
-	point.position = (t_vec3){3.0f, 3.0f, 1.0f};
+	// point.position = (t_vec3){0.0f, -3.0f, -1.0f};
+	point.position = (t_vec3){0.0f, -30.0f, 0.0f};
 	// point.position = (t_vec3){3.0f, 3.0f, -2.0f};
 	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (point);
@@ -42,6 +43,7 @@ t_light		directional_data(void)
 	directional.type = ft_strdup(DIRECTIONAL);
 	directional.intensity = 0.3;
 	directional.direction = (t_vec3){1.0f, 3.0f, -3.0f};
+	// directional.direction = (t_vec3){1.0f, 3.0f, 3.0f};
 	// directional.direction = (t_vec3){4.0f, 3.0f, -3.0f};
 	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	return (directional);

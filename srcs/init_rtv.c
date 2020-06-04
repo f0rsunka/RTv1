@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/05/31 17:48:34 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 16:39:04 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_camera(t_rtv *r)
 {
 	// r->camera = (t_vec3){0.0f, 6.0f, 6.0f};
-	r->camera = (t_vec3){0.0f, 0.0f, 0.0f};
+	r->camera = (t_vec3){0.0f, 0.0f, 10.0f};
 }
 
 void	init_flags(t_flag *flag)
@@ -37,6 +37,7 @@ void	trace_zero(t_trace *trace)
 	trace->from = (t_vec3){0.0f, 0.0f, 0.0f};
 	trace->to = (t_vec3){0.0f, 0.0f, 0.0f};
 	trace->dist_min = 0.0f;
+	trace->dist_max = 0.0f;
 }
 
 void	closest_zero(t_closest_obj *cl)

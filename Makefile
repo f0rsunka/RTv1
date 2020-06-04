@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/05/31 17:53:54 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/04 18:39:46 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ C_FILES = main.c \
 		  render.c \
 		  raytrace.c \
 		  intersect_primitives.c \
+		  primitives_trace.c \
 		  calculate_quadratic_equation.c \
 		  color.c \
 		  put_pixel.c \

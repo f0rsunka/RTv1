@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_primitives.c                             :+:      :+:    :+:   */
+/*   intersect_primitives_copy.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 21:23:25 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/04 16:54:14 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 16:34:56 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = is_sphere(r->trace.from, r->trace.to, *(t_sphere *)current->object, &tmp_dist);
+	intersect_res = is_sphere(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_sphere *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min && tmp_dist < r->trace.dist_max)
 	{
 		closest->dist = tmp_dist;
@@ -38,7 +38,7 @@ int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = is_cylinder(r->trace.from, r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
+	intersect_res = is_cylinder(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min && tmp_dist < r->trace.dist_max)
 	{
 		closest->dist = tmp_dist;
@@ -58,7 +58,7 @@ int				plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = is_plane(r->trace.from, r->trace.to, *(t_plane *)current->object, &tmp_dist);
+	intersect_res = is_plane(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_plane *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min && tmp_dist < r->trace.dist_max)
 	{
 		closest->dist = tmp_dist;

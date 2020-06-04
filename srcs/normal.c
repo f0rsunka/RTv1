@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:15:03 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/05/31 17:23:24 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 16:45:50 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void		normal(t_closest_obj closest, t_rtv *r)
 		get_normal_cylinder(r->ray.p, ((t_cylinder *)closest.obj)->offset, &r->ray.normal);
 	if (closest.type == PLANE)
 		r->ray.normal = ((t_plane *)closest.obj)->normal;
+		// r->ray.normal = mult_vec_const(((t_plane *)closest.obj)->normal, -1);
 	r->ray.normal = vec_normalize(r->ray.normal);
 }
