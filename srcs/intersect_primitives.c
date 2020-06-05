@@ -6,13 +6,13 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 21:23:25 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/04 16:54:14 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:32:58 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+int				sphere_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 {
 	float	intersect_res;
 	float	tmp_dist;
@@ -32,7 +32,7 @@ int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
-int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+int				cylinder_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 {
 	float	intersect_res;
 	float	tmp_dist;
@@ -52,7 +52,7 @@ int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 		return (1);
 }
 
-int				plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+int				plane_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 {
 	float	intersect_res;
 	float	tmp_dist;

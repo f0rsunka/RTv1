@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 22:26:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/04 22:55:00 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:16:26 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,15 @@ void	init_primitives(t_rtv *r)
 			init_sphere(i, scene);
 		if (i == 2)
 			init_cylinder(scene);
-		// if (i == 4)
-		// {
-		// 	scene->object = init_plane((t_vec3){0.0f, 0.0f, -19.0f}, (t_vec3){0.0f, 0.0f, -1.0f}, (t_vec3){0.0f, 0.0f, -1.0f}, (t_color)ROSE_PINK);
-		// 	scene->type = PLANE;
-		// }
-		// if (i == 5)
-		// {
-		// 	scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
-		// 	scene->type = PLANE;
-		// }
-
 
 		if (i == 3)
 		{
-			scene->object = init_plane((t_vec3){0.0f, 0.0f, -9.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_color)ROSE_PINK);
+			scene->object = init_plane((t_vec3){0.0f, 0.0f, -13.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_color)ROSE_PINK);
 			scene->type = PLANE;
 		}
 		if (i == 4)
 		{
-			scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_color)INDEPENDENCE);
+			scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
 			scene->type = PLANE;
 		}
 

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/04 16:35:12 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:51:35 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,14 @@ typedef struct 		s_material
 }					t_material;
 
 
-typedef struct		s_closest_obj
+typedef struct		s_close_obj
 {
 	void			*obj;
 	int				type;
 	float			dist;
 	t_material		mat;
 	t_color			color;
-}					t_closest_obj;
-
-// typedef struct		s_viewport
-// {
-// 	int				w;
-// 	int				h;
-// 	int				d;
-// }					t_viewport;
+}					t_close_obj;
 
 typedef struct		s_light
 {
@@ -129,10 +122,9 @@ typedef struct 		s_rtv
 	t_sdl			sdl;
 	t_vec3			camera;
 	t_trace			trace;
-	t_closest_obj	closest;
+	t_close_obj		closest;
 	t_ray			ray;
 	t_scene			*scene;
-	// t_viewport		viewport;
 	t_light			*light;
 	t_flag			flag;
 }					t_rtv;

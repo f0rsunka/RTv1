@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 12:48:33 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:23:06 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@
 # define DEG2RAD (M_PI / 180.f)
 // # define EPSILON 1e-16
 
-# define MAX_X 1.398
-# define MAX_Y 0.998
-# define DIST_MAX (MAX_X + MAX_Y * WIN_W)
 /*
 ** *********************************** **
 ** *********************************** **
@@ -87,5 +84,11 @@
 # define AMBIENT "a"
 # define POINT "p"
 # define DIRECTIONAL "d"
+
+
+
+// # define MAX_X 1.398
+// # define MAX_Y 0.998
+// # define DIST_MAX (MAX_X + MAX_Y * WIN_W)
 
 #endif

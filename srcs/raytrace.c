@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:12:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/04 16:33:53 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 14:51:56 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-t_closest_obj	trace_ray(t_rtv *r)
+t_close_obj	trace_ray(t_rtv *r)
 {
-	t_closest_obj		closest;
-	t_scene				*tmp;
-	t_scene				*current;
+	t_close_obj		closest;
+	t_scene			*tmp;
+	t_scene			*current;
 
 	closest_zero(&closest);
 	current = r->scene;
@@ -45,6 +45,7 @@ t_closest_obj	trace_ray(t_rtv *r)
 		tmp = current->next;
 		current = tmp;
 	}
+	r->closest = closest;
 	if (closest.obj == NULL)
 	{
 		closest.color = BACKGROUND_COLOR;
