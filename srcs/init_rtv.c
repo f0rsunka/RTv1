@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/04 16:39:04 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 21:52:28 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	init_camera(t_rtv *r)
 {
 	// r->camera = (t_vec3){0.0f, 6.0f, 6.0f};
-	r->camera = (t_vec3){0.0f, 0.0f, 10.0f};
+	// r->camera = (t_vec3){0.0f, -3.0f, -20.0f};
+	r->camera = (t_vec3){0.0f, 0.0f, 0.0f};
+	// r->camera = (t_vec3){-3.0f, 0.0f, 10.0f};
 }
 
 void	init_flags(t_flag *flag)

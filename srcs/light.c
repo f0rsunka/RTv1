@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/04 18:20:44 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 12:48:32 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	calculate_types_light(t_rtv *r, t_light light, t_material material, float *
 
 // if (is_shadow(r) == 1) - если найден объекты
 
-void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
+void	iterate_light(t_rtv *r, t_material material, float *intensity)
 {
 	int		i;
 	t_vec3	light_dir;
@@ -35,8 +35,7 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 		}
 		if (!ft_strcmp(r->light[i].type, DIRECTIONAL))
 		{
-			r->light[i].position = vec_diff(r->ray.p, r->light[i].position);
-			r->light[i].direction = r->light[i].direction;
+			r->light[i].position = vec_diff(r->ray.p, r->light[i].direction);
 		}
 		if (!ft_strcmp(r->light[i].type, AMBIENT))
 		{
@@ -44,27 +43,23 @@ void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 		}
 		else
 		{
-			t_vec3 p_to_light;
-			float dist_p_to_light;
-			float dist_p_to_obj;
-
-			p_to_light = vec_diff(r->light[i].position, r->ray.p);
-			dist_p_to_light = sqrtf(dot_product(p_to_light, p_to_light));
 			light_dir = r->light[i].direction;
 			light_dir = mult_vec_const(r->light[i].direction, -1);
 			trace_zero(&r->trace);
 			r->trace = (t_trace){(t_vec3)r->ray.p, (t_vec3)light_dir, (float)0.001f, DIST_MAX};
-			if (is_shadow(r).obj == 0)
+			// if (is_shadow(r).obj == 0)
+			// 	calculate_types_light(r, r->light[i], material, intensity);
+		
+			t_vec3 p_to_light;
+			float dist_p_to_light;
+			float dist_p_to_obj;
+			p_to_light = vec_diff(r->ray.p, r->light[i].position);
+			dist_p_to_light = sqrtf(dot_product(p_to_light, p_to_light));
+			dist_p_to_obj = is_shadow(r);
+			if (dist_p_to_obj == -1.0f)
 				calculate_types_light(r, r->light[i], material, intensity);
-
-
-			// dist_p_to_obj = is_shadow(r).dist;
-			// if (dist_p_to_obj > 0.0f)
-			// {
-			// 	// dist_p_to_obj = is_shadow(r).dist;
-			// 	if (dist_p_to_light < dist_p_to_obj)
-			// 		calculate_types_light(r, r->light[i], material, intensity);
-			// }
+			else if (dist_p_to_light < dist_p_to_obj)
+					calculate_types_light(r, r->light[i], material, intensity);
 		}
 		i++;
 	}
@@ -92,7 +87,7 @@ t_color calculate_lightning(t_rtv *r, t_closest_obj closest)
 	r->ray.reverse_dir = mult_vec_const(r->ray.dir, -1);
 	init_point(closest, r->camera, r);
 	normal(closest, r);
-	iterate_light(r, closest.mat, closest.type, &intensity);
+	iterate_light(r, closest.mat, &intensity);
 	add_light(closest.mat.color, &col, intensity);
 	return (col);
 }

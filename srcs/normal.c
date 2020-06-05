@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:15:03 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/04 16:45:50 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 21:12:22 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		get_normal_sphere(t_vec3 p, t_vec3 center_sphere, t_vec3 *normal)
 {
 	*normal = vec_diff(p, center_sphere);
+	// *normal = vec_diff(center_sphere, p);
 }
 
 void		get_normal_cylinder(t_vec3 p, t_vec3 offset, t_vec3 *normal)

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:14:34 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/04 17:57:26 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/04 22:53:59 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	calculate_diffuse(t_light light, t_vec3 normal, float *intensity)
 	float len_l;
 	float len_n;
 
-	// light.direction = mult_vec_const(light.direction, -1);
+	light.direction = mult_vec_const(light.direction, -1);
 	dot_l_n = dot_product(light.direction, normal);
 	if (dot_l_n > 0)
 	{
