@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:15:13 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/05 14:27:04 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:17:01 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	calculate_specular(t_ray ray, t_light light, float specular, float *intensi
 	float	dot_r_v;
 	float	len_r;
 	float	len_v;
-	float	x;
 
 	dot_l_n = dot_product(light.direction, ray.normal);
 	spec = vec_diff(light.direction, mult_vec_const(ray.normal, dot_l_n * 2.0f));
@@ -28,8 +27,7 @@ void	calculate_specular(t_ray ray, t_light light, float specular, float *intensi
 	{
 		len_r = vec_length(spec);
 		len_v = vec_length(ray.dir);
-		x = dot_r_v / (len_r * len_v);
-		*intensity += light.intensity * powf(x, specular);
+		*intensity += light.intensity * powf((dot_r_v / (len_r * len_v)), specular);
 	}
 	else
 		*intensity += 0.01;
