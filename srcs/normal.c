@@ -15,8 +15,8 @@ void		get_normal_cylinder(t_vec3 p, t_vec3 offset, t_vec3 *normal)
 void		normal(t_closest_obj closest, t_rtv *r)
 {
 	if (closest.type == SPHERE)
-		get_normal_sphere(r->ray.p, ((t_sphere *)closest.obj)->center, &r->ray.normal);
+		get_normal_sphere(r->ray.p, ((t_object *)closest.obj)->center, &r->ray.normal);
 	if (closest.type == CYLINDER)
-		get_normal_cylinder(r->ray.p, ((t_cylinder *)closest.obj)->offset, &r->ray.normal);
+		get_normal_cylinder(r->ray.p, ((t_object *)closest.obj)->offset, &r->ray.normal);
 	r->ray.normal = vec_normalize(r->ray.normal);
 }

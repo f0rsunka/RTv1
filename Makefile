@@ -6,7 +6,7 @@
 #    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/16 19:52:35 by cvernius         ###   ########.fr        #
+#    Updated: 2020/06/04 17:44:48 by Student          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ C_FILES = main.c \
 		  specular.c \
 		  shadow.c \
 		  affine_transform.c \
-		  events.c
+		  events.c \
+		  init_scene.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
