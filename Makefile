@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/05 15:20:46 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/08 01:21:07 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,25 +69,31 @@ ifeq ($(detected_OS),Darwin)
 
 endif
 
-NON_EXISTET = tfbil
+NON_EXISTET_FT = tfbil
+
+NON_EXISTET_VEC = rotcev
+# NON_EXISTET_VEC = ./libvector
 
 CFLAGS = -Wall -Wextra
 # CFLAGS += -Werror
 CFLAGS += -g
 # CFLAGS += -O2
 
-all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
+all: $(OBJ_DIR) $(NAME) $(NON_EXISTET_FT) $(NON_EXISTET_VEC)
 
-$(NON_EXISTET):
-	@make -C ./libft
+$(NON_EXISTET_FT):
+	make -sC ./libft
+
+$(NON_EXISTET_VEC):
+	make -sC ./libvector
 
 $(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+	mkdir $(OBJ_DIR)
 
 $(NAME): $(SDL_DIST) $(RAW_OBJ_FILES)
-	@make -C ./libvector
-	@make -sC ./libft
-	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
+	make -sC ./libvector
+	make -sC ./libft
+	gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
 
 $(SDL_DIST):
@@ -102,19 +108,19 @@ $(SDL_DIST):
 #### К о м п и л я ц и я ####
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
-	@gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
+	gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
 
 clean:
-	@rm -rf $(RAW_OBJ_FILES)
-	@rm -rf ./libft/*.o
-	@rm -rf ./libvector/*.o
-	@rm -rf $(SDL_DIR)/tmp
+	rm -rf $(RAW_OBJ_FILES)
+	rm -rf ./libft/*.o
+	rm -rf ./libvector/*.o
+	rm -rf $(SDL_DIR)/tmp
 
 fclean: clean
-	@rm -rf $(NAME)
-	@rm -rf $(OBJ_DIR)
-	@rm -rf ./libft/libft.a
-	@rm -rf ./libvector/libvector.a
-	@rm -rf $(SDL_DIST)
+	rm -rf $(NAME)
+	rm -rf $(OBJ_DIR)
+	rm -rf ./libft/libft.a
+	rm -rf ./libvector/libvector.a
+	rm -rf $(SDL_DIST)
 
 re: fclean all

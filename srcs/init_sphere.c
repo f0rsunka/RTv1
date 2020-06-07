@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:14:52 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/05/31 18:26:59 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/07 22:10:56 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_sphere_0(t_sphere *sphere)
 {
-	sphere->center = (t_vec3){0.0, 1.0, -6.0};
+	sphere->center = (t_vec3){-1.0, 1.0, -5.0};
 	sphere->radius = 2.5f;
 	sphere->material.color = float_to_byte(PINK);
 	sphere->material.specular = 50.0f;

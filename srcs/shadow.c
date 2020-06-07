@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 20:19:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 14:35:48 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:54:53 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ float		trace_p_to_light(t_rtv *r)
 			cylinder_intersect(r, current, &closest);
 		if (current->type == PLANE)
 			plane_intersect(r, current, &closest);
+		if (current->type == CONE)
+			cone_intersect(r, current, &closest);
 		tmp = current->next;
 		current = tmp;
 	}

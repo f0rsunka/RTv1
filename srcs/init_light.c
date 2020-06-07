@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 17:23:31 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 14:22:13 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/07 15:17:15 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,29 @@ t_light		directional_data(void)
 
 void		light_data(t_light *light)
 {
-	light[0] = ambient_data();
-	light[1] = directional_data();
-	light[2] = point_data();
+	int i;
+
+	i = 0;
+	while (i < COUNT_LIGHTS)
+	{
+		if (i == 0)
+			light[i] = ambient_data();
+		if (i == 1)
+			light[i] = directional_data();
+		if (i ==2)
+			light[i] = point_data();
+		i++;
+	}
 }
 
 t_light		*init_light(void)
 {
 	t_light	*light;
 
+	(COUNT_LIGHTS <= 0 ? exit(99) : 0);
+	(COUNT_LIGHTS > 3 ? exit(99) : 0);
 	light = (t_light*)malloc(sizeof(t_light) * COUNT_LIGHTS);
-	(light == NULL ? exit (88) : 1);
+	(light == NULL ? exit(88) : 1);
 	light_data(light);
 	return (light);
 }

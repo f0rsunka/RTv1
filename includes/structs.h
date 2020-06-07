@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 14:51:35 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 00:03:57 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct		s_plane
 
 typedef struct		s_cone
 {
+	t_vec3			offset;
+	t_vec3			coef;
 	t_material		material;
 }					t_cone;
 
@@ -114,6 +116,7 @@ typedef struct		s_cylinder
 {
 	float			radius;
 	t_vec3			offset;
+	t_vec3			coef;
 	t_material		material;
 }					t_cylinder;
 

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 22:26:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 14:16:26 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 00:23:18 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,43 @@ void	init_cylinder(t_scene *scene)
 	scene->object == NULL ? exit(88) : 0;
 	((t_cylinder *)scene->object)->radius = 1.0f;
 	((t_cylinder *)scene->object)->offset = (t_vec3){2.0f, 0.0f, -5.0f};
+	((t_cylinder *)scene->object)->coef = (t_vec3){1.0f, 0.0f, 1.0f};
 	((t_cylinder *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
 	((t_cylinder *)scene->object)->material.specular = 50.0f;
 	scene->type = CYLINDER;
 }
 
+
+/**			FORMULA WITHOUT DELIM			 **/
+
+// void	init_cone(t_scene *scene)
+// {
+// 	scene->object = (t_cone *)malloc(sizeof(t_cone));
+// 	scene->object == NULL ? exit(88) : 0;
+// 	((t_cone *)scene->object)->offset = (t_vec3){5.0f, 1.0f, 5.0f};
+// 	((t_cone *)scene->object)->coef = (t_vec3){4.0f, 4.0f, 121.0f};
+// 	((t_cone *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
+// 	((t_cone *)scene->object)->material.specular = 50.0f;
+// 	scene->type = CONE;
+// }
+
+
+
+/**			FORMULA WITH DELIM			**/
+
+
 void	init_cone(t_scene *scene)
 {
 	scene->object = (t_cone *)malloc(sizeof(t_cone));
 	scene->object == NULL ? exit(88) : 0;
+	((t_cone *)scene->object)->offset = (t_vec3){5.0f, -1.0f, -4.0f};
+	((t_cone *)scene->object)->coef = (t_vec3){9.0f, 9.0f, 16.0f};
 	((t_cone *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
 	((t_cone *)scene->object)->material.specular = 50.0f;
 	scene->type = CONE;
 }
+
+
 
 t_plane	*init_plane(t_vec3 offset, t_vec3 coef, t_vec3 normal, t_color color)
 {
@@ -53,28 +77,27 @@ void	init_primitives(t_rtv *r)
 	t_scene	*tmp;
 
 	i = 0;
-	while (i < COUNT_PRIMITIVE)
+	(COUNT_PRIMITIVES <= 0 ? exit(99) : 0);
+	(COUNT_PRIMITIVES > 7 ? exit(99) : 0);
+	while (i < COUNT_PRIMITIVES)
 	{
 		scene = (t_scene*)malloc(sizeof(t_scene));
 		(scene == NULL ? exit(8) : 1);
-		if (i >= 0 && i <= 1)
-			init_sphere(i, scene);
+		// if (i >= 0 && i <= 1)
+		// 	init_sphere(i, scene);
 		if (i == 2)
 			init_cylinder(scene);
-
-		if (i == 3)
+		if (i == 0)
 		{
 			scene->object = init_plane((t_vec3){0.0f, 0.0f, -13.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_color)ROSE_PINK);
 			scene->type = PLANE;
 		}
-		if (i == 4)
+		if (i == 1)
 		{
 			scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
 			scene->type = PLANE;
 		}
-
-
-		// if (i == 5)
+		// if (i == 2)
 		// 	init_cone(scene);
 		if (i == 0)
 			scene->next = NULL;

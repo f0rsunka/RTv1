@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 21:23:25 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/05 14:32:58 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/07 16:14:15 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ int				plane_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 		closest->obj = (t_plane *)current->object;
 		closest->mat = ((t_plane *)closest->obj)->material;
 		closest->type = PLANE;
+	}
+	if (closest->obj == NULL)
+		return (0);
+	else
+		return (1);
+}
+
+int				cone_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
+{
+	float	intersect_res;
+	float	tmp_dist;
+
+	tmp_dist = 0.0f;
+	intersect_res = is_cone(r->trace.from, r->trace.to, *(t_cone *)current->object, &tmp_dist);
+	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min && tmp_dist < r->trace.dist_max)
+	{
+		closest->dist = tmp_dist;
+		closest->obj = (t_cone *)current->object;
+		closest->mat = ((t_cone *)closest->obj)->material;
+		closest->type = CONE;
 	}
 	if (closest->obj == NULL)
 		return (0);

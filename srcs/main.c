@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/05/31 17:52:30 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/07 15:14:11 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 void	init_rtv(t_rtv *rtv)
 {
-	rtv->sdl = init_sdl();
+	// проверка размера окна - мб функция тут должна быть? в файле с ошибками будет лежать
+	// (WIN_W <= 0 ? exit(99) : 0);
+	// (WIN_H <= 0 ? exit(99) : 0);
+	rtv->light = init_light();
 	init_primitives(rtv);
 	init_camera(rtv);
 	init_flags(&rtv->flag);
 	ray_zero(&rtv->ray);
-	rtv->light = init_light();
+	trace_zero(&rtv->trace);
+	rtv->sdl = init_sdl();
 }
 
 int		main_render(t_rtv *r)

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 14:23:06 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 00:19:35 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 ** *********************************** **
 */
 
-# define COUNT_PRIMITIVE 5
+# define COUNT_PRIMITIVES 3
 # define COUNT_LIGHTS 3
 
 /*

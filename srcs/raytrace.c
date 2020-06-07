@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:12:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/05 15:19:26 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:41:24 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_close_obj	trace_ray(t_rtv *r)
 			cylinder_intersect(r, current, &closest);
 		if (current->type == PLANE)
 			plane_intersect(r, current, &closest);
+		if (current->type == CONE)
+			cone_intersect(r, current, &closest);
 		tmp = current->next;
 		current = tmp;
 	}
