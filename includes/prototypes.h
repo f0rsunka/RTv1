@@ -88,8 +88,8 @@ float		calc_c(t_vec3 length_cam_center, float r);
 t_light		*init_light(void);
 t_color 	calculate_lightning(t_rtv *r, t_closest_obj closest);
 void		normal(t_closest_obj closest, t_rtv *r);
-void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
-void		calculate_specular(t_ray ray, t_light light, float specular, float *intensity);
+void		calculate_diffuse(t_light *light, t_vec3 normal, float *intensity);
+void		calculate_specular(t_ray ray, t_light *light, float specular, float *intensity);
 void		add_light(t_color col, t_color *res_col, float intensity);
 
 /*

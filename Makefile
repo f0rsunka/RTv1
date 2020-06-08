@@ -98,11 +98,13 @@ $(NON_EXISTET):
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
-$(NAME): $(SDL_DIST) $(RAW_OBJ_FILES)
+$(NAME): ./libft/libft.a $(SDL_DIST) $(RAW_OBJ_FILES)
 	@make -C ./libvector
-	@make -sC ./libft
 	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
+
+./libft/libft.a:
+	@make -sC ./libft
 
 $(SDL_DIST):
 	$(info ************ Compiling SDL *************)

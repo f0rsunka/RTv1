@@ -71,10 +71,11 @@ typedef struct		s_closest_obj
 
 typedef struct		s_light
 {
-	char			*type;
+	unsigned char	type;
 	float			intensity;
 	t_vec3			position;
 	t_vec3			direction;
+	struct s_light	*next;
 }					t_light;
 
 typedef struct		s_sdl

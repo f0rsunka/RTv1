@@ -68,8 +68,9 @@
 ** *********************************** **
 */
 
-# define AMBIENT "a"
-# define POINT "p"
-# define DIRECTIONAL "d"
+# define LIGHT_TYPE_HEAD		0
+# define LIGHT_TYPE_AMBIENT		1
+# define LIGHT_TYPE_POINT		2
+# define LIGHT_TYPE_DIRECTIONAL	3
 
 #endif
