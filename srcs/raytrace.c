@@ -26,13 +26,13 @@ int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_sphere(r->trace.from, r->trace.to, *(t_object *)current->object, &tmp_dist);
+	intersect_res = intersect_ray_sphere(r->trace.from, r->trace.to, *(t_sphere *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
 	{
 		closest->dist = tmp_dist;
-		closest->obj = (t_object *)current->object;
+		closest->obj = (t_sphere *)current->object;
 		closest->type = SPHERE;
-		closest->mat = ((t_object *)closest->obj)->material;
+		closest->mat = ((t_sphere *)closest->obj)->material;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -46,13 +46,13 @@ int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_cylinder(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_object *)current->object, &tmp_dist);
+	intersect_res = intersect_ray_cylinder(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
 	{
 		closest->dist = tmp_dist;
-		closest->obj = (t_object *)current->object;
+		closest->obj = (t_cylinder *)current->object;
 		closest->type = CYLINDER;
-		closest->mat = ((t_object *)closest->obj)->material;
+		closest->mat = ((t_cylinder *)closest->obj)->material;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -66,13 +66,13 @@ int				plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
 	float	tmp_dist;
 
 	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_plane(r->trace.from, r->trace.to, *(t_object *)current->object, &tmp_dist);
+	intersect_res = intersect_ray_plane(r->trace.from, r->trace.to, *(t_plane *)current->object, &tmp_dist);
 	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
 	{
 		closest->dist = tmp_dist;
-		closest->obj = (t_object *)current->object;
+		closest->obj = (t_plane *)current->object;
 		closest->type = PLANE;
-		closest->mat = ((t_object *)closest->obj)->material;
+		closest->mat = ((t_plane *)closest->obj)->material;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -90,15 +90,15 @@ t_closest_obj	trace_ray(t_rtv *r)
 	current = r->scene;
 	while (current != NULL)
 	{
-		if (current->type == SPHERE)
+		if (current->type == TYPE_SPHERE)
 		{
 			sphere_intersect(r, current, &closest);
 		}
-		if (current->type == CYLINDER)
+		if (current->type == TYPE_CYLINDER)
 		{
 			cylinder_intersect(r, current, &closest);
 		}
-		if (current->type == PLANE)
+		if (current->type == TYPE_PLANE)
 		{
 			plane_intersect(r, current, &closest);
 		}

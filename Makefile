@@ -85,10 +85,12 @@ CFLAGS += -Wall -Wextra
 CFLAGS += -g
 # CFLAGS += -O2
 
+.PHONY: all debug clean clean_libs clean_self fclean re
+
 all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
 
-debug:
-	CFLAGS="-g -fno-omit-frame-pointer" $(MAKE) all
+debug: clean_self
+	CFLAGS="-O0 -g -fno-omit-frame-pointer" $(MAKE) all
 
 $(NON_EXISTET):
 	@make -C ./libft
@@ -116,11 +118,15 @@ $(SDL_DIST):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
 	@gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
 
-clean:
-	@rm -rf $(RAW_OBJ_FILES)
+clean: clean_libs clean_self
+
+clean_libs:
 	@rm -rf ./libft/*.o
 	@rm -rf ./libvector/*.o
 	@rm -rf $(SDL_DIR)/tmp
+
+clean_self:
+	@rm -rf $(RAW_OBJ_FILES)
 
 fclean: clean
 	@rm -rf $(NAME)

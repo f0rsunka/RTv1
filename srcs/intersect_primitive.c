@@ -1,7 +1,7 @@
 
 #include "rtv1.h"
 
-int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_object sphere, float *sphere_dist)
+int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist)
 {
 	t_vec3	length_cam_center;
 	float	t1;
@@ -24,7 +24,7 @@ int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_object sphere, float *sp
 	return (0);
 }
 
-int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_object cylinder, float *cylinder_dist)
+int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist)
 {
 	t_vec3	ofs;
 	float	t1;
@@ -50,16 +50,16 @@ int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_object cylinder, float
 	return (0);
 }
 
-int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_object plane, float *plane_dist)
+int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist)
 {
 	float denom = dot_product(plane.normal, dir);
 	if (fabsf(denom) > 0.0001f) // your favorite epsilon
 	{
 		float t = dot_product(vec_diff(plane.center, camera), plane.normal) / denom;
 		if (t > 10) {
-		    return 0;
+			return 0;
 		}
-		if (t >= 0) 
+		if (t >= 0)
 		{
 			*plane_dist = t;
 			return 1; // you might want to allow an epsilon here too

@@ -38,6 +38,11 @@
 # define COUNT_LIGHTS 3
 # define DEG2RAD (M_PI / 180.f)
 
+#define TYPE_HEAD 0
+#define TYPE_PLANE 1
+#define	TYPE_SPHERE 2
+#define	TYPE_CYLINDER 3
+
 /*
 ** *********************************** **
 ** *********************************** **
