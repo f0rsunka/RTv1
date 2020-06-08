@@ -21,11 +21,14 @@
 # include <math.h>
 # include <stdio.h> //!---------------------------------------------------------
 # define M_PI 3.14159265358979323846
-// # define WIN_W 1024
-// # define WIN_H 768
+# define WIN_W 1024
+# define WIN_H 768
 
-# define WIN_W 320
-# define WIN_H 240
+// # define WIN_W 700
+// # define WIN_H 500
+
+// # define WIN_W 320
+// # define WIN_H 240
 
 # define FOV (M_PI / 2.0)
 // # define EPSILON 1e-16
@@ -52,7 +55,10 @@
 # define YELLOW (t_color){255, 255, 0}
 # define LILAC (t_color){131, 120, 158}
 # define BACKGROUND_COLOR float_to_byte(LILAC)
-# define BRIGHT_PURPLE (t_color){186, 151, 255}
+# define BRIGHT_PURPLE (t_color){172, 159, 255}
+# define VINOUS (t_color){255, 158, 210}
+# define GRAY (t_color){125, 125, 125}
+// # define BRIGHT_PURPLE (t_color){186, 151, 255}
 # define LIGHT_GRAY (t_color){200, 200, 200}
 
 /*

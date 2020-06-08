@@ -27,6 +27,10 @@ int		is_shadow(t_rtv *r)
 			sphere_intersect(r, current, &closest);
 		if (current->type == CYLINDER)
 			cylinder_intersect(r, current, &closest);
+		if (current->type == CONE)
+			cone_intersect(r, current, &closest);
+		if (current->type == PLANE)
+			plane_intersect(r, current, &closest);
 		tmp = current->next;
 		current = tmp;
 	}

@@ -14,12 +14,12 @@
 
 void	init_rtv(t_rtv *rtv)
 {
+	init_primitive(rtv);
+	rtv->light = init_light();
 	rtv->sdl = init_sdl();
-//	init_primitive(rtv);
 	init_camera(rtv);
 	init_flags(rtv);
 	ray_zero(&rtv->ray);
-	rtv->light = init_light();
 }
 
 int		main_render(t_rtv *r)

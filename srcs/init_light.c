@@ -58,6 +58,7 @@ t_light		*init_light(void)
 {
 	t_light	*light;
 
+	(COUNT_LIGHTS == 0 ? exit(12): 0);
 	light = (t_light*)malloc(sizeof(t_light) * COUNT_LIGHTS);
 	(light == NULL ? exit (88) : 1);
 	light_data(light);

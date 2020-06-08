@@ -55,5 +55,7 @@ t_vec3		vec_normalize(t_vec3 v);
 t_vec3		mult_vec_const(t_vec3 v, float n);
 float		vec_length(t_vec3 v);
 t_vec3		mult_vec(t_vec3 a, t_vec3 b);
+t_vec3		division_vec(t_vec3 v1, t_vec3 v2);
+t_vec3		quadrat_vec(t_vec3 a);
 
 #endif
