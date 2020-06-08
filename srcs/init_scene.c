@@ -4,12 +4,22 @@
 int		read_keyed_double(char *line, char *key, double *data)
 {
 	char	*str;
+//	char	*end;
 
 	str = ft_strstr(line, key);
 	if (line == str && str != 0)
 	{
 		// FIXME проверять правую часть при помощи strtol?
 		*data = (double)ft_atoi(line + ft_strlen(key));
+//		*data = strtol(line + ft_strlen(key), &end, 10);
+//		if (*end != '\0') {
+//			ft_putstr_fd("Invalid data [", 2);
+//			ft_putstr_fd(end, 2);
+//			ft_putstr_fd("] passed to [", 2);
+//			ft_putstr_fd(key, 2);
+//			ft_putendl_fd("]", 2);
+//			exit(1);
+//		}
 		return (1);
 	}
 	return (0);
@@ -84,6 +94,7 @@ t_scene		*create_scene_plane(int fd, char **line)
 		tmp = (t_scene *)malloc(sizeof(t_scene));
 		tmp->object = (void *)create_plane(fd, line);
 		tmp->type = TYPE_PLANE;
+		tmp->next = 0;
 		return (tmp);
 	}
 	return (0);
@@ -100,13 +111,14 @@ t_scene		*create_scene_plane(int fd, char **line)
 //		tmp = (t_scene *)malloc(sizeof(t_scene));
 //		tmp->object = (void *)create_sphere(fd, &line);
 //		tmp->type = TYPE_SPHERE;
+//		tmp->next = 0;
 //
 //		return (tmp);
 //	}
 //	return (0);
 //}
 
-t_scene		*create_figure(int fd, t_scene *prev, char **line)
+int			create_figure(int fd, t_scene *prev, char **line)
 {
 	int		status;
 
@@ -124,10 +136,15 @@ t_scene		*create_figure(int fd, t_scene *prev, char **line)
 			return (0);
 		}
 	}
+	if (**line == '\0')
+	{
+		ft_memdel((void**)line);
+		return (1);
+	}
 	if ((prev->next = create_scene_plane(fd, line)))
-		return (prev->next);
+		return (1);
 //	if ((prev->next = create_scene_sphere(fd, line)))
-//		return (prev->next);
+//		return (1);
 	return (0);
 }
 
@@ -148,7 +165,8 @@ void        init_scene(char *filename, t_rtv *r)
 	cur = r->scene;
 	line = 0;
 	while (create_figure(fd, cur, &line)) {
-		cur = cur->next;
+		if (cur->next)
+			cur = cur->next;
 	}
 	cur->next = 0;
     close(fd);
