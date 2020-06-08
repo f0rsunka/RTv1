@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:15:13 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/08 01:01:58 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 21:20:23 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	calculate_specular(t_rtv *r, t_light light, float specular, float *intensit
 
 	dot_l_n = dot_product(light.direction, r->ray.normal);
 	if (r->closest.type == CONE)
+	// if (r->closest.type == CONE || r->closest.type == CYLINDER)
 		spec = vec_diff(mult_vec_const(r->ray.normal, dot_l_n * 2.0f), light.direction);
 	else
 		spec = vec_diff(light.direction, mult_vec_const(r->ray.normal, dot_l_n * 2.0f));

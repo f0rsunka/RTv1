@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/08 00:19:35 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 01:05:39 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 ** *********************************** **
 */
 
-# define COUNT_PRIMITIVES 3
+# define COUNT_PRIMITIVES 6
 # define COUNT_LIGHTS 3
 
 /*
@@ -64,14 +64,15 @@
 */
 
 # define PURPLE (t_color){191, 164, 255}
-# define BLUE (t_color){174, 196, 255}
-# define PINK (t_color){255, 202, 249}
+# define BLUE (t_color){181, 188, 255}
+# define PINK (t_color){217, 188, 255}
 # define YELLOW (t_color){255, 255, 0}
 # define LILAC (t_color){131, 120, 158}
 # define BACKGROUND_COLOR float_to_byte(LILAC)
 # define BRIGHT_PURPLE (t_color){186, 151, 255}
-# define ROSE_PINK (t_color){255, 112, 165}
-# define INDEPENDENCE (t_color){224, 215, 255}
+# define ROSE_PINK (t_color){255, 165, 198}
+# define INDEPENDENCE (t_color){202, 211, 255}
+# define INDIGO (t_color){196, 214, 255}
 
 /*
 ** *********************************** **

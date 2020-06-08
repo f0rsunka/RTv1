@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/07 23:44:49 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 22:13:44 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ float		trace_p_to_light(t_rtv *r);
 ** *********************************** **
 */
 
-void		rotate(t_ray *ray);
+void		rotate(t_vec3 *vec, t_vec3 angle);
 void		events(t_rtv *r);
 
 #endif

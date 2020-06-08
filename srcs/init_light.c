@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 17:23:31 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/07 15:17:15 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 20:38:06 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void		light_data(t_light *light)
 		if (i == 0)
 			light[i] = ambient_data();
 		if (i == 1)
-			light[i] = directional_data();
-		if (i ==2)
 			light[i] = point_data();
+		if (i ==2)
+			light[i] = directional_data();
 		i++;
 	}
 }

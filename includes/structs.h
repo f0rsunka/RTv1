@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/08 00:03:57 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 01:08:46 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,6 @@ typedef struct 		s_material
 	float			specular;
 }					t_material;
 
-
-typedef struct		s_close_obj
-{
-	void			*obj;
-	int				type;
-	float			dist;
-	t_material		mat;
-	t_color			color;
-}					t_close_obj;
-
 typedef struct		s_light
 {
 	char			*type;
@@ -52,14 +42,6 @@ typedef struct		s_sdl
 	SDL_Event		event;
 }					t_sdl;
 
-typedef struct 		s_scene
-{
-	void			*object;
-	int				type;
-	struct s_scene	*next;
-}					t_scene;
-
-
 typedef struct		s_coefficients
 {
 	float			a;
@@ -74,7 +56,15 @@ typedef struct		s_ray
 	t_vec3			p;
 	t_vec3			normal;
 	t_vec3			angle;
+	t_vec3			ofs;
 }					t_ray;
+
+typedef struct 		s_scene
+{
+	void			*object;
+	int				type;
+	struct s_scene	*next;
+}					t_scene;
 
 typedef struct		s_trace
 {
@@ -90,10 +80,21 @@ typedef struct 		s_flag
 	int				is_rotate;
 }					t_flag;
 
+typedef struct		s_close_obj
+{
+	void			*obj;
+	int				type;
+	float			dist;
+	t_vec3			normal;	//!--------
+	t_material		mat;
+	t_color			color;
+}					t_close_obj;
+
 typedef struct		s_sphere
 {
 	t_vec3			center;
 	float			radius;
+	t_vec3			angle;
 	t_material		material;
 }					t_sphere;
 
@@ -102,6 +103,7 @@ typedef struct		s_plane
 	t_vec3			offset;
 	t_vec3			coef;
 	t_vec3			normal;
+	t_vec3			angle;
 	t_material		material;
 }					t_plane;
 
@@ -109,6 +111,8 @@ typedef struct		s_cone
 {
 	t_vec3			offset;
 	t_vec3			coef;
+	t_vec3			normal;
+	t_vec3			angle;
 	t_material		material;
 }					t_cone;
 
@@ -117,6 +121,8 @@ typedef struct		s_cylinder
 	float			radius;
 	t_vec3			offset;
 	t_vec3			coef;
+	t_vec3			normal;
+	t_vec3			angle;
 	t_material		material;
 }					t_cylinder;
 

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 21:23:25 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/07 16:14:15 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 01:42:03 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int				cylinder_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 		closest->dist = tmp_dist;
 		closest->obj = (t_cylinder *)current->object;
 		closest->mat = ((t_cylinder *)closest->obj)->material;
+		r->ray.ofs = vec_diff(r->camera, ((t_cylinder *)closest->obj)->offset);
+		// r->ray.normal = vec_add(r->ray.ofs, mult_vec_const(r->ray.dir, closest->dist));
+		// rotate(&r->ray.normal, ((t_cylinder *)closest->obj)->angle);
 		closest->type = CYLINDER;
 	}
 	if (closest->obj == NULL)
@@ -64,6 +67,7 @@ int				plane_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 		closest->dist = tmp_dist;
 		closest->obj = (t_plane *)current->object;
 		closest->mat = ((t_plane *)closest->obj)->material;
+		r->ray.ofs = vec_diff(r->camera, ((t_plane *)closest->obj)->offset);
 		closest->type = PLANE;
 	}
 	if (closest->obj == NULL)
@@ -84,6 +88,9 @@ int				cone_intersect(t_rtv *r, t_scene *current, t_close_obj *closest)
 		closest->dist = tmp_dist;
 		closest->obj = (t_cone *)current->object;
 		closest->mat = ((t_cone *)closest->obj)->material;
+		r->ray.ofs = vec_diff(r->camera, ((t_cone *)closest->obj)->offset);
+		// r->ray.normal = vec_add(r->ray.ofs, mult_vec_const(r->ray.dir, closest->dist));
+		// rotate(&r->ray.normal, ((t_cone *)closest->obj)->angle);
 		closest->type = CONE;
 	}
 	if (closest->obj == NULL)

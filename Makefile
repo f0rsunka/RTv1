@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/08 01:21:07 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/09 01:46:27 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ C_FILES = main.c \
 		  normal.c \
 		  diffuse.c \
 		  specular.c \
-		  shadow.c \
+		  raytrace_to_light.c \
 		  affine_transform.c \
 		  events.c
 

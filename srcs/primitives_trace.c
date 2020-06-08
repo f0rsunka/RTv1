@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:13:57 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/08 01:06:24 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 23:00:19 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int 		is_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist)
 	float	t1;
 	float	t2;
 
+	rotate(&dir, sphere.angle);
 	*sphere_dist = 0.0f;
 	length_cam_center = vec_diff(camera, sphere.center);
+	rotate(&length_cam_center, sphere.angle);
 	if (!quadratic_equation(length_cam_center, dir, sphere.radius, &t1, &t2))
 		return (0);
 	if (t1 < t2 && t1 >= 0)
@@ -53,11 +55,13 @@ int 		is_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinde
 	float			t1;
 	float			t2;
 
+	rotate(&dir, cylinder.angle);
 	*cylinder_dist = 0.0f;
 	ofs = vec_diff(camera, cylinder.offset);
+	rotate(&ofs, cylinder.angle);
 	c.a = cylinder.coef.x * (dir.x * dir.x) + cylinder.coef.y * (dir.y * dir.y) + cylinder.coef.z * (dir.z * dir.z);
 	c.b = 2 * (cylinder.coef.x * (ofs.x * dir.x) + cylinder.coef.y * (ofs.y * dir.y) + cylinder.coef.z * (ofs.z * dir.z));
-	c.c = cylinder.coef.x * (ofs.x * ofs.x) + cylinder.coef.y * (ofs.y * ofs.y) + cylinder.coef.z * (ofs.z * ofs.z) - 1;
+	c.c = cylinder.coef.x * (ofs.x * ofs.x) + cylinder.coef.y * (ofs.y * ofs.y) + cylinder.coef.z * (ofs.z * ofs.z) - cylinder.radius;
 	d = calc_discriminant(c.a, c.b, c.c);
 	if (d < 0)
 		return (0);
@@ -91,10 +95,12 @@ int		is_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist)
 	float	t;
 	t_vec3	ofs;
 
+	rotate(&dir, plane.angle);
+	*plane_dist = 0.0f;
 	ofs = vec_diff(camera, plane.offset);
-	t = (plane.coef.x * ofs.x + plane.coef.y * ofs.y + plane.coef.z * ofs.z) / (dir.x * plane.coef.x + dir.y * plane.coef.y + dir.z * plane.coef.z);
-	t *= -1;
-	if (t >= 0) 
+	rotate(&ofs, plane.angle);
+	t = -1 * (plane.coef.x * ofs.x + plane.coef.y * ofs.y + plane.coef.z * ofs.z) / (dir.x * plane.coef.x + dir.y * plane.coef.y + dir.z * plane.coef.z);
+	if (t > 0) 
 	{
 		*plane_dist = t;
 		return (1);
@@ -110,8 +116,10 @@ int		is_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist)
 	float			t1;
 	float			t2;
 
+	rotate(&dir, cone.angle);
+	*cone_dist = 0.0f;
 	ofs = vec_diff(camera, cone.offset);
-
+	rotate(&ofs, cone.angle);
 
 	//					Z AXIS   						//
 	// c.a = dir.x * dir.x + dir.y * dir.y - dir.z * dir.z;

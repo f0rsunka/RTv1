@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:00:15 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/04 16:52:53 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/08 19:41:47 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void render(t_rtv *r)
 			trace_zero(&r->trace);
 			coord.x = (2 * (iter.x + 0.5) / (float)WIN_W - 1) * tan(FOV / 2.0) * WIN_W / (float)WIN_H;
             coord.y = (2 * (iter.y + 0.5) / (float)WIN_H - 1) * tan(FOV / 2.0);
-			// if (iter.y == WIN_H - 1)
-			// 	printf("%f %f\n", coord.x, coord.y);
 			r->ray.dir = vec_normalize((t_vec3){coord.x, coord.y, -1});
-			rotate(&r->ray);
+			rotate(&r->ray.dir, r->ray.angle);
 			r->trace = (t_trace){r->camera, r->ray.dir, 0.0f, FLT_MAX};
 			color = trace_ray(r).color;
 			color = byte_to_float(color);
