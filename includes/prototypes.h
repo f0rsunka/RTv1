@@ -85,7 +85,6 @@ float		calc_c(t_vec3 length_cam_center, float r);
 ** *********************************** **
 */
 
-t_light		*init_light(void);
 t_color 	calculate_lightning(t_rtv *r, t_closest_obj closest);
 void		normal(t_closest_obj closest, t_rtv *r);
 void		calculate_diffuse(t_light *light, t_vec3 normal, float *intensity);
@@ -134,8 +133,6 @@ void		events(t_rtv *r);
 ** *********************************** **
 */
 
-void        init_scene(char *filename, t_rtv *r);
-int			get_objects_by_name(const char *line, const char *needed);
-void        errors(int n);
+void        read_scene(t_rtv *r, char *filename);
 
 #endif

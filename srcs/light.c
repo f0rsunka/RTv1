@@ -21,7 +21,6 @@ void	calculate_types_light(t_rtv *r, t_light *light, t_material material, float 
 
 void	iterate_light(t_rtv *r, t_material material, int type, float *intensity)
 {
-	int		i;
 	t_vec3	light_dir;
 	t_light	*cur;
 

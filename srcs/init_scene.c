@@ -261,34 +261,6 @@ int			create_light(t_rtv *r, int fd, t_light *prev, char **line)
 	return (0);
 }
 
-void        read_scene(t_rtv *r, char *filename);
-
-void        init_scene(char *filename, t_rtv *r)
-{
-	read_scene(r, filename);
-	return ;
-	int			fd;
-	t_scene	*cur;
-	char *line;
-
-	r->scene = (t_scene *)malloc(sizeof(t_scene));
-	r->scene->type = TYPE_HEAD;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		write(1, "Invalid file! Expected *.rtv1 text scene file.\n", 47);
-		exit(1);
-	}
-	cur = r->scene;
-	line = 0;
-	while (create_figure(r, fd, cur, &line)) {
-		if (cur->next)
-			cur = cur->next;
-	}
-	cur->next = 0;
-    close(fd);
-}
-
 void		read_objects(t_rtv *r, int fd, char **line)
 {
 	t_scene		*cur;

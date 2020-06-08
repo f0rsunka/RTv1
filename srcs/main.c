@@ -15,11 +15,9 @@
 void	init_rtv(t_rtv *rtv)
 {
 	rtv->sdl = init_sdl();
-//	init_primitive(rtv);
 	init_camera(rtv);
 	init_flags(rtv);
 	ray_zero(&rtv->ray);
-//	rtv->light = init_light();
 }
 
 int		main_render(t_rtv *r)
@@ -56,7 +54,7 @@ int		main(int ac, char **av)
     rtv = (t_rtv *) malloc(sizeof(t_rtv));
     (rtv == NULL ? exit(99) : 1);
     init_rtv(rtv);
-    init_scene(av[1], rtv);
+	read_scene(rtv, av[1]);
     main_render(rtv);
     return (0);
 }
