@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 22:00:31 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 01:26:06 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ int			is_sqrt_valide(float t1, float t2, float *dist);
 ** *********************************** **
 */
 
-t_color 	calculate_lightning(t_rtv *r, t_close_obj closest);
 void		normal(t_close_obj closest, t_rtv *r);
+t_color		calculate_lightning(t_rtv *r, t_close_obj closest);
+void		calculate_types_light(t_rtv *r, t_light light, t_material material,
+							  float *intensity);
 void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
 void		calculate_specular(t_rtv *r, t_light light, float specular, float *intensity);
 void		add_light(t_color col, t_color *res_col, float intensity);
@@ -146,7 +148,9 @@ int			read_keyed_double(char *line, char *key, double *data);
 int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
 void		parse_light(int fd, char **line, t_light *light);
-
+size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line, int fd);
+size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
+														char **line, int fd);
 /*
 ** *********************************** **
 ** *********************************** **

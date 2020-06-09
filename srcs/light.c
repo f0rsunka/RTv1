@@ -6,19 +6,11 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 21:52:49 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 00:08:09 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-void	calculate_types_light(t_rtv *r, t_light light, t_material material,
-							  float *intensity)
-{
-	calculate_diffuse(light, r->ray.normal, intensity);
-	if (material.specular >= 0)
-		calculate_specular(r, light, material.specular, intensity);
-}
 
 void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
 						float *intensity)
@@ -44,34 +36,36 @@ void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
 		calculate_types_light(r, light, r->closest.mat, intensity);
 }
 
-void	iterate_light(t_rtv *r, float *intensity)
+void	current_type_light(t_light *current, t_rtv *r, float *intensity)
 {
-	t_light *cur;
 	float	dist_max;
 
 	dist_max = 0.0f;
-	cur = r->light;
-	while (cur)
+	if (current->type == LIGHT_TYPE_POINT)
 	{
-		if (cur->type == LIGHT_TYPE_HEAD) {
-			cur = cur->next;
-			continue;
-		}
-		if (cur->type == LIGHT_TYPE_POINT)
-		{
-			cur->direction = vec_diff(cur->position, r->ray.p);
-			dist_max = 1;
-		}
-		if (cur->type == LIGHT_TYPE_DIRECTIONAL)
-		{
-			cur->position = vec_diff(r->ray.p, cur->direction);
-			dist_max = FLT_MAX;
-		}
-		if (cur->type == LIGHT_TYPE_AMBIENT)
-			*intensity += cur->intensity;
-		else
-			light_or_shadow(r, *cur, dist_max, intensity);
-		cur = cur->next;
+		current->direction = vec_diff(current->position, r->ray.p);
+		dist_max = 1;
+	}
+	if (current->type == LIGHT_TYPE_DIRECTIONAL)
+	{
+		current->position = vec_diff(r->ray.p, current->direction);
+		dist_max = FLT_MAX;
+	}
+	if (current->type == LIGHT_TYPE_AMBIENT)
+		*intensity += current->intensity;
+	else
+		light_or_shadow(r, *current, dist_max, intensity);
+}
+
+void	iterate_light(t_rtv *r, float *intensity)
+{
+	t_light *current;
+
+	current = r->light;
+	while (current != NULL)
+	{
+		current_type_light(current, r, intensity);
+		current = current->next;
 	}
 	if (*intensity >= 1.0f)
 		*intensity = 1.0f;

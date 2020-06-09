@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/09 17:07:49 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/10 01:27:07 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ INCL_DIR = ./includes
 
 C_FILES = main.c \
 		  init_rtv.c \
-		  init_light.c \
 		  sdl_data.c \
 		  render.c \
 		  raytrace.c \
@@ -39,14 +38,13 @@ C_FILES = main.c \
 		  put_pixel.c \
 		  light.c \
 		  normal.c \
-		  diffuse.c \
-		  specular.c \
 		  raytrace_to_light.c \
 		  affine_transform.c \
 		  events.c \
 		  types_errors.c \
 		  put_rtv_errors.c \
-		  validate.c
+		  validate.c \
+		  types_lightning.c
 
 C_FILES_PARSING = 	create_scene_light.c \
                     create_scene_primitives.c \
@@ -57,7 +55,9 @@ C_FILES_PARSING = 	create_scene_light.c \
                     parse_plane.c \
                     parse_sphere.c \
                     read_key.c \
-                    read_scene.c
+                    read_scene.c \
+					cone_check_bitmask.c \
+					cylinder_check_bitmask.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 OBJ_FILES_PARSING = $(C_FILES_PARSING:.c=.o)
