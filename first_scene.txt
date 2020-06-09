@@ -1,6 +1,0 @@
-plane:
-  center:
-  normal:
-  color:
-sphere:
-cone:
