@@ -12,16 +12,16 @@
 
 #include "rtv1.h"
 
-void	calculate_types_light(t_rtv *r, t_light *light, t_material material,
-															float *intensity)
+void	calculate_types_light(t_rtv *r, t_light light, t_material material,
+							  float *intensity)
 {
 	calculate_diffuse(light, r->ray.normal, intensity);
 	if (material.specular >= 0)
 		calculate_specular(r, light, material.specular, intensity);
 }
 
-void	light_or_shadow(t_rtv *r, t_light *light, float dist_max,
-															float *intensity)
+void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
+						float *intensity)
 {
 	t_vec3	p_to_light;
 	float	dist_p_to_light;
@@ -29,13 +29,13 @@ void	light_or_shadow(t_rtv *r, t_light *light, float dist_max,
 
 	trace_zero(&r->trace);
 	r->trace.from = (t_vec3)r->ray.p;
-	r->trace.to = (t_vec3)light->direction;
-	if (r->closest.type == CONE)
+	r->trace.to = (t_vec3)light.direction;
+	if (r->closest.type == TYPE_CONE)
 		r->trace.dist_min = 1.0f;
 	else
 		r->trace.dist_min = 0.001f;
 	r->trace.dist_max = dist_max;
-	p_to_light = vec_diff(r->ray.p, light->position);
+	p_to_light = vec_diff(r->ray.p, light.position);
 	dist_p_to_light = sqrtf(dot_product(p_to_light, p_to_light));
 	dist_p_to_obj = trace_p_to_light(r);
 	if (dist_p_to_obj == -1.0f)
@@ -69,7 +69,7 @@ void	iterate_light(t_rtv *r, float *intensity)
 		if (cur->type == LIGHT_TYPE_AMBIENT)
 			*intensity += cur->intensity;
 		else
-			light_or_shadow(r, cur, dist_max, intensity);
+			light_or_shadow(r, *cur, dist_max, intensity);
 		cur = cur->next;
 	}
 	if (*intensity >= 1.0f)

@@ -50,20 +50,13 @@
 ** *********************************** **
 */
 
-# define SPHERE 20
-# define PLANE 90
-# define CYLINDER 30
-# define CONE 40
-
-# define COUNT_PRIMITIVE 5
-# define COUNT_LIGHTS 3
-# define DEG2RAD (M_PI / 180.f)
-
 #define TYPE_HEAD 0
 #define TYPE_PLANE 1
 #define	TYPE_SPHERE 2
 #define	TYPE_CONE 3
 #define	TYPE_CYLINDER 4
+
+# define DEG2RAD (M_PI / 180.f)
 
 /*
 ** *********************************** **

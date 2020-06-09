@@ -84,8 +84,8 @@ int			is_sqrt_valide(float t1, float t2, float *dist);
 
 t_color 	calculate_lightning(t_rtv *r, t_close_obj closest);
 void		normal(t_close_obj closest, t_rtv *r);
-void		calculate_diffuse(t_light *light, t_vec3 normal, float *intensity);
-void		calculate_specular(t_rtv *r, t_light *light, float specular, float *intensity);
+void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
+void		calculate_specular(t_rtv *r, t_light light, float specular, float *intensity);
 void		add_light(t_color col, t_color *res_col, float intensity);
 
 /*

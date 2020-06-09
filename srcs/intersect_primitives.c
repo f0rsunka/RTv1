@@ -35,7 +35,7 @@ int		sphere_intersect(t_rtv *r, t_scene *curr, t_close_obj *closest)
 		closest->dist = tmp_dist;
 		closest->obj = (t_sphere *)curr->object;
 		closest->mat = ((t_sphere *)closest->obj)->material;
-		closest->type = SPHERE;
+		closest->type = TYPE_SPHERE;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -57,7 +57,7 @@ int		cylinder_intersect(t_rtv *r, t_scene *curr, t_close_obj *closest)
 		closest->obj = (t_cylinder *)curr->object;
 		closest->mat = ((t_cylinder *)closest->obj)->material;
 		r->ray.ofs = vec_diff(r->camera, ((t_cylinder *)closest->obj)->offset);
-		closest->type = CYLINDER;
+		closest->type = TYPE_CYLINDER;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -79,7 +79,7 @@ int		plane_intersect(t_rtv *r, t_scene *curr, t_close_obj *closest)
 		closest->obj = (t_plane *)curr->object;
 		closest->mat = ((t_plane *)closest->obj)->material;
 		r->ray.ofs = vec_diff(r->camera, ((t_plane *)closest->obj)->offset);
-		closest->type = PLANE;
+		closest->type = TYPE_PLANE;
 	}
 	if (closest->obj == NULL)
 		return (0);
@@ -101,7 +101,7 @@ int		cone_intersect(t_rtv *r, t_scene *curr, t_close_obj *closest)
 		closest->obj = (t_cone *)curr->object;
 		closest->mat = ((t_cone *)closest->obj)->material;
 		r->ray.ofs = vec_diff(r->camera, ((t_cone *)closest->obj)->offset);
-		closest->type = CONE;
+		closest->type = TYPE_CONE;
 	}
 	if (closest->obj == NULL)
 		return (0);

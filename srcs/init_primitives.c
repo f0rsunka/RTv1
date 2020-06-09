@@ -22,7 +22,7 @@ void	init_cylinder(t_scene *scene)
 	((t_cylinder *)scene->object)->angle = (t_vec3){0.0f, 0.0f, 45.0f};
 	((t_cylinder *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
 	((t_cylinder *)scene->object)->material.specular = 50.0f;
-	scene->type = CYLINDER;
+	scene->type = TYPE_CYLINDER;
 }
 
 
@@ -36,7 +36,7 @@ void	init_cylinder(t_scene *scene)
 // 	((t_cone *)scene->object)->coef = (t_vec3){4.0f, 4.0f, 121.0f};
 // 	((t_cone *)scene->object)->material.color = float_to_byte(BRIGHT_PURPLE);
 // 	((t_cone *)scene->object)->material.specular = 50.0f;
-// 	scene->type = CONE;
+// 	scene->type = TYPE_CONE;
 // }
 
 
@@ -53,7 +53,7 @@ void	init_cone(t_scene *scene)
 	((t_cone *)scene->object)->angle = (t_vec3){0.0f, 0.0f, -50.0f};
 	((t_cone *)scene->object)->material.color = float_to_byte(INDIGO);
 	((t_cone *)scene->object)->material.specular = 50.0f;
-	scene->type = CONE;
+	scene->type = TYPE_CONE;
 }
 
 t_plane	*init_plane(t_vec3 offset, t_vec3 coef, t_vec3 normal, t_color color)
