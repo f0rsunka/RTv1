@@ -146,6 +146,7 @@ int			read_keyed_double(char *line, char *key, double *data);
 int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
 void		parse_light(int fd, char **line, t_light *light);
+int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd);
 
 /*
 ** *********************************** **

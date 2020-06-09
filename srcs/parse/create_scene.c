@@ -21,10 +21,7 @@ int			create_figure(int fd, t_scene *prev, char **line)
 		status = get_next_line(fd, line);
 		((status == -1) ? rtv_error(READ_ERROR) : 0);
 		if (status == 0)
-		{
-			// TODO проверить молочит ли гнл лайн при статусе 0, если да, то тут зафришить лайн
 			return (0);
-		}
 	}
 	if (**line == '\0')
 	{
@@ -51,10 +48,7 @@ int			create_light(int fd, t_light *prev, char **line)
 		status = get_next_line(fd, line);
 		((status == -1) ? rtv_error(READ_ERROR) : 0);
 		if (status == 0)
-		{
-			// TODO проверить молочит ли гнл лайн при статусе 0, если да, то тут зафришить лайн
 			return (0);
-		}
 	}
 	if (**line == '\0')
 	{
