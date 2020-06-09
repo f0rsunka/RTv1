@@ -211,15 +211,15 @@ t_scene		*create_scene_sphere(int fd, char **line)
 	return (0);
 }
 
-t_sphere	*create_cone(int fd, char **line)
+t_cone		*create_cone(int fd, char **line)
 {
-	t_sphere	*cone;
+	t_cone	*cone;
 	int		status;
 	short	bitmask;
 	size_t	i;
 
 	bitmask = 0;
-	cone = (t_sphere *) malloc(sizeof(t_sphere));
+	cone = (t_cone *)malloc(sizeof(t_cone));
 	ft_memdel((void**)line);
 	i = 0;
 	while ((status = get_next_line(fd, line)) > 0) {
@@ -234,25 +234,35 @@ t_sphere	*create_cone(int fd, char **line)
 			ft_putendl_fd("Read error!", 2);
 			exit(1);
 		}
-		if (read_keyed_double(*line, "    center_x:", &(cone->center.x)))
+		if (read_keyed_double(*line, "    offset_x:", &(cone->offset.x)))
 			bitmask += 1u << 0u;
-		if (read_keyed_double(*line, "    center_y:", &(cone->center.y)))
+		if (read_keyed_double(*line, "    offset_y:", &(cone->offset.y)))
 			bitmask += 1u << 1u;
-		if (read_keyed_double(*line, "    center_z:", &(cone->center.z)))
+		if (read_keyed_double(*line, "    offset_z:", &(cone->offset.z)))
 			bitmask += 1u << 2u;
-		if (read_keyed_float(*line, "    radius:", &(cone->radius)))
+		if (read_keyed_double(*line, "    coef_x:", &(cone->coef.x)))
 			bitmask += 1u << 3u;
-		if (read_keyed_float(*line, "    color_r:", &(cone->material.color.r)))
+		if (read_keyed_double(*line, "    coef_y:", &(cone->coef.y)))
 			bitmask += 1u << 4u;
-		if (read_keyed_float(*line, "    color_g:", &(cone->material.color.g)))
+		if (read_keyed_double(*line, "    coef_z:", &(cone->coef.z)))
 			bitmask += 1u << 5u;
-		if (read_keyed_float(*line, "    color_b:", &(cone->material.color.b)))
+		if (read_keyed_double(*line, "    angle_x:", &(cone->angle.x)))
 			bitmask += 1u << 6u;
-		if (read_keyed_float(*line, "    specular:", &(cone->material.specular)))
+		if (read_keyed_double(*line, "    angle_y:", &(cone->angle.y)))
 			bitmask += 1u << 7u;
+		if (read_keyed_double(*line, "    angle_z:", &(cone->angle.z)))
+			bitmask += 1u << 8u;
+		if (read_keyed_float(*line, "    color_r:", &(cone->material.color.r)))
+			bitmask += 1u << 9u;
+		if (read_keyed_float(*line, "    color_g:", &(cone->material.color.g)))
+			bitmask += 1u << 10u;
+		if (read_keyed_float(*line, "    color_b:", &(cone->material.color.b)))
+			bitmask += 1u << 11u;
+		if (read_keyed_float(*line, "    specular:", &(cone->material.specular)))
+			bitmask += 1u << 12u;
 		i++;
 	}
-	if (bitmask != ((1u << 8u) - 1) || i != 8)
+	if (bitmask != ((1u << 13u) - 1) || i != 13)
 	{
 		ft_memdel((void **)&cone);
 		ft_putendl_fd("Invalid struct!", 2);

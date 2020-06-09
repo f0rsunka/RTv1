@@ -80,3 +80,17 @@ objects:
     color_g: 211
     color_b: 255
     specular: 50
+  cone:
+    offset_x: 5
+    offset_y: -1
+    offset_z: -4
+    coef_x: 9
+    coef_y: 9
+    coef_z: 16
+    angle_x: 0
+    angle_y: 0
+    angle_z: -50
+    color_r: 196
+    color_g: 214
+    color_b: 255
+    specular: 50
