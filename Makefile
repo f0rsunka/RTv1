@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/09 13:13:26 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/09 17:07:49 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DEFAULT = "\033[0;0m"
 GREEN = "\033[0;32m"
 DEEP_BLUE = "\033[0;34m"
 
-NAME = rtv1
+NAME = RTv1
 
 SRC_DIR = ./srcs
 
@@ -46,7 +46,10 @@ C_FILES = main.c \
 		  specular.c \
 		  raytrace_to_light.c \
 		  affine_transform.c \
-		  events.c
+		  events.c \
+		  types_errors.c \
+		  put_rtv_errors.c \
+		  check_value_primitive.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

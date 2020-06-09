@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 12:12:10 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:06:08 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,33 @@ void		events(t_rtv *r);
 */
 
 void        read_scene(t_rtv *r, char *filename);
+
+/*
+** *********************************** **
+** *********************************** **
+**               errors       		   **
+** *********************************** **
+** *********************************** **
+*/
+
+void		rtv_error(int n);
+void		arguments_errors(int n);
+void		window_errors(int n);
+void		malloc_error(int n);
+void		lights_errors(int n);
+void		primitives_errors(int n);
+void		write_error(char *reason);
+
+/*
+** *********************************** **
+** *********************************** **
+**            check value     		   **
+** *********************************** **
+** *********************************** **
+*/
+
+void		check_coefficients_cyl(t_vec3 coef);
+void		check_radius(float r);
+void		check_specular(float s);
 
 #endif
