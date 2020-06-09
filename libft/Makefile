@@ -29,27 +29,26 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c \
  ft_swap.c ft_strrev.c get_next_line.c ft_readfile.c
 
 OBJ = $(SRC:.c=.o)
+DEPS = $(OBJ:.o=.d)
 
 HEADER = ./include
 
-FLAGS = -Wall -Wextra -Werror -c
+FLAGS = -Wall -Wextra -Werror -MMD -MP
 
-all: $(NAME) $(OBJ)
+all: $(NAME)
 
-%.o: %.c *.h
-	@gcc -c $< -I $(HEADER)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+-include $(DEPS)
+%.o: %.c
+	gcc $(FLAGS) -c $< -I $(HEADER)
 
-$(NAME):
-	@gcc $(FLAGS) $(SRC) -I $(HEADER)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
-	@rm -f $(OBJ)
+	rm -fv $(OBJ) $(DEPS)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:12:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 15:35:41 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:57:42 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,96 +20,39 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
-int				sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+void		current_type_trace(t_scene *curr, t_close_obj *closest, t_rtv *r)
 {
-	float	intersect_res;
-	float	tmp_dist;
-
-	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_sphere(r->trace.from, r->trace.to, *(t_sphere *)current->object, &tmp_dist);
-	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
-	{
-		closest->dist = tmp_dist;
-		closest->obj = (t_sphere *)current->object;
-		closest->type = SPHERE;
-		closest->mat = ((t_sphere *)closest->obj)->material;
-	}
-	if (closest->obj == NULL)
-		return (0);
-	else
-		return (1);
+	if (curr->type == TYPE_SPHERE)
+		sphere_intersect(r, curr, closest);
+	if (curr->type == TYPE_CYLINDER)
+		cylinder_intersect(r, curr, closest);
+	if (curr->type == TYPE_PLANE)
+		plane_intersect(r, curr, closest);
+	if (curr->type == TYPE_CONE)
+		cone_intersect(r, curr, closest);
 }
 
-int				cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
+t_close_obj	trace_ray(t_rtv *r)
 {
-	float	intersect_res;
-	float	tmp_dist;
-
-	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_cylinder(mult_vec_const(r->trace.from, -1), r->trace.to, *(t_cylinder *)current->object, &tmp_dist);
-	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
-	{
-		closest->dist = tmp_dist;
-		closest->obj = (t_cylinder *)current->object;
-		closest->type = CYLINDER;
-		closest->mat = ((t_cylinder *)closest->obj)->material;
-	}
-	if (closest->obj == NULL)
-		return (0);
-	else
-		return (1);
-}
-
-int				plane_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest)
-{
-	float	intersect_res;
-	float	tmp_dist;
-
-	tmp_dist = 0.0f;
-	intersect_res = intersect_ray_plane(r->trace.from, r->trace.to, *(t_plane *)current->object, &tmp_dist);
-	if (intersect_res && tmp_dist < closest->dist && tmp_dist > r->trace.dist_min)
-	{
-		closest->dist = tmp_dist;
-		closest->obj = (t_plane *)current->object;
-		closest->type = PLANE;
-		closest->mat = ((t_plane *)closest->obj)->material;
-	}
-	if (closest->obj == NULL)
-		return (0);
-	else
-		return (1);
-}
-
-t_closest_obj	trace_ray(t_rtv *r)
-{
-	t_closest_obj		closest;
-	t_scene				*tmp;
-	t_scene				*current;
+	t_close_obj		closest;
+	t_scene			*tmp;
+	t_scene			*current;
 
 	closest_zero(&closest);
 	current = r->scene;
 	while (current != NULL)
 	{
-		if (current->type == TYPE_SPHERE)
-		{
-			sphere_intersect(r, current, &closest);
-		}
-		if (current->type == TYPE_CYLINDER)
-		{
-			cylinder_intersect(r, current, &closest);
-		}
-		if (current->type == TYPE_PLANE)
-		{
-			plane_intersect(r, current, &closest);
-		}
+		current_type_trace(current, &closest, r);
 		tmp = current->next;
 		current = tmp;
 	}
+	r->closest = closest;
 	if (closest.obj == NULL)
 	{
 		closest.color = BACKGROUND_COLOR;
 		return (closest);
 	}
-	closest.color = calculate_lightning(r, closest);
+	else
+		closest.color = calculate_lightning(r, closest);
 	return (closest);
 }

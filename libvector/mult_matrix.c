@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_pixel.c                                        :+:      :+:    :+:   */
+/*   mult_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/26 22:22:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 12:50:42 by f0rsunka         ###   ########.fr       */
+/*   Created: 2020/06/08 00:44:03 by f0rsunka          #+#    #+#             */
+/*   Updated: 2020/06/08 00:49:33 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "include/libvector.h"
 
-void	put_pixel(SDL_Renderer *ren, int x, int y, t_color col)
+t_vec3 mult_matrix(t_vec3 a, t_vec3 b)
 {
-	int r;
-	int g;
-	int b;
+	t_vec3 c;
 
-	r = floor(col.r);
-	g = floor(col.g);
-	b = floor(col.b);
-	if (x < WIN_W && y < WIN_H)
-	{
-		SDL_SetRenderDrawColor(ren, r, g, b, 0xFF);
-		SDL_RenderDrawPoint(ren, x, y);
-	}
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = a.z * b.x - a.x * b.z;
+	c.z = a.x * b.y - a.y * b.x;
+	return c;
 }

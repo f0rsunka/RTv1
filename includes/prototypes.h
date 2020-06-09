@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 18:57:41 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:12:10 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PROTOTYPES_H
 #include "rtv1.h"
 #include "structs.h"
-
-// t_vec3		get_normal_sphere(t_vec3 p, t_vec3 center_sphere);
 
 /*
 ** *********************************** **
@@ -38,13 +36,11 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 ** *********************************** **
 */
 
-void		init_primitive(t_rtv *r, int n);
-void		init_sphere(int i, t_scene *scene);
-void		init_flags(t_rtv *r);
+void		init_flags(t_flag *flag);
 void		init_camera(t_rtv *r);
 void		ray_zero(t_ray *ray);
-void		trace_zero(t_rtv *r);
-void		closest_zero(t_closest_obj *cl);
+void		trace_zero(t_trace *trace);
+void		closest_zero(t_close_obj *cl);
 
 /*
 ** *********************************** **
@@ -55,12 +51,15 @@ void		closest_zero(t_closest_obj *cl);
 */
 
 void		render(t_rtv *rtv);
-t_closest_obj	trace_ray(t_rtv *r);
-int			sphere_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
-int			cylinder_intersect(t_rtv *r, t_scene *current, t_closest_obj *closest);
-int 		intersect_ray_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
-int 		intersect_ray_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
-int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
+t_close_obj	trace_ray(t_rtv *r);
+int			sphere_intersect(t_rtv *r, t_scene *current, t_close_obj *close);
+int			cylinder_intersect(t_rtv *r, t_scene *current, t_close_obj *close);
+int			plane_intersect(t_rtv *r, t_scene *current, t_close_obj *closest);
+int			cone_intersect(t_rtv *r, t_scene *current, t_close_obj *closest);
+int 		is_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
+int 		is_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
+int 		is_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
+int			is_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
 
 /*
 ** *********************************** **
@@ -70,13 +69,11 @@ int 		intersect_ray_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane
 ** *********************************** **
 */
 
-float		quadratic_equation_sphere(t_vec3 length_cam_center, t_vec3 dir, float r, float *t1, float *t2);
-float		quadratic_equation_cylinder(t_vec3 ofs, t_vec3 dir, float *t1, float *t2);
 float		calc_discriminant(float a, float b, float c);
-float		calc_a(t_vec3 dir);
-float		calc_b(t_vec3 length_cam_center, t_vec3 dir);
-float		calc_c(t_vec3 length_cam_center, float r);
-
+void		sphere_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, float r);
+void		cylinder_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, t_cylinder cylinder);
+void		cone_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, t_cone cone);
+int			is_sqrt_valide(float t1, float t2, float *dist);
 /*
 ** *********************************** **
 ** *********************************** **
@@ -85,10 +82,10 @@ float		calc_c(t_vec3 length_cam_center, float r);
 ** *********************************** **
 */
 
-t_color 	calculate_lightning(t_rtv *r, t_closest_obj closest);
-void		normal(t_closest_obj closest, t_rtv *r);
-void		calculate_diffuse(t_light *light, t_vec3 normal, float *intensity);
-void		calculate_specular(t_ray ray, t_light *light, float specular, float *intensity);
+t_color 	calculate_lightning(t_rtv *r, t_close_obj closest);
+void		normal(t_close_obj closest, t_rtv *r);
+void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
+void		calculate_specular(t_rtv *r, t_light light, float specular, float *intensity);
 void		add_light(t_color col, t_color *res_col, float intensity);
 
 /*
@@ -111,7 +108,7 @@ t_color		byte_to_float(t_color col);
 ** *********************************** **
 */
 
-int			is_shadow(t_rtv *r);
+float		trace_p_to_light(t_rtv *r);
 
 /*
 ** *********************************** **
@@ -122,7 +119,7 @@ int			is_shadow(t_rtv *r);
 ** *********************************** **
 */
 
-void		rotate(t_ray *ray);
+void		rotate(t_vec3 *vec, t_vec3 angle);
 void		events(t_rtv *r);
 
 /*
