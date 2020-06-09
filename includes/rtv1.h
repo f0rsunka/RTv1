@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 01:05:39 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 13:22:01 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@
 # include "../libft/include/libft.h"
 # include "structs.h"
 # include "prototypes.h"
+# include "errors.h"
 # include <stdlib.h>
 # include <math.h>
-# include <stdio.h> //!---------------------------------------------------------
-// # define WIN_W 1024
-// # define WIN_H 768
 
 # define WIN_W 320
 # define WIN_H 240
 
+/*
+** *********************************** **
+** *********************************** **
+**            math value               **
+** *********************************** **
+** *********************************** **
+*/
+
 //# define M_PI 3.14159265358979323846
 # define FOV (M_PI / 2.0)
 # define DEG2RAD (M_PI / 180.f)
-// # define EPSILON 1e-16
+# define EPSILON 1e-16
 
 /*
 ** *********************************** **
@@ -91,11 +97,5 @@
 # define LIGHT_TYPE_AMBIENT		1
 # define LIGHT_TYPE_POINT		2
 # define LIGHT_TYPE_DIRECTIONAL	3
-
-
-
-// # define MAX_X 1.398
-// # define MAX_Y 0.998
-// # define DIST_MAX (MAX_X + MAX_Y * WIN_W)
 
 #endif
