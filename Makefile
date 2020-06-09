@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/10 01:27:07 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/10 01:56:00 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ C_FILES_PARSING = 	create_scene_light.c \
                     read_key.c \
                     read_scene.c \
 					cone_check_bitmask.c \
-					cylinder_check_bitmask.c
+					cylinder_check_bitmask.c \
+					light_check_bitmask.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 OBJ_FILES_PARSING = $(C_FILES_PARSING:.c=.o)

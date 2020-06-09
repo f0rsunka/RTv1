@@ -34,11 +34,11 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-//# define WIN_W 320
-//# define WIN_H 240
+# define WIN_W 320
+# define WIN_H 240
 
-# define WIN_W 700
-# define WIN_H 500
+//# define WIN_W 700
+//# define WIN_H 500
 
 /*
 ** *********************************** **

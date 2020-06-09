@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 02:02:43 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 02:13:46 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ int			read_keyed_double(char *line, char *key, double *data);
 int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
 void		parse_light(int fd, char **line, t_light *light);
+int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd);
 size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line, int fd);
 size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
 														char **line, int fd);

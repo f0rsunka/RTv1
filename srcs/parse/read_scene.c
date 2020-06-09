@@ -71,6 +71,32 @@ void		read_lights(t_rtv *r, int fd, char **line)
 	(count > 3 ? rtv_error(LIGHT_MAX) : 0);
 }
 
+int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
+{
+	if (!**line)
+	{
+		ft_memdel((void**)line);
+		return (1);
+	}
+	if (ft_strequ(*line, "objects:"))
+	{
+		((is_read[0]) ? rtv_error(OBJ_ERROR) : 0);
+		ft_memdel((void**)line);
+		read_objects(r, fd, line);
+		is_read[0] = 1;
+		return (1);
+	}
+	if (ft_strequ(*line, "lights:"))
+	{
+		((is_read[1]) ? rtv_error(LIGHTS_ERROR) : 0);
+		ft_memdel((void**)line);
+		read_lights(r, fd, line);
+		is_read[1] = 1;
+		return (1);
+	}
+	return (0);
+}
+
 void        read_scene(t_rtv *r, char *filename)
 {
 	int				fd;
@@ -89,32 +115,10 @@ void        read_scene(t_rtv *r, char *filename)
 			status = get_next_line(fd, &line);
 			(status < 0 ? rtv_error(GNL_ERROR) : 0);
 			if (status == 0)
-			{
-				// TODO проверить молочит ли гнл лайн при статусе 0, если да, то тут зафришить лайн
-				break ;
-			}
+				break;
 		}
-		if (!*line)
-		{
-			ft_memdel((void**)&line);
+		if (check_read(&line, r, is_read, fd))
 			continue;
-		}
-		if (ft_strequ(line, "objects:"))
-		{
-			((is_read[0]) ? rtv_error(OBJ_ERROR) : 0);
-			ft_memdel((void**)&line);
-			read_objects(r, fd, &line);
-			is_read[0] = 1;
-			continue;
-		}
-		if (ft_strequ(line, "lights:"))
-		{
-			((is_read[1]) ? rtv_error(LIGHTS_ERROR) : 0);
-			ft_memdel((void**)&line);
-			read_lights(r, fd, &line);
-			is_read[1] = 1;
-			continue;
-		}
 		ft_putendl_fd("level 0 invalid key\n", 2);
 		ft_putendl_fd(line, 2);
 		exit(1);
