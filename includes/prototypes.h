@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/08 22:13:44 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:12:10 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ int			is_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
 ** *********************************** **
 */
 
-float		quadratic_equation(t_vec3 ofs, t_vec3 dir, float r, float *t1, float *t2);
 float		calc_discriminant(float a, float b, float c);
-float		calc_a(t_vec3 dir);
-float		calc_b(t_vec3 ofs, t_vec3 dir);
-float		calc_c(t_vec3 ofs, float r);
-
+void		sphere_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, float r);
+void		cylinder_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, t_cylinder cylinder);
+void		cone_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, t_cone cone);
+int			is_sqrt_valide(float t1, float t2, float *dist);
 /*
 ** *********************************** **
 ** *********************************** **

@@ -6,20 +6,22 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 01:37:46 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:45:59 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	calculate_types_light(t_rtv *r, t_light light, t_material material, float *intensity)
+void	calculate_types_light(t_rtv *r, t_light light, t_material material,
+															float *intensity)
 {
 	calculate_diffuse(light, r->ray.normal, intensity);
 	if (material.specular >= 0)
 		calculate_specular(r, light, material.specular, intensity);
 }
 
-void	light_or_shadow(t_rtv *r, t_light light, float dist_max, float *intensity)
+void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
+															float *intensity)
 {
 	t_vec3	p_to_light;
 	float	dist_p_to_light;
@@ -28,7 +30,10 @@ void	light_or_shadow(t_rtv *r, t_light light, float dist_max, float *intensity)
 	trace_zero(&r->trace);
 	r->trace.from = (t_vec3)r->ray.p;
 	r->trace.to = (t_vec3)light.direction;
-	((r->closest.type == CONE) ? (r->trace.dist_min = 1.0f) : (r->trace.dist_min = 0.001f));
+	if (r->closest.type == CONE)
+		r->trace.dist_min = 1.0f;
+	else
+		r->trace.dist_min = 0.001f;
 	r->trace.dist_max = dist_max;
 	p_to_light = vec_diff(r->ray.p, light.position);
 	dist_p_to_light = sqrtf(dot_product(p_to_light, p_to_light));
@@ -36,7 +41,7 @@ void	light_or_shadow(t_rtv *r, t_light light, float dist_max, float *intensity)
 	if (dist_p_to_obj == -1.0f)
 		calculate_types_light(r, light, r->closest.mat, intensity);
 	else if (dist_p_to_light < dist_p_to_obj)
-			calculate_types_light(r, light, r->closest.mat, intensity);
+		calculate_types_light(r, light, r->closest.mat, intensity);
 }
 
 void	iterate_light(t_rtv *r, float *intensity)
@@ -67,7 +72,7 @@ void	iterate_light(t_rtv *r, float *intensity)
 		*intensity = 1.0f;
 }
 
-t_color calculate_lightning(t_rtv *r, t_close_obj closest)
+t_color	calculate_lightning(t_rtv *r, t_close_obj closest)
 {
 	float	intensity;
 	t_color	col;

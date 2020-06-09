@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/07 15:14:11 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:47:42 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		main_render(t_rtv *r)
 {
 	while (1)
 	{
-		// SDL_SetRenderTarget(r->sdl.renderer, NULL);
 		clear_window_sdl(r->sdl);
 		render(r);
 		SDL_RenderPresent(r->sdl.renderer);
@@ -38,9 +37,9 @@ int		main_render(t_rtv *r)
 		{
 			if (r->sdl.event.type == SDL_KEYDOWN)
 				events(r);
-            if ((r->sdl.event.type == SDL_KEYDOWN &&
-				 r->sdl.event.key.keysym.sym == SDLK_ESCAPE) ||
-                (r->sdl.event.type == SDL_QUIT))
+			if ((r->sdl.event.type == SDL_KEYDOWN &&
+				r->sdl.event.key.keysym.sym == SDLK_ESCAPE) ||
+				(r->sdl.event.type == SDL_QUIT))
 				exit(88);
 		}
 	}
@@ -53,7 +52,7 @@ int		main(void)
 	t_rtv	*rtv;
 
 	rtv = (t_rtv*)malloc(sizeof(t_rtv));
-	(rtv == NULL ? exit (99) : 1);
+	(rtv == NULL ? exit(99) : 1);
 	init_rtv(rtv);
 	main_render(rtv);
 	return (0);

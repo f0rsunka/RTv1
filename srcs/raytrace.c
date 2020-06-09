@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 18:12:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/08 19:41:51 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:57:42 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@
 ** чтобы отрисовка менялась с учетом местоположения камеры
 */
 
+void		current_type_trace(t_scene *curr, t_close_obj *closest, t_rtv *r)
+{
+	if (curr->type == SPHERE)
+		sphere_intersect(r, curr, closest);
+	if (curr->type == CYLINDER)
+		cylinder_intersect(r, curr, closest);
+	if (curr->type == PLANE)
+		plane_intersect(r, curr, closest);
+	if (curr->type == CONE)
+		cone_intersect(r, curr, closest);
+}
+
 t_close_obj	trace_ray(t_rtv *r)
 {
 	t_close_obj		closest;
@@ -30,14 +42,7 @@ t_close_obj	trace_ray(t_rtv *r)
 	current = r->scene;
 	while (current != NULL)
 	{
-		if (current->type == SPHERE)
-			sphere_intersect(r, current, &closest);
-		if (current->type == CYLINDER)
-			cylinder_intersect(r, current, &closest);
-		if (current->type == PLANE)
-			plane_intersect(r, current, &closest);
-		if (current->type == CONE)
-			cone_intersect(r, current, &closest);
+		current_type_trace(current, &closest, r);
 		tmp = current->next;
 		current = tmp;
 	}

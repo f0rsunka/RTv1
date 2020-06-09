@@ -6,27 +6,11 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:13:06 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/05/31 17:13:19 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:24:22 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-float	quadratic_equation(t_vec3 ofs, t_vec3 dir, float r, float *t1, float *t2)
-{
-	t_coefficients	c;
-	float			d;
-
-	c.a = calc_a(dir);
-	c.b = calc_b(ofs, dir);
-	c.c = calc_c(ofs, r);
-	d = calc_discriminant(c.a, c.b, c.c);
-	if (d < 0)
-		return (0);
-	*t1 = (- c.b + sqrtf(d)) / (2 * c.a);
-	*t2 = (- c.b - sqrtf(d)) / (2 * c.a);
-	return (1);
-}
 
 float	calc_discriminant(float a, float b, float c)
 {
@@ -36,26 +20,58 @@ float	calc_discriminant(float a, float b, float c)
 	return (d);
 }
 
-float	calc_a(t_vec3 dir)
+void	sphere_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir,
+																	float r)
 {
-	float a;
-
-	a = dot_product(dir, dir);
-	return (a);
+	c->a = dot_product(dir, dir);
+	c->b = 2 * dot_product(ofs, dir);
+	c->c = dot_product(ofs, ofs) - r * r;
 }
 
-float	calc_b(t_vec3 ofs, t_vec3 dir)
+void	cylinder_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir,
+															t_cylinder cylinder)
 {
-	float b;
-
-	b = 2 * dot_product(ofs, dir);
-	return (b);
+	c->a = cylinder.coef.x * (dir.x * dir.x) +
+		cylinder.coef.y * (dir.y * dir.y) + cylinder.coef.z * (dir.z * dir.z);
+	c->b = 2 * (cylinder.coef.x * (ofs.x * dir.x) +
+		cylinder.coef.y * (ofs.y * dir.y) + cylinder.coef.z * (ofs.z * dir.z));
+	c->c = cylinder.coef.x * (ofs.x * ofs.x) +
+		cylinder.coef.y * (ofs.y * ofs.y) + cylinder.coef.z * (ofs.z * ofs.z)
+															- cylinder.radius;
 }
 
-float	calc_c(t_vec3 ofs, float r)
+void	cone_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir,
+																	t_cone cone)
 {
-	float c;
+	c->a = (dir.x * dir.x) / cone.coef.x -
+				(dir.y * dir.y) / cone.coef.y + (dir.z * dir.z) / cone.coef.z;
+	c->b = 2 * ((ofs.x * dir.x) / cone.coef.x -
+				(ofs.y * dir.y) / cone.coef.y + (ofs.z * dir.z) / cone.coef.z);
+	c->c = (ofs.x * ofs.x) / cone.coef.x -
+				(ofs.y * ofs.y) / cone.coef.y + (ofs.z * ofs.z) / cone.coef.z;
+}
 
-	c = dot_product(ofs, ofs) - r * r;
-	return (c);
+int		is_sqrt_valide(float t1, float t2, float *dist)
+{
+	if (t1 > 0 && t2 < 0)
+	{
+		*dist = t1;
+		return (1);
+	}
+	if (t2 > 0 && t1 < 0)
+	{
+		*dist = t2;
+		return (1);
+	}
+	if (t1 < t2 && t1 >= 0)
+	{
+		*dist = t1;
+		return (1);
+	}
+	if (t2 < t1 && t2 >= 0)
+	{
+		*dist = t2;
+		return (1);
+	}
+	return (0);
 }
