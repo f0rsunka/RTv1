@@ -12,11 +12,13 @@
 
 #include "rtv1.h"
 
+// TODO delete me
+
 t_light		ambient_data(void)
 {
 	t_light	ambient;
 
-	ambient.type = ft_strdup(AMBIENT);
+//	ambient.type = ft_strdup(AMBIENT);
 	ambient.intensity = 0.4;
 	ambient.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	ambient.direction = (t_vec3){0.0f, 0.0f, 0.0f};
@@ -27,7 +29,7 @@ t_light		point_data(void)
 {
 	t_light	point;
 
-	point.type = ft_strdup(POINT);
+//	point.type = ft_strdup(POINT);
 	point.intensity = 0.3;
 	point.position = (t_vec3){0.0f, 0.0f, 6.0f};
 	point.direction = (t_vec3){0.0f, 0.0f, 0.0f};
@@ -38,7 +40,7 @@ t_light		directional_data(void)
 {
 	t_light directional;
 
-	directional.type = ft_strdup(DIRECTIONAL);
+//	directional.type = ft_strdup(DIRECTIONAL);
 	directional.intensity = 0.3;
 	directional.position = (t_vec3){0.0f, 0.0f, 0.0f};
 	directional.direction = (t_vec3){0.0f, -3.0f, 13.0f};

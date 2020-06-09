@@ -22,13 +22,13 @@
 
 void		current_type_trace(t_scene *curr, t_close_obj *closest, t_rtv *r)
 {
-	if (curr->type == SPHERE)
+	if (curr->type == TYPE_SPHERE)
 		sphere_intersect(r, curr, closest);
-	if (curr->type == CYLINDER)
+	if (curr->type == TYPE_CYLINDER)
 		cylinder_intersect(r, curr, closest);
-	if (curr->type == PLANE)
+	if (curr->type == TYPE_PLANE)
 		plane_intersect(r, curr, closest);
-	if (curr->type == CONE)
+	if (curr->type == TYPE_CONE)
 		cone_intersect(r, curr, closest);
 }
 

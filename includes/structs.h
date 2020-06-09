@@ -29,10 +29,11 @@ typedef struct 		s_material
 
 typedef struct		s_light
 {
-	char			*type;
+	int				type;
 	float			intensity;
 	t_vec3			position;
 	t_vec3			direction;
+	struct s_light	*next;
 }					t_light;
 
 typedef struct		s_sdl

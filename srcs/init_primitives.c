@@ -12,6 +12,8 @@
 
 #include "rtv1.h"
 
+// TODO delete me
+
 /*
 ** WARNING! CYLINDER's equation needs to only one axis is zero. It depends
 ** on coefficients.
@@ -103,32 +105,32 @@ void	init_primitives(t_rtv *r)
 		if (i == 0)
 		{
 			scene->object = init_sphere((t_vec3){-3.0, 1.0, -5.0}, 2.0f, (t_vec3){5.0f, 5.0f, 5.0f}, (t_material){(BLUE), 50.0f});
-			scene->type = SPHERE;
+//			scene->type = SPHERE;
 		}
 		if (i == 1)
 		{
 			scene->object = init_sphere((t_vec3){6.0, 1.0, -4.0}, 2.0f, (t_vec3){0.0f, 0.0f, 0.0f}, (t_material){(PINK), 50.0f});
-			scene->type = SPHERE;
+//			scene->type = SPHERE;
 		}
 		if (i == 2)
 		{
 			scene->object = init_cylinder((t_vec3){0.0f, 0.0f, -5.0f}, (t_vec3){1.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 45.0f}, (t_material){BRIGHT_PURPLE, 50.0f});
-			scene->type = CYLINDER;
+//			scene->type = CYLINDER;
 		}
 		if (i == 3)
 		{
 			scene->object = init_plane((t_vec3){0.0f, 0.0f, -13.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_material){ROSE_PINK, 50.0f});
-			scene->type = PLANE;
+//			scene->type = PLANE;
 		}
 		if (i == 4)
 		{
 			scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_material){INDEPENDENCE, 50.f});
-			scene->type = PLANE;
+//			scene->type = PLANE;
 		}
 		if (i == 5)
 		{
 			scene->object = init_cone((t_vec3){5.0f, -1.0f, -4.0f}, (t_vec3){9.0f, 9.0f, 16.0f}, (t_vec3){0.0f, 0.0f, -50.0f}, (t_material){INDIGO, 50.0f});
-			scene->type = CONE;
+//			scene->type = CONE;
 		}
 		if (i == 0)
 			scene->next = NULL;

@@ -13,7 +13,7 @@
 #include "rtv1.h"
 
 void	calculate_types_light(t_rtv *r, t_light light, t_material material,
-															float *intensity)
+							  float *intensity)
 {
 	calculate_diffuse(light, r->ray.normal, intensity);
 	if (material.specular >= 0)
@@ -21,7 +21,7 @@ void	calculate_types_light(t_rtv *r, t_light light, t_material material,
 }
 
 void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
-															float *intensity)
+						float *intensity)
 {
 	t_vec3	p_to_light;
 	float	dist_p_to_light;
@@ -30,7 +30,7 @@ void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
 	trace_zero(&r->trace);
 	r->trace.from = (t_vec3)r->ray.p;
 	r->trace.to = (t_vec3)light.direction;
-	if (r->closest.type == CONE)
+	if (r->closest.type == TYPE_CONE)
 		r->trace.dist_min = 1.0f;
 	else
 		r->trace.dist_min = 0.001f;
@@ -46,27 +46,31 @@ void	light_or_shadow(t_rtv *r, t_light light, float dist_max,
 
 void	iterate_light(t_rtv *r, float *intensity)
 {
-	int		i;
+	t_light *cur;
 	float	dist_max;
 
-	i = 0;
-	while (i < COUNT_LIGHTS)
+	cur = r->light;
+	while (cur)
 	{
-		if (!ft_strcmp(r->light[i].type, POINT))
+		if (cur->type == LIGHT_TYPE_HEAD) {
+			cur = cur->next;
+			continue;
+		}
+		if (cur->type == LIGHT_TYPE_POINT)
 		{
-			r->light[i].direction = vec_diff(r->light[i].position, r->ray.p);
+			cur->direction = vec_diff(cur->position, r->ray.p);
 			dist_max = 1;
 		}
-		if (!ft_strcmp(r->light[i].type, DIRECTIONAL))
+		if (cur->type == LIGHT_TYPE_DIRECTIONAL)
 		{
-			r->light[i].position = vec_diff(r->ray.p, r->light[i].direction);
+			cur->position = vec_diff(r->ray.p, cur->direction);
 			dist_max = FLT_MAX;
 		}
-		if (!ft_strcmp(r->light[i].type, AMBIENT))
-			*intensity += r->light[i].intensity;
+		if (cur->type == LIGHT_TYPE_AMBIENT)
+			*intensity += cur->intensity;
 		else
-			light_or_shadow(r, r->light[i], dist_max, intensity);
-		i++;
+			light_or_shadow(r, *cur, dist_max, intensity);
+		cur = cur->next;
 	}
 	if (*intensity >= 1.0f)
 		*intensity = 1.0f;

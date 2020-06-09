@@ -22,12 +22,12 @@ void	calculate_specular(t_rtv *r, t_light light, float specular,
 	float	len_v;
 
 	dot_l_n = dot_product(light.direction, r->ray.normal);
-	if (r->closest.type == CONE)
+	if (r->closest.type == TYPE_CONE)
 		spec = vec_diff(mult_vec_const(r->ray.normal, dot_l_n * 2.0f),
 															light.direction);
 	else
 		spec = vec_diff(light.direction,
-								mult_vec_const(r->ray.normal, dot_l_n * 2.0f));
+						mult_vec_const(r->ray.normal, dot_l_n * 2.0f));
 	dot_r_v = dot_product(spec, r->ray.dir);
 	if (dot_r_v > 0)
 	{

@@ -39,13 +39,13 @@ void		get_normal_cone(t_ray *ray, float t, t_cone cone)
 
 void		normal(t_close_obj closest, t_rtv *r)
 {
-	if (closest.type == SPHERE)
+	if (closest.type == TYPE_SPHERE)
 		get_normal_sphere(r->ray.p, *((t_sphere *)closest.obj), &r->ray.normal);
-	if (closest.type == CYLINDER)
+	if (closest.type == TYPE_CYLINDER)
 		get_normal_cyl(&r->ray, closest.dist, *((t_cylinder *)closest.obj));
-	if (closest.type == CONE)
+	if (closest.type == TYPE_CONE)
 		get_normal_cone(&r->ray, closest.dist, *((t_cone *)closest.obj));
-	if (closest.type == PLANE)
+	if (closest.type == TYPE_PLANE)
 	{
 		r->ray.normal = ((t_plane *)closest.obj)->normal;
 		rotate(&r->ray.normal, (t_vec3)((t_plane *)closest.obj)->angle);

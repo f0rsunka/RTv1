@@ -10,8 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
+SHELL = /bin/zsh
+
 PINK = \033[38;2;200;150;200m
 BLUE = \033[38;2;200;200;250m
+DEFAULT = "\033[0;0m"
+GREEN = "\033[0;32m"
+DEEP_BLUE = "\033[0;34m"
 
 NAME = RTv1
 
@@ -26,6 +31,7 @@ C_FILES = main.c \
 		  init_light.c \
 		  sdl_data.c \
 		  init_primitives.c \
+		  init_scene.c \
 		  render.c \
 		  raytrace.c \
 		  intersect_primitives.c \
@@ -47,6 +53,7 @@ C_FILES = main.c \
 OBJ_FILES = $(C_FILES:.c=.o)
 
 RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
+DEPS = $(RAW_OBJ_FILES:.o=.d)
 
 SDL_DIR		=	./SDL
 SDL_DIST	=	$(PWD)/SDL/dist
@@ -71,31 +78,45 @@ ifeq ($(detected_OS),Darwin)
 
 endif
 
-NON_EXISTET_FT = tfbil
+CFLAGS_ERRORS = -Wall -Wextra -Werror
+CFLAGS_OPTIMIZATIONS = -O3 -funroll-loops
+CFLAGS_DEPENDENCIES = -MMD -MP
+CFLAGS_INCLUDES = -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include
+CFLAGS_DEBUG = -O0 -pg -g -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer
 
-NON_EXISTET_VEC = rotcev
-# NON_EXISTET_VEC = ./libvector
+CFLAGS_FINAL =	$(CFLAGS_INTERNAL) \
+				$(CFLAGS_ERRORS) $(CFLAGS_OPTIMIZATIONS) \
+				$(CFLAGS_DEPENDENCIES) $(CFLAGS_INCLUDES) \
+				$(CFLAGS)
 
-CFLAGS = -Wall -Wextra
-# CFLAGS += -Werror
-CFLAGS += -g
-# CFLAGS += -O2
+LDFLAGS =	$(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm $(SDL_LINK)
 
-all: $(OBJ_DIR) $(NAME) $(NON_EXISTET_FT) $(NON_EXISTET_VEC)
+.PHONY: all debug clean clean_libs clean_self fclean re
 
-$(NON_EXISTET_FT):
-	make -sC ./libft
+all:
+	@echo "$(BLUE)" "Making libvector" $(DEFAULT)
+	@echo -n $(DEEP_BLUE)
+	$(MAKE) -C ./libvector
+	@echo -n $(DEFAULT)
 
-$(NON_EXISTET_VEC):
-	make -sC ./libvector
+	@echo "$(BLUE)" "Making libft" $(DEFAULT)
+	@echo -n $(DEEP_BLUE)
+	$(MAKE) -C ./libft
+	@echo -n $(DEFAULT)
+
+	@echo "$(BLUE)" "Making rtv" $(DEFAULT)
+	@echo -n $(GREEN)
+	$(MAKE) $(NAME)
+	@echo -n $(DEFAULT)
+
+debug: clean_self
+	CFLAGS="$(CFLAGS_DEBUG)" make
 
 $(OBJ_DIR):
-	mkdir $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
-$(NAME): $(SDL_DIST) $(RAW_OBJ_FILES)
-	make -sC ./libvector
-	make -sC ./libft
-	gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
+$(NAME): ./libvector/libvector.a ./libft/libft.a $(SDL_DIST) $(RAW_OBJ_FILES)
+	gcc -o $(NAME) $(RAW_OBJ_FILES) $(LDFLAGS)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
 
 $(SDL_DIST):
@@ -109,20 +130,24 @@ $(SDL_DIST):
 
 #### К о м п и л я ц и я ####
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
-	gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
+-include $(DEPS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS_FINAL) -c $< -o $@
 
-clean:
-	rm -rf $(RAW_OBJ_FILES)
-	rm -rf ./libft/*.o
-	rm -rf ./libvector/*.o
+clean: clean_libs clean_self
+
+clean_libs:
+	$(MAKE) -C ./libft clean
+	$(MAKE) -C ./libvector clean
 	rm -rf $(SDL_DIR)/tmp
+
+clean_self:
+	rm -rfv $(OBJ_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf $(OBJ_DIR)
-	rm -rf ./libft/libft.a
-	rm -rf ./libvector/libvector.a
+	$(MAKE) -C ./libft fclean
+	$(MAKE) -C ./libvector fclean
 	rm -rf $(SDL_DIST)
 
 re: fclean all

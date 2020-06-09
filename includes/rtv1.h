@@ -21,6 +21,9 @@
 # include <stdlib.h>
 # include <math.h>
 
+//# define WIN_W 320
+//# define WIN_H 240
+
 # define WIN_W 700
 # define WIN_H 500
 
@@ -32,7 +35,7 @@
 ** *********************************** **
 */
 
-# define M_PI 3.14159265358979323846
+//# define M_PI 3.14159265358979323846
 # define FOV (M_PI / 2.0)
 # define DEG2RAD (M_PI / 180.f)
 # define EPSILON 1e-16
@@ -56,10 +59,13 @@
 ** *********************************** **
 */
 
-# define SPHERE 20
-# define PLANE 90
-# define CYLINDER 30
-# define CONE 40
+#define TYPE_HEAD 0
+#define TYPE_PLANE 1
+#define	TYPE_SPHERE 2
+#define	TYPE_CONE 3
+#define	TYPE_CYLINDER 4
+
+# define DEG2RAD (M_PI / 180.f)
 
 /*
 ** *********************************** **
@@ -76,9 +82,11 @@
 # define LILAC (t_color){131, 120, 158}
 # define BACKGROUND_COLOR float_to_byte(LILAC)
 # define BRIGHT_PURPLE (t_color){186, 151, 255}
+# define LIGHT_GRAY (t_color){200, 200, 200}
 # define ROSE_PINK (t_color){255, 165, 198}
 # define INDEPENDENCE (t_color){202, 211, 255}
 # define INDIGO (t_color){196, 214, 255}
+
 
 /*
 ** *********************************** **
@@ -88,8 +96,9 @@
 ** *********************************** **
 */
 
-# define AMBIENT "a"
-# define POINT "p"
-# define DIRECTIONAL "d"
+# define LIGHT_TYPE_HEAD		0
+# define LIGHT_TYPE_AMBIENT		1
+# define LIGHT_TYPE_POINT		2
+# define LIGHT_TYPE_DIRECTIONAL	3
 
 #endif

@@ -22,13 +22,13 @@ float		trace_p_to_light(t_rtv *r)
 	current = r->scene;
 	while (current != NULL)
 	{
-		if (current->type == SPHERE)
+		if (current->type == TYPE_SPHERE)
 			sphere_intersect(r, current, &closest);
-		if (current->type == CYLINDER)
+		if (current->type == TYPE_CYLINDER)
 			cylinder_intersect(r, current, &closest);
-		if (current->type == PLANE)
+		if (current->type == TYPE_PLANE)
 			plane_intersect(r, current, &closest);
-		if (current->type == CONE)
+		if (current->type == TYPE_CONE)
 			cone_intersect(r, current, &closest);
 		tmp = current->next;
 		current = tmp;

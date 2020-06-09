@@ -36,7 +36,6 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 ** *********************************** **
 */
 
-void		init_primitives(t_rtv *r);
 void		init_flags(t_flag *flag);
 void		init_camera(t_rtv *r);
 void		ray_zero(t_ray *ray);
@@ -83,7 +82,6 @@ int			is_sqrt_valide(float t1, float t2, float *dist);
 ** *********************************** **
 */
 
-t_light		*init_light(void);
 t_color 	calculate_lightning(t_rtv *r, t_close_obj closest);
 void		normal(t_close_obj closest, t_rtv *r);
 void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
@@ -116,12 +114,23 @@ float		trace_p_to_light(t_rtv *r);
 ** *********************************** **
 ** *********************************** **
 **               move       		   **
-** *********************************** **
+** *******************************
+ * *** **
 ** *********************************** **
 */
 
 void		rotate(t_vec3 *vec, t_vec3 angle);
 void		events(t_rtv *r);
+
+/*
+** *********************************** **
+** *********************************** **
+**               parser       		   **
+** *********************************** **
+** *********************************** **
+*/
+
+void        read_scene(t_rtv *r, char *filename);
 
 /*
 ** *********************************** **
