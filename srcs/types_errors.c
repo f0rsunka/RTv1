@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:38:01 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 21:07:14 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 23:40:06 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	arguments_errors(int n)
 
 void	validate_errors(int n)
 {
-	// if (n == GNL_ERROR)
-	// 	write_error("RTv1: gnl == -1\n");
 	if (n == GNL_ERROR || n == READ_ERROR)
 		write_error("RTv1: read error\n");
 	if (n == OBJ_ERROR)

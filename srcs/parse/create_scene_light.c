@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_scene_lights.c                              :+:      :+:    :+:   */
+/*   create_scene_light.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 20:23:18 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 20:25:37 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 00:11:16 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_light 	*create_scene_light(int fd, char **line)
+t_light		*create_scene_light(int fd, char **line)
 {
 	char	*str;
 	t_light *tmp;

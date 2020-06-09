@@ -6,11 +6,26 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:48:54 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 20:27:59 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 23:37:58 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+void	check_read_file(int ac, char **scene)
+{
+	int fd;
+
+	(((WIN_W <= 0) || (WIN_H <= 0)) ? rtv_error(WINDOW_MIN) : 0);
+	(((WIN_W > 1100) || (WIN_H > 1000)) ? rtv_error(WINDOW_MAX) : 0);
+	if (ac < 2)
+		rtv_error(MISS_ARG);
+	if (ac > 2)
+		rtv_error(TOO_MUCH_ARG);
+	if ((fd = open(scene[1], O_DIRECTORY)) > 0)
+		rtv_error(DIRECTORY_ERR);
+	close(fd);
+}
 
 void		read_objects(t_rtv *r, int fd, char **line)
 {

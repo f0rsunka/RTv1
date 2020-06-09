@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_create_scene_primitive.c                     :+:      :+:    :+:   */
+/*   create_scene_primitives.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:39:57 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 19:41:12 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 00:11:40 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_scene		*create_scene_cylinder(int fd, char **line)
 		tmp->object = (void *)create_cylinder(fd, line);
 		tmp->type = TYPE_CYLINDER;
 		tmp->next = 0;
-
 		return (tmp);
 	}
 	return (0);
@@ -79,7 +78,6 @@ t_scene		*create_scene_cone(int fd, char **line)
 		tmp->object = (void *)create_cone(fd, line);
 		tmp->type = TYPE_CONE;
 		tmp->next = 0;
-
 		return (tmp);
 	}
 	return (0);
