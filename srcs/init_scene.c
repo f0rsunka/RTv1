@@ -102,9 +102,11 @@ t_plane	*create_plane(int fd, char **line)
 			bitmask += 1u << 7u;
 		if (read_keyed_float(*line, "    color_b:", &(plane->material.color.b)))
 			bitmask += 1u << 8u;
+		if (read_keyed_float(*line, "    specular:", &(plane->material.specular)))
+			bitmask += 1u << 12u;
 		i++;
 	}
-	if (bitmask != ((1u << 12u) - 1) || i != 12)
+	if (bitmask != ((1u << 13u) - 1) || i != 13)
 	{
 		ft_memdel((void **)&plane);
 		ft_putendl_fd("Invalid struct!", 2);

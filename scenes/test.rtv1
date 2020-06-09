@@ -41,6 +41,7 @@ objects:
     color_r: 255
     color_g: 165
     color_b: 198
+    specular: 50
   plane:
     offset_x: 0
     offset_y: 3
@@ -54,6 +55,7 @@ objects:
     color_r: 202
     color_g: 211
     color_b: 255
+    specular: 50
   sphere:
     center_x: -3
     center_y: 1
