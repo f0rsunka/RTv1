@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:17:34 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 15:50:42 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:20:16 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@
 # define CYL_COEF_ALL_EXISTS	12
 # define CYL_COEF_NOT_ONE		13
 # define CYL_COEF_NOT_VALID		14
-# define SPECULAR_OVERFLOW		15
+# define CONE_COEF_NOT_VALID	15
+# define CONE_COEF_DELIM_ZERO	16
+
+
+# define SPECULAR_OVERFLOW		100
 
 #endif

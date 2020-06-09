@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 22:26:39 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 17:07:17 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:19:17 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_cone	*init_cone(t_vec3 offset, t_vec3 coef, t_vec3 angle, t_material mat)
 	(cone == NULL ? rtv_error(MALLOC_ERROR) : 0);
 	cone->offset = offset;
 	cone->coef = coef;
+	check_coefficients_cone(cone->coef);
 	cone->angle = angle;
 	cone->material.color = float_to_byte((t_color){mat.color.r, mat.color.g, mat.color.b});
 	cone->material.specular = mat.specular;
