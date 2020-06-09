@@ -21,8 +21,11 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIN_W 320
-# define WIN_H 240
+//# define WIN_W 320
+//# define WIN_H 240
+
+# define WIN_W 700
+# define WIN_H 500
 
 /*
 ** *********************************** **
