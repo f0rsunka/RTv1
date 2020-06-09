@@ -51,6 +51,10 @@ int		read_keyed_int(char *line, char *key, int *data)
 	return (0);
 }
 
+// scene->object = init_plane((t_vec3){0.0f, 0.0f, -13.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_color)ROSE_PINK);
+// scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
+// t_plane	*init_plane(t_vec3 offset, t_vec3 coef, t_vec3 normal, t_color color)
+
 t_plane	*create_plane(int fd, char **line)
 {
 	t_plane	*plane;
@@ -74,11 +78,11 @@ t_plane	*create_plane(int fd, char **line)
 			ft_putendl_fd("Read error!", 2);
 			exit(1);
 		}
-		if (read_keyed_double(*line, "    center_x:", &(plane->offset.x)))
+		if (read_keyed_double(*line, "    offset_x:", &(plane->offset.x)))
 			bitmask += 1u << 0u;
-		if (read_keyed_double(*line, "    center_y:", &(plane->offset.y)))
+		if (read_keyed_double(*line, "    offset_y:", &(plane->offset.y)))
 			bitmask += 1u << 1u;
-		if (read_keyed_double(*line, "    center_z:", &(plane->offset.z)))
+		if (read_keyed_double(*line, "    offset_z:", &(plane->offset.z)))
 			bitmask += 1u << 2u;
 		if (read_keyed_double(*line, "    normal_x:", &(plane->normal.x)))
 			bitmask += 1u << 3u;
@@ -86,6 +90,12 @@ t_plane	*create_plane(int fd, char **line)
 			bitmask += 1u << 4u;
 		if (read_keyed_double(*line, "    normal_z:", &(plane->normal.z)))
 			bitmask += 1u << 5u;
+		if (read_keyed_double(*line, "    coef_x:", &(plane->coef.x)))
+			bitmask += 1u << 9u;
+		if (read_keyed_double(*line, "    coef_y:", &(plane->coef.y)))
+			bitmask += 1u << 10u;
+		if (read_keyed_double(*line, "    coef_z:", &(plane->coef.z)))
+			bitmask += 1u << 11u;
 		if (read_keyed_float(*line, "    color_r:", &(plane->material.color.r)))
 			bitmask += 1u << 6u;
 		if (read_keyed_float(*line, "    color_g:", &(plane->material.color.g)))
@@ -94,12 +104,13 @@ t_plane	*create_plane(int fd, char **line)
 			bitmask += 1u << 8u;
 		i++;
 	}
-	if (bitmask != ((1u << 9u) - 1) || i != 9)
+	if (bitmask != ((1u << 12u) - 1) || i != 12)
 	{
 		ft_memdel((void **)&plane);
 		ft_putendl_fd("Invalid struct!", 2);
 		exit(1);
 	}
+	plane->angle = (t_vec3){0.0f, 0.0f, 0.0f};
 	plane->material.color = float_to_byte(plane->material.color);
 	return (plane);
 }
@@ -150,8 +161,10 @@ t_sphere	*create_sphere(int fd, char **line)
 			bitmask += 1u << 1u;
 		if (read_keyed_double(*line, "    center_z:", &(sphere->center.z)))
 			bitmask += 1u << 2u;
-		if (read_keyed_float(*line, "    radius:", &(sphere->radius)))
+		if (read_keyed_float(*line, "    radius:", &(sphere->radius))) {
 			bitmask += 1u << 3u;
+			sphere->radius /= 100;
+		}
 		if (read_keyed_float(*line, "    color_r:", &(sphere->material.color.r)))
 			bitmask += 1u << 4u;
 		if (read_keyed_float(*line, "    color_g:", &(sphere->material.color.g)))
@@ -160,9 +173,15 @@ t_sphere	*create_sphere(int fd, char **line)
 			bitmask += 1u << 6u;
 		if (read_keyed_float(*line, "    specular:", &(sphere->material.specular)))
 			bitmask += 1u << 7u;
+		if (read_keyed_double(*line, "    angle_x:", &(sphere->angle.x)))
+			bitmask += 1u << 8u;
+		if (read_keyed_double(*line, "    angle_y:", &(sphere->angle.y)))
+			bitmask += 1u << 9u;
+		if (read_keyed_double(*line, "    angle_z:", &(sphere->angle.z)))
+			bitmask += 1u << 10u;
 		i++;
 	}
-	if (bitmask != ((1u << 8u) - 1) || i != 8)
+	if (bitmask != ((1u << 11u) - 1) || i != 11)
 	{
 		ft_memdel((void **)&sphere);
 		ft_putendl_fd("Invalid struct!", 2);
