@@ -1,0 +1,108 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_scene.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/09 19:48:54 by f0rsunka          #+#    #+#             */
+/*   Updated: 2020/06/09 20:27:59 by f0rsunka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "rtv1.h"
+
+void		read_objects(t_rtv *r, int fd, char **line)
+{
+	t_scene		*cur;
+	size_t		count;
+
+	r->scene = (t_scene *)malloc(sizeof(t_scene));
+	(r->scene == NULL ? rtv_error(MALLOC_ERROR) : 0);
+	r->scene->type = TYPE_HEAD;
+	cur = r->scene;
+	count = 0;
+	while (create_figure(fd, cur, line))
+	{
+		if (cur->next)
+		{
+			cur = cur->next;
+			count++;
+		}
+	}
+	(count <= 0 ? rtv_error(PRIMITIVES_MIN) : 0);
+	(count > 7 ? rtv_error(PRIMITIVES_MAX) : 0);
+}
+
+void		read_lights(t_rtv *r, int fd, char **line)
+{
+	t_light		*cur;
+	size_t		count;
+
+	r->light = (t_light *)malloc(sizeof(t_light));
+	(r->light == NULL ? rtv_error(MALLOC_ERROR) : 0);
+	r->light->type = LIGHT_TYPE_HEAD;
+	cur = r->light;
+	count = 0;
+	while (create_light(fd, cur, line))
+	{
+		if (cur->next)
+		{
+			cur = cur->next;
+			count++;
+		}
+	}
+	(count <= 0 ? rtv_error(LIGHT_MIN) : 0);
+	(count > 3 ? rtv_error(LIGHT_MAX) : 0);
+}
+
+void        read_scene(t_rtv *r, char *filename)
+{
+	int				fd;
+	char			*line;
+	int 			status;
+	unsigned char	is_read[2];
+
+	line = 0;
+	ft_bzero(is_read, 2);
+	if ((fd = open(filename[1], O_RDONLY)) < 3)
+		rtv_error(NOT_A_FILE);
+	while (1)
+	{
+		if (!line)
+		{
+			status = get_next_line(fd, &line);
+			(status < 0 ? rtv_error(GNL_ERROR) : 0);
+			if (status == 0)
+			{
+				// TODO проверить молочит ли гнл лайн при статусе 0, если да, то тут зафришить лайн
+				break ;
+			}
+		}
+		if (!*line)
+		{
+			ft_memdel((void**)&line);
+			continue;
+		}
+		if (ft_strequ(line, "objects:"))
+		{
+			((is_read[0]) ? rtv_error(OBJ_ERROR) : 0);
+			ft_memdel((void**)&line);
+			read_objects(r, fd, &line);
+			is_read[0] = 1;
+			continue;
+		}
+		if (ft_strequ(line, "lights:"))
+		{
+			((is_read[1]) ? rtv_error(LIGHTS_ERROR) : 0);
+			ft_memdel((void**)&line);
+			read_lights(r, fd, &line);
+			is_read[1] = 1;
+			continue;
+		}
+		ft_putendl_fd("level 0 invalid key\n", 2);
+		ft_putendl_fd(line, 2);
+		exit(1);
+	}
+	close(fd);
+}

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 17:17:23 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 22:00:31 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,20 @@ void		events(t_rtv *r);
 */
 
 void        read_scene(t_rtv *r, char *filename);
+int			create_light(int fd, t_light *prev, char **line);
+int			create_figure(int fd, t_scene *prev, char **line);
+t_scene		*create_scene_plane(int fd, char **line);
+t_scene		*create_scene_sphere(int fd, char **line);
+t_scene		*create_scene_cylinder(int fd, char **line);
+t_scene		*create_scene_cone(int fd, char **line);
+t_light 	*create_scene_light(int fd, char **line);
+t_sphere	*create_sphere(int fd, char **line);
+t_plane		*create_plane(int fd, char **line);
+t_cylinder	*create_cylinder(int fd, char **line);
+t_cone		*create_cone(int fd, char **line);
+int			read_keyed_double(char *line, char *key, double *data);
+int			read_keyed_float(char *line, char *key, float *data);
+int			read_keyed_int(char *line, char *key, int *data);
 
 /*
 ** *********************************** **
@@ -142,7 +156,7 @@ void        read_scene(t_rtv *r, char *filename);
 
 void		rtv_error(int n);
 void		arguments_errors(int n);
-void		window_errors(int n);
+void		validate_errors(int n);
 void		malloc_error(int n);
 void		lights_errors(int n);
 void		primitives_errors(int n);
@@ -160,5 +174,6 @@ void		check_coefficients_cyl(t_vec3 coef);
 void		check_radius(float r);
 void		check_specular(float s);
 void		check_coefficients_cone(t_vec3 coef);
+void		check_read_file(int ac, char **av);
 
 #endif

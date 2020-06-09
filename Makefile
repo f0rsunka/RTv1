@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/09 17:20:53 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/09 22:12:34 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,6 @@ C_FILES = main.c \
 		  init_rtv.c \
 		  init_light.c \
 		  sdl_data.c \
-		  init_primitives.c \
-		  init_scene.c \
 		  render.c \
 		  raytrace.c \
 		  intersect_primitives.c \
@@ -48,7 +46,17 @@ C_FILES = main.c \
 		  events.c \
 		  types_errors.c \
 		  put_rtv_errors.c \
-		  check_value_primitive.c
+		  validate.c \
+		  create_scene_primitives.c \
+		  create_scene.c \
+		  parse_cone.c \
+		  parse_cylinder.c \
+		  parse_sphere.c \
+		  parse_plane.c \
+		  parse_light.c \
+		  read_key.c \
+		  read_scene.c \
+		  create_scene_light.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

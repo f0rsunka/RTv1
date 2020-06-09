@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 20:36:57 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 12:45:59 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 21:52:49 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	iterate_light(t_rtv *r, float *intensity)
 	t_light *cur;
 	float	dist_max;
 
+	dist_max = 0.0f;
 	cur = r->light;
 	while (cur)
 	{
