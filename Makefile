@@ -6,14 +6,14 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/09 13:13:26 by f0rsunka         ###   ########.fr        #
+#    Updated: 2020/06/09 17:07:49 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PINK = \033[38;2;200;150;200m
 BLUE = \033[38;2;200;200;250m
 
-NAME = rtv1
+NAME = RTv1
 
 SRC_DIR = ./srcs
 
@@ -26,7 +26,6 @@ C_FILES = main.c \
 		  init_light.c \
 		  sdl_data.c \
 		  init_primitives.c \
-		  init_sphere.c \
 		  render.c \
 		  raytrace.c \
 		  intersect_primitives.c \
@@ -40,7 +39,10 @@ C_FILES = main.c \
 		  specular.c \
 		  raytrace_to_light.c \
 		  affine_transform.c \
-		  events.c
+		  events.c \
+		  types_errors.c \
+		  put_rtv_errors.c \
+		  check_value_primitive.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 

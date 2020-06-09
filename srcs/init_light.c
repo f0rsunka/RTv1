@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 17:23:31 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/08 20:38:06 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 14:41:16 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ t_light		*init_light(void)
 {
 	t_light	*light;
 
-	(COUNT_LIGHTS <= 0 ? exit(99) : 0);
-	(COUNT_LIGHTS > 3 ? exit(99) : 0);
+	(COUNT_LIGHTS <= 0 ? rtv_error(LIGHT_MIN) : 0);
+	(COUNT_LIGHTS > 3 ? rtv_error(LIGHT_MAX) : 0);
 	light = (t_light*)malloc(sizeof(t_light) * COUNT_LIGHTS);
 	(light == NULL ? exit(88) : 1);
 	light_data(light);

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 12:47:42 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:06:47 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	init_rtv(t_rtv *rtv)
 {
-	// проверка размера окна - мб функция тут должна быть? в файле с ошибками будет лежать
-	// (WIN_W <= 0 ? exit(99) : 0);
-	// (WIN_H <= 0 ? exit(99) : 0);
+	(((WIN_W <= 0) || (WIN_H <= 0)) ? rtv_error(WINDOW_MIN) : 0);
+	(((WIN_W > 1100) || (WIN_H > 1000)) ? rtv_error(WINDOW_MAX) : 0);
 	rtv->light = init_light();
 	init_primitives(rtv);
 	init_camera(rtv);

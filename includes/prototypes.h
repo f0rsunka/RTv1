@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 12:12:10 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:06:08 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void		put_pixel(SDL_Renderer *ren, int x, int y, t_color col);
 */
 
 void		init_primitives(t_rtv *r);
-void		init_sphere(int i, t_scene *scene);
 void		init_flags(t_flag *flag);
 void		init_camera(t_rtv *r);
 void		ray_zero(t_ray *ray);
@@ -123,5 +122,33 @@ float		trace_p_to_light(t_rtv *r);
 
 void		rotate(t_vec3 *vec, t_vec3 angle);
 void		events(t_rtv *r);
+
+/*
+** *********************************** **
+** *********************************** **
+**               errors       		   **
+** *********************************** **
+** *********************************** **
+*/
+
+void		rtv_error(int n);
+void		arguments_errors(int n);
+void		window_errors(int n);
+void		malloc_error(int n);
+void		lights_errors(int n);
+void		primitives_errors(int n);
+void		write_error(char *reason);
+
+/*
+** *********************************** **
+** *********************************** **
+**            check value     		   **
+** *********************************** **
+** *********************************** **
+*/
+
+void		check_coefficients_cyl(t_vec3 coef);
+void		check_radius(float r);
+void		check_specular(float s);
 
 #endif
