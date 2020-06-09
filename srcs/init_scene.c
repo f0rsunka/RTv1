@@ -473,7 +473,7 @@ void        read_scene(t_rtv *r, char *filename)
 			if (status == 0)
 			{
 				// TODO проверить молочит ли гнл лайн при статусе 0, если да, то тут зафришить лайн
-				return ;
+				break ;
 			}
 		}
 		if (!*line)
