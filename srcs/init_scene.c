@@ -410,28 +410,41 @@ int			create_light(t_rtv *r, int fd, t_light *prev, char **line)
 void		read_objects(t_rtv *r, int fd, char **line)
 {
 	t_scene		*cur;
+	size_t		count;
 
 	r->scene = (t_scene *)malloc(sizeof(t_scene));
 	r->scene->type = TYPE_HEAD;
 	cur = r->scene;
+	count = 0;
 	while (create_figure(r, fd, cur, line))
 	{
-		if (cur->next)
+		if (cur->next) {
 			cur = cur->next;
+			count++;
+		}
+
 	}
+	(count <= 0 ? exit(99) : 0);
+	(count > 7 ? exit(99) : 0);
 }
 
 void		read_lights(t_rtv *r, int fd, char **line)
 {
 	t_light		*cur;
+	size_t		count;
 
 	r->light = (t_light *)malloc(sizeof(t_light));
 	r->light->type = LIGHT_TYPE_HEAD;
 	cur = r->light;
+	count = 0;
 	while (create_light(r, fd, cur, line)) {
-		if (cur->next)
+		if (cur->next) {
 			cur = cur->next;
+			count++;
+		}
 	}
+	(count <= 0 ? exit(99) : 0);
+	(count > 3 ? exit(99) : 0);
 }
 
 void        read_scene(t_rtv *r, char *filename)
