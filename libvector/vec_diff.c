@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_diff.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:48:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:49:24 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/08 00:44:15 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_vec3 	vec_diff(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3 diff;
 
-	diff.x = v2.x - v1.x;
-	diff.y = v2.y - v1.y;
-	diff.z = v2.z - v1.z;
+	diff.x = v1.x - v2.x;
+	diff.y = v1.y - v2.y;
+	diff.z = v1.z - v2.z;
 	return (diff);
 }

@@ -74,11 +74,11 @@ t_plane	*create_plane(int fd, char **line)
 			ft_putendl_fd("Read error!", 2);
 			exit(1);
 		}
-		if (read_keyed_double(*line, "    center_x:", &(plane->center.x)))
+		if (read_keyed_double(*line, "    center_x:", &(plane->offset.x)))
 			bitmask += 1u << 0u;
-		if (read_keyed_double(*line, "    center_y:", &(plane->center.y)))
+		if (read_keyed_double(*line, "    center_y:", &(plane->offset.y)))
 			bitmask += 1u << 1u;
-		if (read_keyed_double(*line, "    center_z:", &(plane->center.z)))
+		if (read_keyed_double(*line, "    center_z:", &(plane->offset.z)))
 			bitmask += 1u << 2u;
 		if (read_keyed_double(*line, "    normal_x:", &(plane->normal.x)))
 			bitmask += 1u << 3u;

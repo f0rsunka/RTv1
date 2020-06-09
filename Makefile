@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
+#    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/04 17:44:48 by Student          ###   ########.fr        #
+#    Updated: 2020/06/09 13:13:26 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,22 +25,23 @@ C_FILES = main.c \
 		  init_rtv.c \
 		  init_light.c \
 		  sdl_data.c \
-		  init_primitive.c \
+		  init_primitives.c \
+		  init_scene.c \
+		  init_sphere.c \
 		  render.c \
 		  raytrace.c \
-		  intersect_primitive.c \
-		  quadratic_equation_sphere.c \
-		  quadratic_equation_cylinder.c \
+		  intersect_primitives.c \
+		  primitives_trace.c \
+		  calculate_quadratic_equation.c \
 		  color.c \
 		  put_pixel.c \
 		  light.c \
 		  normal.c \
 		  diffuse.c \
 		  specular.c \
-		  shadow.c \
+		  raytrace_to_light.c \
 		  affine_transform.c \
-		  events.c \
-		  init_scene.c
+		  events.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
 
@@ -59,51 +60,47 @@ detected_OS := $(shell uname)
 
 ifeq ($(detected_OS),Linux)
 
-	# LIBS_A := ./libft/libft.a ./libvector/libvector.a -lOpenCL
 	SDL_FLAGS := -lOpenCL
-	# LIBS_O := ./libft/*.o ./libvector/*.o ./mlx_libs/minilibx/*.o
-	# LIBMAKE := ./mlx_libs/minilibx
-	# MLX_FLAGS := -L ./mlx_libs/minilibx -lmlx_Linux -lXext -lX11 -lm
 
 endif
 
 ifeq ($(detected_OS),Darwin) 
 
-	# LIBS_A = ./libft/libft.a ./libvector/libvector.a -framework OpenCL
 	SDL_FLAGS = -framework OpenCL
-	# LIBS_O = ./libft/*.o ./libvector/*.o ./mlx_libs/minilibx_macos/*.o
-	# LIBMAKE = ./mlx_libs/minilibx_macos
-	# MLX_FLAGS = -L ./mlx_libs/minilibx_macos -lm -lmlx -framework OpenGL -framework Appkit
 
 endif
 
-NON_EXISTET = tfbil
+NON_EXISTET_FT = tfbil
 
-CFLAGS += -Wall -Wextra
+NON_EXISTET_VEC = rotcev
+# NON_EXISTET_VEC = ./libvector
+
+CFLAGS = -Wall -Wextra
 # CFLAGS += -Werror
 CFLAGS += -g
 # CFLAGS += -O2
 
-.PHONY: all debug clean clean_libs clean_self fclean re
+.PHONY: all debug clean fclean re
 
-all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
+all: $(OBJ_DIR) $(NAME) $(NON_EXISTET_FT) $(NON_EXISTET_VEC)
 
 debug: clean_self
-	CFLAGS="-O0 -g -fno-omit-frame-pointer" $(MAKE) all
+	CFLAGS="-O0 -g -fno-omit-frame-pointer" make
 
-$(NON_EXISTET):
-	@make -C ./libft
+$(NON_EXISTET_FT):
+	make -sC ./libft
+
+$(NON_EXISTET_VEC):
+	make -sC ./libvector
 
 $(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+	mkdir $(OBJ_DIR)
 
-$(NAME): ./libft/libft.a $(SDL_DIST) $(RAW_OBJ_FILES)
-	@make -C ./libvector
-	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
+$(NAME): $(SDL_DIST) $(RAW_OBJ_FILES)
+	make -sC ./libvector
+	make -sC ./libft
+	gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
-
-./libft/libft.a:
-	@make -sC ./libft
 
 $(SDL_DIST):
 	$(info ************ Compiling SDL *************)
@@ -117,23 +114,23 @@ $(SDL_DIST):
 #### К о м п и л я ц и я ####
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
-	@gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
+	gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
 
 clean: clean_libs clean_self
 
 clean_libs:
-	@rm -rf ./libft/*.o
-	@rm -rf ./libvector/*.o
-	@rm -rf $(SDL_DIR)/tmp
+	rm -rf ./libft/*.o
+	rm -rf ./libvector/*.o
+	rm -rf $(SDL_DIR)/tmp
 
 clean_self:
-	@rm -rf $(RAW_OBJ_FILES)
+	rm -rf $(RAW_OBJ_FILES)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@rm -rf $(OBJ_DIR)
-	@rm -rf ./libft/libft.a
-	@rm -rf ./libvector/libvector.a
-	@rm -rf $(SDL_DIST)
+	rm -rf $(NAME)
+	rm -rf $(OBJ_DIR)
+	rm -rf ./libft/libft.a
+	rm -rf ./libvector/libvector.a
+	rm -rf $(SDL_DIST)
 
 re: fclean all

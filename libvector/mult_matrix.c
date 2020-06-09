@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diffuse.c                                          :+:      :+:    :+:   */
+/*   mult_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/31 17:14:34 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/05 14:06:45 by f0rsunka         ###   ########.fr       */
+/*   Created: 2020/06/08 00:44:03 by f0rsunka          #+#    #+#             */
+/*   Updated: 2020/06/08 00:49:33 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "include/libvector.h"
 
-void	calculate_diffuse(t_light *light, t_vec3 normal, float *intensity)
+t_vec3 mult_matrix(t_vec3 a, t_vec3 b)
 {
-	float dot_l_n;
-	float len_l;
-	float len_n;
+	t_vec3 c;
 
-	dot_l_n = dot_product(light->direction, normal);
-	if (dot_l_n > 0)
-	{
-		len_l = vec_length(light->direction);
-		len_n = vec_length(normal);
-		*intensity += light->intensity * dot_l_n / (len_l * len_n);
-	}
-	else
-		*intensity += 0.01;
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = a.z * b.x - a.x * b.z;
+	c.z = a.x * b.y - a.y * b.x;
+	return c;
 }

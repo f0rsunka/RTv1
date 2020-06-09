@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_sdl.c                                         :+:      :+:    :+:   */
+/*   sdl_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:38:30 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 22:25:44 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/09 13:11:50 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_sdl	init_sdl(void)
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 		sdl_error();
-	sdl.window = SDL_CreateWindow("RTV1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIN_W, WIN_H, SDL_WINDOW_SHOWN);
+	sdl.window = SDL_CreateWindow("RTV1", SDL_WINDOWPOS_CENTERED,
+						SDL_WINDOWPOS_CENTERED, WIN_W, WIN_H, SDL_WINDOW_SHOWN);
 	if (!sdl.window)
 		sdl_error();
 	sdl.renderer = SDL_CreateRenderer(sdl.window, -1, SDL_RENDERER_ACCELERATED);
@@ -42,6 +43,7 @@ void	destroy_sdl(t_sdl sdl)
 
 void	clear_window_sdl(t_sdl sdl)
 {
-	SDL_SetRenderDrawColor(sdl.renderer, BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 0xFF);
-    SDL_RenderClear(sdl.renderer);
+	SDL_SetRenderDrawColor(sdl.renderer,
+			BACKGROUND_COLOR.r, BACKGROUND_COLOR.g, BACKGROUND_COLOR.b, 0xFF);
+	SDL_RenderClear(sdl.renderer);
 }
