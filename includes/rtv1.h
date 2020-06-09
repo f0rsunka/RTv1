@@ -26,7 +26,7 @@
 # define WIN_W 320
 # define WIN_H 240
 
-# define M_PI 3.14159265358979323846
+//# define M_PI 3.14159265358979323846
 # define FOV (M_PI / 2.0)
 # define DEG2RAD (M_PI / 180.f)
 // # define EPSILON 1e-16

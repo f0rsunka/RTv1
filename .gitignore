@@ -1,5 +1,6 @@
 .DS_Store
 *.o
+*.d
 .vscode
 SDL/dist/
 libft/libft.a
