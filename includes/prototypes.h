@@ -12,8 +12,8 @@
 
 #ifndef PROTOTYPES_H
 # define PROTOTYPES_H
-#include "rtv1.h"
-#include "structs.h"
+# include "rtv1.h"
+# include "structs.h"
 
 /*
 ** *********************************** **
@@ -145,6 +145,7 @@ t_cone		*create_cone(int fd, char **line);
 int			read_keyed_double(char *line, char *key, double *data);
 int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
+void		parse_light(int fd, char **line, t_light *light);
 
 /*
 ** *********************************** **

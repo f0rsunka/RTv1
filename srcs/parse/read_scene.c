@@ -65,7 +65,7 @@ void        read_scene(t_rtv *r, char *filename)
 
 	line = 0;
 	ft_bzero(is_read, 2);
-	if ((fd = open(filename[1], O_RDONLY)) < 3)
+	if ((fd = open(filename, O_RDONLY)) < 3)
 		rtv_error(NOT_A_FILE);
 	while (1)
 	{

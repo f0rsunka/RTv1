@@ -12,7 +12,7 @@
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-#include "rtv1.h"
+# include "rtv1.h"
 
 typedef struct		s_color
 {

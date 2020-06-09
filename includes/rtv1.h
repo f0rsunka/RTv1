@@ -13,19 +13,13 @@
 #ifndef RTV1_H
 # define RTV1_H
 # include "SDL.h"
-# include "../libvector/include/libvector.h"
-# include "../libft/include/libft.h"
+# include "libvector.h"
+# include "libft.h"
 # include "structs.h"
 # include "prototypes.h"
 # include "errors.h"
 # include <stdlib.h>
 # include <math.h>
-
-//# define WIN_W 320
-//# define WIN_H 240
-
-# define WIN_W 700
-# define WIN_H 500
 
 /*
 ** *********************************** **
@@ -40,6 +34,12 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+//# define WIN_W 320
+//# define WIN_H 240
+
+# define WIN_W 700
+# define WIN_H 500
+
 /*
 ** *********************************** **
 ** *********************************** **
@@ -48,7 +48,7 @@
 ** *********************************** **
 */
 
-# define M_PI 3.14159265358979323846
+//# define M_PI 3.14159265358979323846
 # define FOV (M_PI / 2.0)
 # define DEG2RAD (M_PI / 180.f)
 # define EPSILON 1e-16

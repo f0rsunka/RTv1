@@ -6,7 +6,7 @@
 #    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/06/09 22:14:30 by Student          ###   ########.fr        #
+#    Updated: 2020/06/09 17:07:49 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,22 +46,26 @@ C_FILES = main.c \
 		  events.c \
 		  types_errors.c \
 		  put_rtv_errors.c \
-		  validate.c \
-		  create_scene_primitives.c \
-		  create_scene.c \
-		  parse_cone.c \
-		  parse_cylinder.c \
-		  parse_sphere.c \
-		  parse_plane.c \
-		  parse_light.c \
-		  read_key.c \
-		  read_scene.c \
-		  create_scene_light.c
+		  validate.c
+
+C_FILES_PARSING = 	create_scene_light.c \
+                    create_scene_primitives.c \
+                    create_scene.c \
+                    parse_cone.c \
+                    parse_cylinder.c \
+                    parse_light.c \
+                    parse_plane.c \
+                    parse_sphere.c \
+                    read_key.c \
+                    read_scene.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
+OBJ_FILES_PARSING = $(C_FILES_PARSING:.c=.o)
 
-RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
+RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/1_,$(OBJ_FILES))
+RAW_OBJ_FILES_PARSING = $(addprefix $(OBJ_DIR)/2_,$(OBJ_FILES_PARSING))
 DEPS = $(RAW_OBJ_FILES:.o=.d)
+DEPS_PARSING = $(RAW_OBJ_FILES_PARSING:.o=.d)
 
 SDL_DIR		=	./SDL
 SDL_DIST	=	$(PWD)/SDL/dist
@@ -123,8 +127,8 @@ debug: clean_self
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(NAME): ./libvector/libvector.a ./libft/libft.a $(SDL_DIST) $(RAW_OBJ_FILES)
-	gcc -o $(NAME) $(RAW_OBJ_FILES) $(LDFLAGS)
+$(NAME): ./libvector/libvector.a ./libft/libft.a $(SDL_DIST) $(RAW_OBJ_FILES) $(RAW_OBJ_FILES_PARSING)
+	gcc -o $(NAME) $(RAW_OBJ_FILES) $(RAW_OBJ_FILES_PARSING) $(LDFLAGS)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
 
 $(SDL_DIST):
@@ -139,7 +143,11 @@ $(SDL_DIST):
 #### К о м п и л я ц и я ####
 
 -include $(DEPS)
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/1_%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS_FINAL) -c $< -o $@
+
+-include $(DEPS)
+$(OBJ_DIR)/2_%.o: $(SRC_DIR)/parse/%.c | $(OBJ_DIR)
 	gcc $(CFLAGS_FINAL) -c $< -o $@
 
 clean: clean_libs clean_self
