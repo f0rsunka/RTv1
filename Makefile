@@ -26,7 +26,6 @@ C_FILES = main.c \
 		  init_light.c \
 		  sdl_data.c \
 		  init_primitive.c \
-		  init_sphere.c \
 		  render.c \
 		  raytrace.c \
 		  intersect_primitive.c \

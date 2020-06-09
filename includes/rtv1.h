@@ -41,7 +41,8 @@
 #define TYPE_HEAD 0
 #define TYPE_PLANE 1
 #define	TYPE_SPHERE 2
-#define	TYPE_CYLINDER 3
+#define	TYPE_CONE 3
+#define	TYPE_CYLINDER 4
 
 /*
 ** *********************************** **
