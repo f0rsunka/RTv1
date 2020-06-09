@@ -519,6 +519,7 @@ void		read_objects(t_rtv *r, int fd, char **line)
 	}
 	(count <= 0 ? rtv_error(PRIMITIVES_MIN) : 0);
 	(count > 7 ? rtv_error(PRIMITIVES_MAX) : 0);
+
 }
 
 void		read_lights(t_rtv *r, int fd, char **line)
@@ -542,11 +543,13 @@ void		read_lights(t_rtv *r, int fd, char **line)
 
 void        read_scene(t_rtv *r, char *filename)
 {
-	int			fd;
-	char		*line;
-	int 		status;
+	int				fd;
+	char			*line;
+	int 			status;
+	unsigned char	is_read[2];
 
 	line = 0;
+	ft_bzero(is_read, 2);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -576,14 +579,24 @@ void        read_scene(t_rtv *r, char *filename)
 		}
 		if (ft_strequ(line, "objects:"))
 		{
+			if (is_read[0]) {
+				ft_putendl_fd("дважды задана мажорная категория objects", 2);
+				exit(1);
+			}
 			ft_memdel((void**)&line);
 			read_objects(r, fd, &line);
+			is_read[0] = 1;
 			continue;
 		}
 		if (ft_strequ(line, "lights:"))
 		{
+			if (is_read[1]) {
+				ft_putendl_fd("дважды задана мажорная категория lights", 2);
+				exit(1);
+			}
 			ft_memdel((void**)&line);
 			read_lights(r, fd, &line);
+			is_read[1] = 1;
 			continue;
 		}
 		ft_putendl_fd("level 0 invalid key", 2);
