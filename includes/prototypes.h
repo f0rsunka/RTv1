@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 01:26:06 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 02:02:43 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ void		parse_light(int fd, char **line, t_light *light);
 size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line, int fd);
 size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
 														char **line, int fd);
+size_t			light_check_bitmask(short *bitmask, t_light *light, char **line,
+																	int fd);
 /*
 ** *********************************** **
 ** *********************************** **
