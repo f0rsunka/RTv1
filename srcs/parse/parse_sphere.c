@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:41:46 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 12:38:43 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:45:47 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_sphere	*create_sphere(int fd, char **line)
 		rtv_error(INVALIDE_STRUCT);
 	}
 	check_radius(sphere->radius);
-	check_specular(sphere->material.specular);
+	check_material(sphere->material);
 	sphere->material.color = float_to_byte(sphere->material.color);
 	return (sphere);
 }

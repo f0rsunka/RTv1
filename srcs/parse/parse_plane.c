@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:43:12 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 12:33:55 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:46:11 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_plane	*create_plane(int fd, char **line)
 		rtv_error(INVALIDE_STRUCT);
 	}
 	check_normal_plane(plane->normal);
-	check_specular(plane->material.specular);
+	check_material(plane->material);
 	plane->angle = (t_vec3){0.0f, 0.0f, 0.0f};
 	plane->material.color = float_to_byte(plane->material.color);
 	return (plane);
