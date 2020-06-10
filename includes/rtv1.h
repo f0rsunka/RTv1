@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 19:16:01 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 20:02:53 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@
 # define BLUE (t_color){181, 188, 255}
 # define PINK (t_color){217, 188, 255}
 # define YELLOW (t_color){255, 255, 0}
+# define LIGHT_YELLOW (t_color){255, 255, 145}
 # define LILAC (t_color){131, 120, 158}
 # define BACKGROUND_COLOR float_to_byte(LILAC)
 # define BRIGHT_PURPLE (t_color){186, 151, 255}
@@ -93,6 +94,9 @@
 # define ROSE_PINK (t_color){255, 165, 198}
 # define INDEPENDENCE (t_color){202, 211, 255}
 # define INDIGO (t_color){196, 214, 255}
+# define SPACE (t_color){89, 56, 181}
+# define LIGHT_BLUE (t_color){144, 185, 255}
+# define LIGHT_RED (t_color){255, 115, 94}
 
 /*
 ** *********************************** **
