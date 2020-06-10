@@ -58,6 +58,7 @@ t_plane	*create_plane(int fd, char **line)
 		if (read_keyed_float(*line, "    specular:", &(plane->material.specular)))
 			bitmask += 1u << 12u;
 		i++;
+		ft_memdel((void**)line);
 	}
 	if (bitmask != ((1u << 13u) - 1) || i != 13)
 	{

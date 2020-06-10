@@ -58,6 +58,7 @@ t_sphere	*create_sphere(int fd, char **line)
 		if (read_keyed_double(*line, "    angle_z:", &(sphere->angle.z)))
 			bitmask += 1u << 10u;
 		i++;
+		ft_memdel((void**)line);
 	}
 	if (bitmask != ((1u << 11u) - 1) || i != 11)
 	{

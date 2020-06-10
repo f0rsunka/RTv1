@@ -89,6 +89,7 @@ size_t			cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
 		angle_check_keyed_double(bitmask, *line, cylinder);
 		material_check_keyed_double(bitmask, *line, cylinder);
 		i++;
+		ft_memdel((void**)line);
 	}
 	return (i);
 }

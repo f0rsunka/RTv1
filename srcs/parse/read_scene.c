@@ -27,7 +27,7 @@ void	check_read_file(int ac, char **scene)
 	close(fd);
 }
 
-void		read_objects(t_rtv *r, int fd, char **line)
+void	read_objects(t_rtv *r, int fd, char **line)
 {
 	t_scene		*cur;
 	size_t		count;
@@ -49,7 +49,7 @@ void		read_objects(t_rtv *r, int fd, char **line)
 	(count > 7 ? rtv_error(PRIMITIVES_MAX) : 0);
 }
 
-void		read_lights(t_rtv *r, int fd, char **line)
+void	read_lights(t_rtv *r, int fd, char **line)
 {
 	t_light		*cur;
 	size_t		count;
@@ -71,7 +71,7 @@ void		read_lights(t_rtv *r, int fd, char **line)
 	(count > 3 ? rtv_error(LIGHT_MAX) : 0);
 }
 
-int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
+int		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
 {
 	if (!**line)
 	{
@@ -97,7 +97,7 @@ int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
 	return (0);
 }
 
-void        read_scene(t_rtv *r, char *filename)
+void	read_scene(t_rtv *r, char *filename)
 {
 	int				fd;
 	char			*line;
@@ -123,5 +123,8 @@ void        read_scene(t_rtv *r, char *filename)
 		ft_putendl_fd(line, 2);
 		exit(1);
 	}
+	(is_read[0]) ? 0 : rtv_error(PRIMITIVES_MIN);
+	(is_read[1]) ? 0 : rtv_error(LIGHT_MIN);
+	ft_memdel((void**)&line);
 	close(fd);
 }

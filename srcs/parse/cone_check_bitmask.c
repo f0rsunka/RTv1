@@ -77,6 +77,7 @@ size_t			cone_check_bitmask(short *bitmask, t_cone *cone, char **line,
 		angle_check_keyed_double(bitmask, *line, cone);
 		material_check_keyed_double(bitmask, *line, cone);
 		i++;
+		ft_memdel((void**)line);
 	}
 	return (i);
 }
