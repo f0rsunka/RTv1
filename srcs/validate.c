@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:57:23 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 10:50:30 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 13:31:46 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,18 @@ void	check_radius(float r)
 {
 	if (r <= 0)
 		rtv_error(NEGATIVE_VAL_RADIUS);
-	if (r >= 100)
+	if (r >= 1000)
 		rtv_error(MAX_VAL_RADIUS);
 }
 
-void	check_specular(float s)
+void	check_material(t_material mat)
 {
-	if (s >= 1000)
+	if (mat.specular >= 1000)
 		rtv_error(SPECULAR_OVERFLOW);
+	if (mat.color.r > 255 || mat.color.g > 255 || mat.color.b > 255)
+		rtv_error(COLOR_OVERFLOW);
+	if (mat.color.r < 0 || mat.color.g < 0 || mat.color.b < 0)
+		rtv_error(COLOR_NOT_ENOUGH);
 }
 
 void	check_coefficients_cone(t_vec3 coef)

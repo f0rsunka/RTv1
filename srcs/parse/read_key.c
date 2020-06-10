@@ -15,23 +15,11 @@
 int		read_keyed_double(char *line, char *key, double *data)
 {
 	char	*str;
-//	char	*end;
 
 	str = ft_strstr(line, key);
 	if (line == str && str != 0)
 	{
-		// FIXME проверять правую часть при помощи strtol?
 		*data = (double)ft_atoi(line + ft_strlen(key));
-//		*data = strtol(line + ft_strlen(key), &end, 10);
-//		if (*end != '\0')
-		// {
-//			ft_putstr_fd("Invalid data [", 2);
-//			ft_putstr_fd(end, 2);
-//			ft_putstr_fd("] passed to [", 2);
-//			ft_putstr_fd(key, 2);
-//			ft_putendl_fd("]", 2);
-//			exit(1);
-		// }
 		return (1);
 	}
 	return (0);
@@ -62,7 +50,3 @@ int		read_keyed_int(char *line, char *key, int *data)
 	}
 	return (0);
 }
-
-// scene->object = init_plane((t_vec3){0.0f, 0.0f, -13.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_color)ROSE_PINK);
-// scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
-// t_plane	*init_plane(t_vec3 offset, t_vec3 coef, t_vec3 normal, t_color color)

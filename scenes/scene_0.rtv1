@@ -66,6 +66,9 @@ objects:
     color_g: 165
     color_b: 198
     specular: 50
+    angle_x: 0
+    angle_y: 0
+    angle_z: 0
   plane:
     offset_x: 0
     offset_y: 3
@@ -80,6 +83,9 @@ objects:
     color_g: 211
     color_b: 255
     specular: 50
+    angle_x: 50
+    angle_y: 0
+    angle_z: 0
   cone:
     offset_x: 3
     offset_y: -1

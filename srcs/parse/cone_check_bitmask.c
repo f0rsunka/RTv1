@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-static void		offset_check_keyed_double(short *bitmask, char *line,
+static void		offset_check_keyed_double(int *bitmask, char *line,
 																t_cone *cone)
 {
 	if (read_keyed_double(line, "    offset_x:", &(cone->offset.x)))
@@ -23,7 +23,7 @@ static void		offset_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 2u;
 }
 
-static void		coef_check_keyed_double(short *bitmask, char *line,
+static void		coef_check_keyed_double(int *bitmask, char *line,
 																t_cone *cone)
 {
 	if (read_keyed_double(line, "    coef_x:", &(cone->coef.x)))
@@ -34,7 +34,7 @@ static void		coef_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 5u;
 }
 
-static void		angle_check_keyed_double(short *bitmask, char *line,
+static void		angle_check_keyed_double(int *bitmask, char *line,
 																t_cone *cone)
 {
 	if (read_keyed_double(line, "    angle_x:", &(cone->angle.x)))
@@ -45,7 +45,7 @@ static void		angle_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 8u;
 }
 
-static void		material_check_keyed_double(short *bitmask, char *line,
+static void		material_check_keyed_double(int *bitmask, char *line,
 																t_cone *cone)
 {
 	if (read_keyed_float(line, "    color_r:", &(cone->material.color.r)))
@@ -58,7 +58,7 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 12u;
 }
 
-size_t			cone_check_bitmask(short *bitmask, t_cone *cone, char **line,
+size_t			cone_check_bitmask(int *bitmask, t_cone *cone, char **line,
 																	int fd)
 {
 	int		status;

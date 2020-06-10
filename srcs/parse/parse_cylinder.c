@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:38:10 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 12:37:25 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:06:07 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_cylinder	*create_cylinder(int fd, char **line)
 {
 	t_cylinder	*cylinder;
-	short		bitmask;
+	int			bitmask;
 	size_t		i;
 
 	bitmask = 0;
@@ -30,7 +30,7 @@ t_cylinder	*create_cylinder(int fd, char **line)
 	}
 	check_coefficients_cyl(cylinder->coef);
 	check_radius(cylinder->radius);
-	check_specular(cylinder->material.specular);
+	check_material(cylinder->material);
 	cylinder->material.color = float_to_byte(cylinder->material.color);
 	return (cylinder);
 }

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 11:55:03 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:05:52 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,15 +161,15 @@ int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
 void		parse_light(int fd, char **line, t_light *light);
 int			check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd);
-size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line,
+size_t		cone_check_bitmask(int *bitmask, t_cone *cone, char **line,
 																	int fd);
-size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
+size_t		cylinder_check_bitmask(int *bitmask, t_cylinder *cylinder,
 														char **line, int fd);
-size_t		light_check_bitmask(short *bitmask, t_light *light, char **line,
+size_t		light_check_bitmask(int *bitmask, t_light *light, char **line,
 																	int fd);
-size_t		plane_check_bitmask(short *bitmask, t_plane *plane,
+size_t		plane_check_bitmask(int *bitmask, t_plane *plane,
 														char **line, int fd);
-size_t		sphere_check_bitmask(short *bitmask, t_sphere *sphere,
+size_t		sphere_check_bitmask(int *bitmask, t_sphere *sphere,
 														char **line, int fd);
 
 /*
@@ -183,9 +183,9 @@ size_t		sphere_check_bitmask(short *bitmask, t_sphere *sphere,
 void		rtv_error(int n);
 void		arguments_errors(int n);
 void		validate_errors(int n);
-void		malloc_error(int n);
 void		lights_errors(int n);
 void		primitives_errors(int n);
+void		material_errors(int n);
 void		write_error(char *reason);
 
 /*
@@ -198,7 +198,7 @@ void		write_error(char *reason);
 
 void		check_coefficients_cyl(t_vec3 coef);
 void		check_radius(float r);
-void		check_specular(float s);
+void		check_material(t_material mat);
 void		check_coefficients_cone(t_vec3 coef);
 void		check_read_file(int ac, char **av);
 void		check_normal_plane(t_vec3 normal);

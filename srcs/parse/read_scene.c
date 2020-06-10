@@ -6,13 +6,13 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:48:54 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 12:25:22 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/09 20:27:59 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	check_read_file(int ac, char **scene)
+void		check_read_file(int ac, char **scene)
 {
 	int fd;
 
@@ -27,7 +27,7 @@ void	check_read_file(int ac, char **scene)
 	close(fd);
 }
 
-void	read_objects(t_rtv *r, int fd, char **line)
+void		read_objects(t_rtv *r, int fd, char **line)
 {
 	t_scene		*cur;
 	size_t		count;
@@ -49,7 +49,7 @@ void	read_objects(t_rtv *r, int fd, char **line)
 	(count > 7 ? rtv_error(PRIMITIVES_MAX) : 0);
 }
 
-void	read_lights(t_rtv *r, int fd, char **line)
+void		read_lights(t_rtv *r, int fd, char **line)
 {
 	t_light		*cur;
 	size_t		count;
@@ -71,7 +71,7 @@ void	read_lights(t_rtv *r, int fd, char **line)
 	(count > 3 ? rtv_error(LIGHT_MAX) : 0);
 }
 
-int		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
+int			check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
 {
 	if (!**line)
 	{
@@ -97,11 +97,11 @@ int		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
 	return (0);
 }
 
-void	read_scene(t_rtv *r, char *filename)
+void		read_scene(t_rtv *r, char *filename)
 {
 	int				fd;
 	char			*line;
-	int 			status;
+	int				status;
 	unsigned char	is_read[2];
 
 	line = 0;
@@ -115,55 +115,11 @@ void	read_scene(t_rtv *r, char *filename)
 			status = get_next_line(fd, &line);
 			(status < 0 ? rtv_error(GNL_ERROR) : 0);
 			if (status == 0)
-				break;
+				break ;
 		}
 		if (check_read(&line, r, is_read, fd))
 			continue;
-		ft_putendl_fd("level 0 invalid key\n", 2);
-		ft_putendl_fd(line, 2);
-		exit(1);
+		rtv_error(INVALIDE_STRUCT);
 	}
-	(is_read[0]) ? 0 : rtv_error(PRIMITIVES_MIN);
-	(is_read[1]) ? 0 : rtv_error(LIGHT_MIN);
-	ft_memdel((void**)&line);
 	close(fd);
 }
-
-
-// void	read_with_gnl(char **line, int fd, t_rtv *r, unsigned char is_read[2])
-// {
-// 	int	status;
-
-// 	while (1)
-// 	{
-// 		if (!line)
-// 		{
-// 			status = get_next_line(fd, line);
-// 			(status < 0 ? rtv_error(GNL_ERROR) : 0);
-// 			if (status == 0)
-// 				break ;
-// 		}
-// 		if (check_read(line, r, is_read, fd))
-// 			continue;
-// 		ft_putendl_fd("level 0 invalid key\n", 2);
-// 		ft_putendl_fd(*line, 2);
-// 		exit(1);
-// 	}
-// }
-
-// void	read_scene(t_rtv *r, char *filename)
-// {
-// 	int				fd;
-// 	char			*line;
-// 	unsigned char	is_read[2];
-
-// 	line = 0;
-// 	ft_bzero(is_read, 2);
-// 	if ((fd = open(filename, O_RDONLY)) < 3)
-// 		rtv_error(NOT_A_FILE);
-// 	read_with_gnl(&line, fd, r, is_read);
-// 	(is_read[0]) ? 0 : rtv_error(PRIMITIVES_MIN);
-// 	(is_read[1]) ? 0 : rtv_error(LIGHT_MIN);
-// 	ft_memdel((void**)&line);
-// 	close(fd);
-// }

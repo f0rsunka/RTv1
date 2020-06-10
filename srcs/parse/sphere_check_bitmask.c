@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-static void		center_check_keyed_double(short *bitmask, char *line,
+static void		center_check_keyed_double(int *bitmask, char *line,
 														t_sphere *sphere)
 {
 	if (read_keyed_double(line, "    center_x:", &(sphere->center.x)))
@@ -23,7 +23,7 @@ static void		center_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 2u;
 }
 
-static void		radius_check_keyed_double(short *bitmask, char *line,
+static void		radius_check_keyed_double(int *bitmask, char *line,
 														t_sphere *sphere)
 {
 	if (read_keyed_float(line, "    radius:", &(sphere->radius)))
@@ -33,7 +33,7 @@ static void		radius_check_keyed_double(short *bitmask, char *line,
 	}
 }
 
-static void		material_check_keyed_double(short *bitmask, char *line,
+static void		material_check_keyed_double(int *bitmask, char *line,
 														t_sphere *sphere)
 {
 	if (read_keyed_float(line, "    color_r:", &(sphere->material.color.r)))
@@ -46,7 +46,7 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 7u;
 }
 
-static void		angle_check_keyed_double(short *bitmask, char *line,
+static void		angle_check_keyed_double(int *bitmask, char *line,
 														t_sphere *sphere)
 {
 	if (read_keyed_double(line, "    angle_x:", &(sphere->angle.x)))
@@ -57,7 +57,7 @@ static void		angle_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 10u;
 }
 
-size_t			sphere_check_bitmask(short *bitmask, t_sphere *sphere,
+size_t			sphere_check_bitmask(int *bitmask, t_sphere *sphere,
 														char **line, int fd)
 {
 	int		status;

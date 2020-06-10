@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:38:01 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 23:40:06 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 13:46:09 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	validate_errors(int n)
 		write_error("RTv1: too small window.\n");
 	if (n == WINDOW_MAX)
 		write_error("RTv1: too big window.\n");
-}
-
-void	malloc_error(int n)
-{
-	if (n == MALLOC_ERROR)
-		write_error("RTv1: memory allocation error.\n");
+	if (n == PRIMITIVES_MIN)
+		write_error("RTv1: invalide file.\n");
+	if (n == PRIMITIVES_MAX)
+		write_error("RTv1: too much count of primitives.\n");
 }
 
 void	lights_errors(int n)
@@ -57,16 +55,18 @@ void	lights_errors(int n)
 		write_error("RTv1: too much count of lights.\n");
 	if (n == LIGHT_MIN)
 		write_error("RTv1: too few count of lights.\n");
+	if (n == INTENSITY_NOT_ENOUGH)
+		write_error("RTv1: low intensity value.\n");
+	if (n == INTENSITY_TOO_MUCH)
+		write_error("RTv1: too high intensity value.\n");
 }
 
 void	primitives_errors(int n)
 {
-	if (n == PRIMITIVES_MAX)
-		write_error("RTv1: too few count of primitives.\n");
-	if (n == PRIMITIVES_MIN)
-		write_error("RTv1: too much count of primitives.\n");
 	if (n == NEGATIVE_VAL_RADIUS)
 		write_error("RTv1: primitive's radius can't be negative.\n");
+	if (n == MAX_VAL_RADIUS)
+		write_error("RTv1: primitive's radius can't be too big.\n");
 	if (n == CYL_COEF_NOT_EXIST)
 		write_error("RTv1: all cylinder's coefficients can't be equal to zero.\
 					\nOnly one axis (x, y or z) can be equal to 0.\n");
@@ -84,6 +84,18 @@ void	primitives_errors(int n)
 		write_error("RTv1: cone's coefficients cannot be negative.\n");
 	if (n == CONE_COEF_DELIM_ZERO)
 		write_error("RTv1: cone's coefficients cannot equal to 0.\n");
+	if (n == PLANE_NORMAL_ZERO)
+		write_error("RTv1: plane's normal cannot equal to 0.\n");
+}
+
+void	material_errors(int n)
+{
 	if (n == SPECULAR_OVERFLOW)
 		write_error("RTv1: specular's value is too big.\n");
+	if (n == COLOR_OVERFLOW)
+		write_error("RTv1: color can't be more than 255 in each field.\
+		\nWhite color: color.r = 255, color.g = 255, color.b = 255.\n");
+	if (n == COLOR_NOT_ENOUGH)
+		write_error("RTv1: color can't be less than 0 in each field.\
+		\nBlack color: color.r = 0, color.g = 0, color.b = 0.\n");
 }
