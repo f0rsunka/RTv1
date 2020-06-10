@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 11:00:03 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 11:55:03 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,11 @@ size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
 														char **line, int fd);
 size_t		light_check_bitmask(short *bitmask, t_light *light, char **line,
 																	int fd);
+size_t		plane_check_bitmask(short *bitmask, t_plane *plane,
+														char **line, int fd);
+size_t		sphere_check_bitmask(short *bitmask, t_sphere *sphere,
+														char **line, int fd);
+
 /*
 ** *********************************** **
 ** *********************************** **
@@ -196,5 +201,6 @@ void		check_radius(float r);
 void		check_specular(float s);
 void		check_coefficients_cone(t_vec3 coef);
 void		check_read_file(int ac, char **av);
+void		check_normal_plane(t_vec3 normal);
 
 #endif
