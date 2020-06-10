@@ -27,13 +27,13 @@ DEPS = $(OBJ:.o=.d)
 
 HEADER = ./include
 
-FLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS_FINAL = -Wall -Wextra -Werror -MMD -MP $(CFLAGS)
 
 all: $(NAME)
 
 -include $(DEPS)
 %.o: %.c
-	gcc $(FLAGS) -c $< -I $(HEADER)
+	gcc $(CFLAGS_FINAL) -c $< -I $(HEADER)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)

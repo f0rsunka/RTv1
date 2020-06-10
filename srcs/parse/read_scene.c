@@ -46,7 +46,7 @@ void		read_objects(t_rtv *r, int fd, char **line)
 		}
 	}
 	(count <= 0 ? rtv_error(PRIMITIVES_MIN) : 0);
-	(count > 7 ? rtv_error(PRIMITIVES_MAX) : 0);
+	(count > 20 ? rtv_error(PRIMITIVES_MAX) : 0);
 }
 
 void		read_lights(t_rtv *r, int fd, char **line)
@@ -121,5 +121,8 @@ void		read_scene(t_rtv *r, char *filename)
 			continue;
 		rtv_error(INVALIDE_STRUCT);
 	}
+	(is_read[0]) ? 0 : rtv_error(PRIMITIVES_MIN);
+	(is_read[1]) ? 0 : rtv_error(LIGHT_MIN);
+	ft_memdel((void**)&line);
 	close(fd);
 }

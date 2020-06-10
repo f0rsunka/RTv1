@@ -27,10 +27,7 @@ static void		radius_check_keyed_double(int *bitmask, char *line,
 														t_sphere *sphere)
 {
 	if (read_keyed_float(line, "    radius:", &(sphere->radius)))
-	{
 		*bitmask += 1u << 3u;
-		sphere->radius /= 100;
-	}
 }
 
 static void		material_check_keyed_double(int *bitmask, char *line,

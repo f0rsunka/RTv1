@@ -19,7 +19,7 @@ int		read_keyed_double(char *line, char *key, double *data)
 	str = ft_strstr(line, key);
 	if (line == str && str != 0)
 	{
-		*data = (double)ft_atoi(line + ft_strlen(key));
+		*data = ft_atod(line + ft_strlen(key));
 		return (1);
 	}
 	return (0);
@@ -32,7 +32,7 @@ int		read_keyed_float(char *line, char *key, float *data)
 	str = ft_strstr(line, key);
 	if (line == str && str != 0)
 	{
-		*data = (float)ft_atoi(line + ft_strlen(key));
+		*data = (float)ft_atod(line + ft_strlen(key));
 		return (1);
 	}
 	return (0);

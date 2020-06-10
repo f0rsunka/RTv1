@@ -61,10 +61,7 @@ static void		material_check_keyed_double(int *bitmask, char *line,
 										&(cylinder->material.specular)))
 		*bitmask += 1u << 12u;
 	if (read_keyed_float(line, "    radius:", &(cylinder->radius)))
-	{
 		*bitmask += 1u << 13u;
-		cylinder->radius /= 100;
-	}
 }
 
 size_t			cylinder_check_bitmask(int *bitmask, t_cylinder *cylinder,

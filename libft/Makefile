@@ -26,20 +26,20 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c \
  ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
  ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c \
  ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_strndup.c ft_count_words.c \
- ft_swap.c ft_strrev.c get_next_line.c ft_readfile.c
+ ft_swap.c ft_strrev.c get_next_line.c ft_readfile.c ft_atod.c
 
 OBJ = $(SRC:.c=.o)
 DEPS = $(OBJ:.o=.d)
 
 HEADER = ./include
 
-FLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS_FINAL = -Wall -Wextra -Werror -MMD -MP $(CFLAGS)
 
 all: $(NAME)
 
 -include $(DEPS)
 %.o: %.c
-	gcc $(FLAGS) -c $< -I $(HEADER)
+	gcc $(CFLAGS_FINAL) -c $< -I $(HEADER)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)

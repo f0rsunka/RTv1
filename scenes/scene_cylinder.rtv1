@@ -1,0 +1,45 @@
+lights:
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 0
+    direction_x: 0
+    direction_y: 0
+    direction_z: 0
+    intensity: 0.4
+    type: 1
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 6
+    direction_x: 0
+    direction_y: 0
+    direction_z: 0
+    intensity: 0.3
+    type: 2
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 0
+    direction_x: 0
+    direction_y: -3
+    direction_z: 13
+    intensity: 0.3
+    type: 3
+
+objects:
+  cylinder:
+    offset_x: -2
+    offset_y: 1
+    offset_z: -7
+    coef_x: 1
+    coef_y: 0
+    coef_z: 1
+    angle_x: 0
+    angle_y: 20
+    angle_z: -30
+    color_r: 189
+    color_g: 156
+    color_b: 181
+    specular: 50
+    radius: 1

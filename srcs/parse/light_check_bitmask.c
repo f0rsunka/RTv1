@@ -38,10 +38,7 @@ static void		intensity_check_keyed_float(int *bitmask, char *line,
 																t_light *light)
 {
 	if (read_keyed_float(line, "    intensity:", &(light->intensity)))
-	{
 		*bitmask += 1u << 6u;
-		light->intensity /= 100;
-	}
 }
 
 static void		type_check_keyed_int(int *bitmask, char *line,

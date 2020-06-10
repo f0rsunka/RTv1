@@ -6,7 +6,7 @@ lights:
     direction_x: 0
     direction_y: 0
     direction_z: 0
-    intensity: 40
+    intensity: 0.4
     type: 1
   light:
     position_x: 0
@@ -15,7 +15,7 @@ lights:
     direction_x: 0
     direction_y: 0
     direction_z: 0
-    intensity: 30
+    intensity: 0.3
     type: 2
   light:
     position_x: 0
@@ -24,15 +24,15 @@ lights:
     direction_x: 0
     direction_y: -3
     direction_z: 13
-    intensity: 30
+    intensity: 0.3
     type: 3
 
 objects:
   sphere:
-    center_x: -3
-    center_y: 1
-    center_z: -5
-    radius: 250
+    center_x: 1
+    center_y: -3
+    center_z: -6
+    radius: 50
     color_r: 181
     color_g: 188
     color_b: 255
@@ -43,7 +43,7 @@ objects:
   sphere:
     center_x: 6
     center_y: 1
-    center_z: -4
+    center_z: -6
     radius: 200
     color_r: 217
     color_g: 188
@@ -83,13 +83,13 @@ objects:
     color_g: 211
     color_b: 255
     specular: 50
-    angle_x: 50
+    angle_x: 0
     angle_y: 0
     angle_z: 0
   cone:
-    offset_x: 5
+    offset_x: 3
     offset_y: -1
-    offset_z: -4
+    offset_z: -6
     coef_x: 9
     coef_y: 9
     coef_z: 16
