@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:38:10 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 01:25:14 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:46:29 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ t_cylinder	*create_cylinder(int fd, char **line)
 		ft_memdel((void **)&cylinder);
 		rtv_error(INVALIDE_STRUCT);
 	}
+	check_coefficients_cyl(cylinder->coef);
+	check_radius(cylinder->radius);
+	check_material(cylinder->material);
 	cylinder->material.color = float_to_byte(cylinder->material.color);
 	return (cylinder);
 }

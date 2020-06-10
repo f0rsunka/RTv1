@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:42:26 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 00:51:27 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:47:57 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_cone		*create_cone(int fd, char **line)
 		ft_memdel((void **)&cone);
 		rtv_error(INVALIDE_STRUCT);
 	}
+	check_coefficients_cone(cone->coef);
+	check_material(cone->material);
 	cone->material.color = float_to_byte(cone->material.color);
 	return (cone);
 }
