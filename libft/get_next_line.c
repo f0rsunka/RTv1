@@ -12,61 +12,69 @@
 
 #include "libft.h"
 
-int		create_line(char **line, int i, char **balance)
+int		func1(char **s, int fd, char **line, char *tmp)
 {
-	char *tmp;
+	char	*dump;
 
-	i = 0;
-	if (**balance && *balance)
-	{
-		while ((*balance)[i] && (*balance)[i] != '\n')
-			++i;
-		if (!(*line = ft_strsub(*balance, 0, i)))
-			return (-1);
-		if (i != (int)ft_strlen(*balance))
-		{
-			if (!(tmp = ft_strsub(*balance, i + 1, (ft_strlen(*balance) - i))))
-				return (-1);
-			free(*balance);
-			*balance = tmp;
-		}
-		else
-		{
-			free(*balance);
-			*balance = NULL;
-		}
+	*line = ft_strsub(s[fd], 0, tmp - s[fd]);
+	if (!s[fd])
+		return (-1);
+	dump = s[fd];
+	s[fd] = ft_strsub(s[fd], tmp - s[fd] + 1, s[fd] + ft_strlen(s[fd]) - tmp);
+	if (!s[fd])
+		return (-1);
+	free(dump);
+	return (1);
+}
+
+int		func2(char **s, int fd, char **line)
+{
+	*line = ft_strdup(s[fd]);
+	if (!s[fd])
+		return (-1);
+	ft_bzero(s[fd], ft_strlen(s[fd]));
+	free(s[fd]);
+	return (1);
+}
+
+int		func3(char *buf, int n, char **s, int fd)
+{
+	char	*dump;
+
+	buf[n] = '\0';
+	dump = s[fd];
+	s[fd] = ft_strjoin(s[fd], buf);
+	if (!s[fd])
+		return (-1);
+	free(dump);
+	if (ft_memchr(buf, '\n', BUFF_SIZE))
 		return (1);
-	}
 	return (0);
 }
 
 int		get_next_line(const int fd, char **line)
 {
 	char		buf[BUFF_SIZE + 1];
-	static char	*balance[MAX_FD + 1];
-	int			red;
-	char		*tmp_fir;
-	char		*alpha;
-	int			i;
+	int			n;
+	int			temp;
+	char		*tmp;
+	static char	*s[FD_LIMIT];
 
-	if (fd > MAX_FD || line == NULL)
+	if (fd < 0 || fd == 1 || fd == 2 || read(fd, 0, 0) < 0 || !line
+												|| BUFF_SIZE < 0)
 		return (-1);
-	if (!(balance[fd])) 									/* есть ли массив чаров, cодержащий остаток считанного */
-		if (!(balance[fd] = ft_strnew(0)))					/*  случае если ее нет, попытка создать строчку состоящую только из \0 */
+	s[fd] = (!s[fd]) ? (ft_strnew(1)) : s[fd];
+	n = -1;
+	tmp = NULL;
+	while ((n = read(fd, &buf, BUFF_SIZE)))
+		if ((temp = func3(buf, n, s, fd)))
+			break ;
+		else if (temp == -1)
 			return (-1);
-	/* Например, если мы считали от fd = 3 десять символов "564/n666989", то в остатке после вызова функции будет 666989 */
-	while ((red = read(fd, buf, BUFF_SIZE)) > 0)
-	{
-		i = 0;
-		buf[red] = '\0';
-		alpha = ft_memchr(buf, '\n', red);
-		i = alpha - buf;
-		if (!(tmp_fir = ft_strjoin(balance[fd], buf)))
-			return (-1);
-		free(balance[fd]);
-		balance[fd] = tmp_fir;
-		if (i != red)
-			return (create_line(line, i, &balance[fd]));
-	}
-	return (red < 0 ? -1 : create_line(line, i, &balance[fd]));
+	if ((tmp = ft_strchr(s[fd], '\n')))
+		return (func1(s, fd, line, tmp));
+	else if (*s[fd] != 0)
+		return (func2(s, fd, line));
+	line = NULL;
+	return ((n == 0) ? 0 : -1);
 }

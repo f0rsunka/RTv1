@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:48:54 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/11 00:17:36 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/11 00:29:35 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void		read_scene(t_rtv *r, char *filename)
 	line = 0;
 	ft_bzero(is_read, 2);
 	(((fd = open(filename, O_RDONLY)) < 3) ? rtv_error(NOT_A_FILE) : 0);
-	//	rtv_error(NOT_A_FILE);
 	while (1)
 	{
 		if (!line)

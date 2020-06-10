@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 21:19:10 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 20:14:16 by dmorrige         ###   ########.fr       */
+/*   Updated: 2020/06/11 01:39:48 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ static double	ft_res(const char *str, size_t i)
 	should_count_del = 0;
 	while ((str[i] >= '0' && str[i] <= '9' && str[i] != '\0') || str[i] == '.')
 	{
-		if (str[i] == '.') {
+		if (str[i] == '.')
+		{
 			should_count_del = 1;
 			i++;
 			continue;
 		}
 		total = total * 10 + (str[i] - 48);
-		if (should_count_del) {
+		if (should_count_del)
+		{
 			del++;
 		}
 		i++;

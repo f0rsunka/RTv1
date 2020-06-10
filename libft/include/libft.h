@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 16:29:38 by cvernius          #+#    #+#             */
-/*   Updated: 2019/10/20 23:51:14 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/11 01:39:17 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <limits.h>
-# define BUFF_SIZE 1000
-# define MAX_FD 65536
+# define BUFF_SIZE 1
+# define FD_LIMIT 65536
 
 typedef struct		s_list
 {
