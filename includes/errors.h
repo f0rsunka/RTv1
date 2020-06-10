@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:17:34 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 13:23:06 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/11 02:02:18 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 ** *********************************** **
 */
 
-# define NEGATIVE_VAL_RADIUS	PRIMITIVES_MAX + 1
+# define NEGATIVE_VAL_RADIUS	INTENSITY_TOO_MUCH + 1
 # define MAX_VAL_RADIUS			NEGATIVE_VAL_RADIUS + 1
 # define CYL_COEF_NOT_EXIST		MAX_VAL_RADIUS + 1
 # define CYL_COEF_ALL_EXISTS	CYL_COEF_NOT_EXIST + 1
