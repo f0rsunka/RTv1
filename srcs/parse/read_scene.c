@@ -46,7 +46,7 @@ void		read_objects(t_rtv *r, int fd, char **line)
 		}
 	}
 	(count <= 0 ? rtv_error(PRIMITIVES_MIN) : 0);
-	(count > 7 ? rtv_error(PRIMITIVES_MAX) : 0);
+	(count > 20 ? rtv_error(PRIMITIVES_MAX) : 0);
 }
 
 void		read_lights(t_rtv *r, int fd, char **line)
