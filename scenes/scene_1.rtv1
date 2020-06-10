@@ -1,0 +1,111 @@
+lights:
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 0
+    direction_x: 0
+    direction_y: 0
+    direction_z: 0
+    intensity: 40
+    type: 1
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 6
+    direction_x: 0
+    direction_y: 0
+    direction_z: 0
+    intensity: 30
+    type: 2
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 0
+    direction_x: 0
+    direction_y: -3
+    direction_z: 13
+    intensity: 30
+    type: 3
+
+objects:
+  sphere:
+    center_x: 1
+    center_y: -3
+    center_z: -6
+    radius: 50
+    color_r: 181
+    color_g: 188
+    color_b: 255
+    specular: 50
+    angle_x: 5
+    angle_y: 5
+    angle_z: 5
+  sphere:
+    center_x: 6
+    center_y: 1
+    center_z: -6
+    radius: 200
+    color_r: 217
+    color_g: 188
+    color_b: 255
+    specular: 50
+    angle_x: 0
+    angle_y: 0
+    angle_z: 0
+  plane:
+    offset_x: 0
+    offset_y: 0
+    offset_z: -13
+    coef_x: 0
+    coef_y: 0
+    coef_z: 1
+    normal_x: 0
+    normal_y: 0
+    normal_z: 1
+    color_r: 255
+    color_g: 165
+    color_b: 198
+    specular: 50
+  plane:
+    offset_x: 0
+    offset_y: 3
+    offset_z: 0
+    coef_x: 0
+    coef_y: 1
+    coef_z: 0
+    normal_x: 0
+    normal_y: -1
+    normal_z: 0
+    color_r: 202
+    color_g: 211
+    color_b: 255
+    specular: 50
+  cone:
+    offset_x: 3
+    offset_y: -1
+    offset_z: -6
+    coef_x: 9
+    coef_y: 9
+    coef_z: 16
+    angle_x: 0
+    angle_y: 0
+    angle_z: -50
+    color_r: 196
+    color_g: 214
+    color_b: 255
+    specular: 50
+  cylinder:
+    offset_x: 0
+    offset_y: 0
+    offset_z: -5
+    coef_x: 1
+    coef_y: 0
+    coef_z: 1
+    angle_x: 0
+    angle_y: 0
+    angle_z: 45
+    color_r: 186
+    color_g: 151
+    color_b: 255
+    specular: 50
+    radius: 100

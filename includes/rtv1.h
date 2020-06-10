@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 11:03:21 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 18:51:35 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIN_W 320
-# define WIN_H 240
+# define WIN_W 700
+# define WIN_H 500
 
 /*
 ** *********************************** **
