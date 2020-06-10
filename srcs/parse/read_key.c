@@ -15,23 +15,11 @@
 int		read_keyed_double(char *line, char *key, double *data)
 {
 	char	*str;
-//	char	*end;
 
 	str = ft_strstr(line, key);
 	if (line == str && str != 0)
 	{
-		// FIXME проверять правую часть при помощи strtol?
 		*data = (double)ft_atoi(line + ft_strlen(key));
-//		*data = strtol(line + ft_strlen(key), &end, 10);
-//		if (*end != '\0')
-		// {
-//			ft_putstr_fd("Invalid data [", 2);
-//			ft_putstr_fd(end, 2);
-//			ft_putstr_fd("] passed to [", 2);
-//			ft_putstr_fd(key, 2);
-//			ft_putendl_fd("]", 2);
-//			exit(1);
-		// }
 		return (1);
 	}
 	return (0);
