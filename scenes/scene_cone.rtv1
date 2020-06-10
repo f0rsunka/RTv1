@@ -1,0 +1,44 @@
+lights:
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 0
+    direction_x: 0
+    direction_y: 0
+    direction_z: 0
+    intensity: 0.4
+    type: 1
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 6
+    direction_x: 0
+    direction_y: 0
+    direction_z: 0
+    intensity: 0.3
+    type: 2
+  light:
+    position_x: 0
+    position_y: 0
+    position_z: 0
+    direction_x: 0
+    direction_y: -3
+    direction_z: 13
+    intensity: 0.3
+    type: 3
+
+objects:
+  cone:
+    offset_x: 0
+    offset_y: -1
+    offset_z: -6
+    coef_x: 9
+    coef_y: 9
+    coef_z: 16
+    angle_x: 0
+    angle_y: 0
+    angle_z: 160
+    color_r: 196
+    color_g: 214
+    color_b: 255
+    specular: 50

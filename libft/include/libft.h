@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <limits.h>
-# define BUFF_SIZE 1
-# define FD_LIMIT 65536
+# define BUFF_SIZE 1000
+# define MAX_FD 65536
 
 typedef struct		s_list
 {
