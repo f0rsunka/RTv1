@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:49:20 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 01:22:36 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 10:49:45 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void		coef_check_keyed_double(short *bitmask, char *line, t_cone *cone)
 		*bitmask += 1u << 4u;
 	if (read_keyed_double(line, "    coef_z:", &(cone->coef.z)))
 		*bitmask += 1u << 5u;
+	check_coefficients_cone(cone->coef);
 }
 
 static void		angle_check_keyed_double(short *bitmask, char *line, t_cone *cone)
@@ -53,6 +54,7 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 11u;
 	if (read_keyed_float(line, "    specular:", &(cone->material.specular)))
 		*bitmask += 1u << 12u;
+	check_specular(cone->material.specular);
 }
 
 size_t			cone_check_bitmask(short *bitmask, t_cone *cone, char **line,

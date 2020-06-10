@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 02:13:46 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 11:00:03 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,22 @@ void		closest_zero(t_close_obj *cl);
 
 void		render(t_rtv *rtv);
 t_close_obj	trace_ray(t_rtv *r);
-int			sphere_intersect(t_rtv *r, t_scene *current, t_close_obj *close);
-int			cylinder_intersect(t_rtv *r, t_scene *current, t_close_obj *close);
-int			plane_intersect(t_rtv *r, t_scene *current, t_close_obj *closest);
-int			cone_intersect(t_rtv *r, t_scene *current, t_close_obj *closest);
-int 		is_sphere(t_vec3 camera, t_vec3 dir, t_sphere sphere, float *sphere_dist);
-int 		is_cylinder(t_vec3 camera, t_vec3 dir, t_cylinder cylinder, float *cylinder_dist);
-int 		is_plane(t_vec3 camera, t_vec3 dir, t_plane plane, float *plane_dist);
-int			is_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
+int			sphere_intersect(t_rtv *r, t_scene *current,
+														t_close_obj *close);
+int			cylinder_intersect(t_rtv *r, t_scene *current,
+														t_close_obj *close);
+int			plane_intersect(t_rtv *r, t_scene *current,
+														t_close_obj *closest);
+int			cone_intersect(t_rtv *r, t_scene *current,
+														t_close_obj *closest);
+int			is_sphere(t_vec3 camera, t_vec3 dir,
+									t_sphere sphere, float *sphere_dist);
+int			is_cylinder(t_vec3 camera, t_vec3 dir,
+									t_cylinder cylinder, float *cylinder_dist);
+int			is_plane(t_vec3 camera, t_vec3 dir,
+									t_plane plane, float *plane_dist);
+int			is_cone(t_vec3 camera, t_vec3 dir,
+									t_cone cone, float *cone_dist);
 
 /*
 ** *********************************** **
@@ -70,9 +78,12 @@ int			is_cone(t_vec3 camera, t_vec3 dir, t_cone cone, float *cone_dist);
 */
 
 float		calc_discriminant(float a, float b, float c);
-void		sphere_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, float r);
-void		cylinder_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, t_cylinder cylinder);
-void		cone_calc_coefficients(t_coefficients *c, t_vec3 ofs, t_vec3 dir, t_cone cone);
+void		sphere_calc_coefficients(t_coefficients *c, t_vec3 ofs,
+											t_vec3 dir, float r);
+void		cylinder_calc_coefficients(t_coefficients *c, t_vec3 ofs,
+											t_vec3 dir, t_cylinder cylinder);
+void		cone_calc_coefficients(t_coefficients *c, t_vec3 ofs,
+											t_vec3 dir, t_cone cone);
 int			is_sqrt_valide(float t1, float t2, float *dist);
 /*
 ** *********************************** **
@@ -85,9 +96,10 @@ int			is_sqrt_valide(float t1, float t2, float *dist);
 void		normal(t_close_obj closest, t_rtv *r);
 t_color		calculate_lightning(t_rtv *r, t_close_obj closest);
 void		calculate_types_light(t_rtv *r, t_light light, t_material material,
-							  float *intensity);
+															float *intensity);
 void		calculate_diffuse(t_light light, t_vec3 normal, float *intensity);
-void		calculate_specular(t_rtv *r, t_light light, float specular, float *intensity);
+void		calculate_specular(t_rtv *r, t_light light, float specular,
+															float *intensity);
 void		add_light(t_color col, t_color *res_col, float intensity);
 
 /*
@@ -116,8 +128,8 @@ float		trace_p_to_light(t_rtv *r);
 ** *********************************** **
 ** *********************************** **
 **               move       		   **
-** *******************************
- * *** **
+** *********************************** **
+** *********************************** **
 ** *********************************** **
 */
 
@@ -132,14 +144,14 @@ void		events(t_rtv *r);
 ** *********************************** **
 */
 
-void        read_scene(t_rtv *r, char *filename);
+void		read_scene(t_rtv *r, char *filename);
 int			create_light(int fd, t_light *prev, char **line);
 int			create_figure(int fd, t_scene *prev, char **line);
 t_scene		*create_scene_plane(int fd, char **line);
 t_scene		*create_scene_sphere(int fd, char **line);
 t_scene		*create_scene_cylinder(int fd, char **line);
 t_scene		*create_scene_cone(int fd, char **line);
-t_light 	*create_scene_light(int fd, char **line);
+t_light		*create_scene_light(int fd, char **line);
 t_sphere	*create_sphere(int fd, char **line);
 t_plane		*create_plane(int fd, char **line);
 t_cylinder	*create_cylinder(int fd, char **line);
@@ -148,11 +160,12 @@ int			read_keyed_double(char *line, char *key, double *data);
 int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
 void		parse_light(int fd, char **line, t_light *light);
-int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd);
-size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line, int fd);
+int			check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd);
+size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line,
+																	int fd);
 size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
 														char **line, int fd);
-size_t			light_check_bitmask(short *bitmask, t_light *light, char **line,
+size_t		light_check_bitmask(short *bitmask, t_light *light, char **line,
 																	int fd);
 /*
 ** *********************************** **

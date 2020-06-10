@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:57:23 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 23:40:44 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 10:50:30 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_radius(float r)
 {
 	if (r <= 0)
 		rtv_error(NEGATIVE_VAL_RADIUS);
-	if (r >= FLT_MAX)
+	if (r >= 100)
 		rtv_error(MAX_VAL_RADIUS);
 }
 

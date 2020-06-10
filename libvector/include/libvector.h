@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:32:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/08 00:51:28 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 11:12:34 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define LIBVECTOR_H
 # include <math.h>
 
-typedef struct 		s_vec3
-{	
+typedef struct		s_vec3
+{
 	double			x;
 	double			y;
 	double			z;
 }					t_vec3;
 
-typedef struct 		s_ivec3
-{	
+typedef struct		s_ivec3
+{
 	int				x;
 	int				y;
 	int				z;
@@ -48,14 +48,14 @@ typedef struct		s_ivec2
 ** *********************************** **
 */
 
-t_vec3 		vec_diff(t_vec3 v1, t_vec3 v2);
-float		dot_product(t_vec3 v1, t_vec3 v2);
-t_vec3 		vec_add(t_vec3 v1, t_vec3 v2);
-t_vec3		vec_normalize(t_vec3 v);
-t_vec3		mult_vec_const(t_vec3 v, float n);
-float		vec_length(t_vec3 v);
-t_vec3		mult_vec(t_vec3 v1, t_vec3 v2);
-t_vec3		division_vec(t_vec3 v1, t_vec3 v2);
-t_vec3		mult_matrix(t_vec3 a, t_vec3 b);
+t_vec3				vec_diff(t_vec3 v1, t_vec3 v2);
+float				dot_product(t_vec3 v1, t_vec3 v2);
+t_vec3				vec_add(t_vec3 v1, t_vec3 v2);
+t_vec3				vec_normalize(t_vec3 v);
+t_vec3				mult_vec_const(t_vec3 v, float n);
+float				vec_length(t_vec3 v);
+t_vec3				mult_vec(t_vec3 v1, t_vec3 v2);
+t_vec3				division_vec(t_vec3 v1, t_vec3 v2);
+t_vec3				mult_matrix(t_vec3 a, t_vec3 b);
 
 #endif

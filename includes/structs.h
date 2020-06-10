@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 01:08:46 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 11:04:40 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct		s_color
 	float			b;
 }					t_color;
 
-typedef struct 		s_material
+typedef struct		s_material
 {
 	t_color			color;
 	float			specular;
@@ -60,7 +60,7 @@ typedef struct		s_ray
 	t_vec3			ofs;
 }					t_ray;
 
-typedef struct 		s_scene
+typedef struct		s_scene
 {
 	void			*object;
 	int				type;
@@ -75,7 +75,7 @@ typedef struct		s_trace
 	float			dist_max;
 }					t_trace;
 
-typedef struct 		s_flag
+typedef struct		s_flag
 {
 	int				is_move;
 	int				is_rotate;
@@ -86,7 +86,7 @@ typedef struct		s_close_obj
 	void			*obj;
 	int				type;
 	float			dist;
-	t_vec3			normal;	//!--------
+	t_vec3			normal;
 	t_material		mat;
 	t_color			color;
 }					t_close_obj;
@@ -127,7 +127,7 @@ typedef struct		s_cylinder
 	t_material		material;
 }					t_cylinder;
 
-typedef struct 		s_rtv
+typedef struct		s_rtv
 {
 	t_sdl			sdl;
 	t_vec3			camera;

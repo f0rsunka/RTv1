@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 16:02:59 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/09 19:23:45 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 11:03:21 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <stdlib.h>
 # include <math.h>
 
+# define WIN_W 320
+# define WIN_H 240
+
 /*
 ** *********************************** **
 ** *********************************** **
@@ -34,12 +37,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define WIN_W 320
-# define WIN_H 240
-
-//# define WIN_W 700
-//# define WIN_H 500
-
 /*
 ** *********************************** **
 ** *********************************** **
@@ -48,7 +45,6 @@
 ** *********************************** **
 */
 
-//# define M_PI 3.14159265358979323846
 # define FOV (M_PI / 2.0)
 # define DEG2RAD (M_PI / 180.f)
 # define EPSILON 1e-16
@@ -72,11 +68,11 @@
 ** *********************************** **
 */
 
-#define TYPE_HEAD 0
-#define TYPE_PLANE 1
-#define	TYPE_SPHERE 2
-#define	TYPE_CONE 3
-#define	TYPE_CYLINDER 4
+# define TYPE_HEAD 0
+# define TYPE_PLANE 1
+# define TYPE_SPHERE 2
+# define TYPE_CONE 3
+# define TYPE_CYLINDER 4
 
 /*
 ** *********************************** **
@@ -97,7 +93,6 @@
 # define ROSE_PINK (t_color){255, 165, 198}
 # define INDEPENDENCE (t_color){202, 211, 255}
 # define INDIGO (t_color){196, 214, 255}
-
 
 /*
 ** *********************************** **
