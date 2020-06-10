@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 11:28:29 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 11:40:26 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:34:51 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void		normal_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 4u;
 	if (read_keyed_double(line, "    normal_z:", &(plane->normal.z)))
 		*bitmask += 1u << 5u;
-	check_normal_plane(plane->normal);
 }
 
 static void		coef_check_keyed_double(short *bitmask, char *line,
@@ -57,7 +56,6 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 8u;
 	if (read_keyed_float(line, "    specular:", &(plane->material.specular)))
 		*bitmask += 1u << 12u;
-	check_specular(plane->material.specular);
 }
 
 size_t			plane_check_bitmask(short *bitmask, t_plane *plane,
@@ -84,4 +82,5 @@ size_t			plane_check_bitmask(short *bitmask, t_plane *plane,
 		i++;
 		ft_memdel((void**)line);
 	}
+	return (i);
 }

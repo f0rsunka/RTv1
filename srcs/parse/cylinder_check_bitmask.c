@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 00:53:57 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 10:52:20 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:37:20 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void		coef_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 4u;
 	if (read_keyed_double(line, "    coef_z:", &(cylinder->coef.z)))
 		*bitmask += 1u << 5u;
-	check_coefficients_cyl(cylinder->coef);
 }
 
 static void		angle_check_keyed_double(short *bitmask, char *line,
@@ -65,9 +64,7 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 	{
 		*bitmask += 1u << 13u;
 		cylinder->radius /= 100;
-		check_radius(cylinder->radius);
 	}
-	check_specular(cylinder->material.specular);
 }
 
 size_t			cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,

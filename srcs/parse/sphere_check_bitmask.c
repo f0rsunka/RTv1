@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/10 11:44:14 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 11:55:03 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:38:41 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void		center_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 1u;
 	if (read_keyed_double(line, "    center_z:", &(sphere->center.z)))
 		*bitmask += 1u << 2u;
-	
 }
 
 static void		radius_check_keyed_double(short *bitmask, char *line,
@@ -32,7 +31,6 @@ static void		radius_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 3u;
 		sphere->radius /= 100;
 	}
-	check_radius(sphere->radius);
 }
 
 static void		material_check_keyed_double(short *bitmask, char *line,
@@ -46,7 +44,6 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 6u;
 	if (read_keyed_float(line, "    specular:", &(sphere->material.specular)))
 		*bitmask += 1u << 7u;
-	check_specular(sphere->material.specular);
 }
 
 static void		angle_check_keyed_double(short *bitmask, char *line,
@@ -75,7 +72,7 @@ size_t			sphere_check_bitmask(short *bitmask, t_sphere *sphere,
 			continue;
 		}
 		if (ft_strncmp(*line, "    ", 4))
-			break;
+			break ;
 		((status == -1) ? rtv_error(READ_ERROR) : 0);
 		center_check_keyed_double(bitmask, *line, sphere);
 		radius_check_keyed_double(bitmask, *line, sphere);
@@ -84,4 +81,5 @@ size_t			sphere_check_bitmask(short *bitmask, t_sphere *sphere,
 		i++;
 		ft_memdel((void**)line);
 	}
+	return (i);
 }

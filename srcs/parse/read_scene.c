@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:48:54 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/09 23:37:58 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 12:25:22 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,3 +128,42 @@ void	read_scene(t_rtv *r, char *filename)
 	ft_memdel((void**)&line);
 	close(fd);
 }
+
+
+// void	read_with_gnl(char **line, int fd, t_rtv *r, unsigned char is_read[2])
+// {
+// 	int	status;
+
+// 	while (1)
+// 	{
+// 		if (!line)
+// 		{
+// 			status = get_next_line(fd, line);
+// 			(status < 0 ? rtv_error(GNL_ERROR) : 0);
+// 			if (status == 0)
+// 				break ;
+// 		}
+// 		if (check_read(line, r, is_read, fd))
+// 			continue;
+// 		ft_putendl_fd("level 0 invalid key\n", 2);
+// 		ft_putendl_fd(*line, 2);
+// 		exit(1);
+// 	}
+// }
+
+// void	read_scene(t_rtv *r, char *filename)
+// {
+// 	int				fd;
+// 	char			*line;
+// 	unsigned char	is_read[2];
+
+// 	line = 0;
+// 	ft_bzero(is_read, 2);
+// 	if ((fd = open(filename, O_RDONLY)) < 3)
+// 		rtv_error(NOT_A_FILE);
+// 	read_with_gnl(&line, fd, r, is_read);
+// 	(is_read[0]) ? 0 : rtv_error(PRIMITIVES_MIN);
+// 	(is_read[1]) ? 0 : rtv_error(LIGHT_MIN);
+// 	ft_memdel((void**)&line);
+// 	close(fd);
+// }
