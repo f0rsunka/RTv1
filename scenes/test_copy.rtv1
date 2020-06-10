@@ -32,7 +32,7 @@ objects:
     center_x: 1
     center_y: -3
     center_z: -6
-    radius: 50
+    radius: 0.5
     color_r: 181
     color_g: 188
     color_b: 255
@@ -44,7 +44,7 @@ objects:
     center_x: 6
     center_y: 1
     center_z: -6
-    radius: 200
+    radius: 2
     color_r: 217
     color_g: 188
     color_b: 255
@@ -114,4 +114,4 @@ objects:
     color_g: 151
     color_b: 255
     specular: 50
-    radius: 100
+    radius: 1
