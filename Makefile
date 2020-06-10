@@ -106,7 +106,7 @@ CFLAGS_FINAL =	$(CFLAGS_INTERNAL) \
 
 LDFLAGS =	$(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm $(SDL_LINK)
 
-.PHONY: all debug clean clean_libs clean_self fclean re
+.PHONY: all debug clean clean_libs clean_SDL clean_self fclean re
 
 all:
 	@echo "$(BLUE)" "Making libvector" $(DEFAULT)
@@ -124,8 +124,10 @@ all:
 	$(MAKE) $(NAME)
 	@echo -n $(DEFAULT)
 
-debug: clean_self
-	CFLAGS="$(CFLAGS_DEBUG)" make
+debug: clean_self clean_libs
+	CFLAGS="$(CFLAGS_DEBUG)" $(MAKE) -C ./libvector
+	CFLAGS="$(CFLAGS_DEBUG)" $(MAKE) -C ./libft
+	CFLAGS="$(CFLAGS_DEBUG)" $(MAKE)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -153,11 +155,13 @@ $(OBJ_DIR)/1_%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(OBJ_DIR)/2_%.o: $(SRC_DIR)/parse/%.c | $(OBJ_DIR)
 	gcc $(CFLAGS_FINAL) -c $< -o $@
 
-clean: clean_libs clean_self
+clean: clean_libs clean_SDL clean_self
 
 clean_libs:
 	$(MAKE) -C ./libft clean
 	$(MAKE) -C ./libvector clean
+
+clean_SDL:
 	rm -rf $(SDL_DIR)/tmp
 
 clean_self:
