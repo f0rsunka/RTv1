@@ -62,7 +62,3 @@ int		read_keyed_int(char *line, char *key, int *data)
 	}
 	return (0);
 }
-
-// scene->object = init_plane((t_vec3){0.0f, 0.0f, -13.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_vec3){0.0f, 0.0f, 1.0f}, (t_color)ROSE_PINK);
-// scene->object = init_plane((t_vec3){0.0f, 3.0f, 0.0f}, (t_vec3){0.0f, 1.0f, 0.0f}, (t_vec3){0.0f, -1.0f, 0.0f}, (t_color)INDEPENDENCE);
-// t_plane	*init_plane(t_vec3 offset, t_vec3 coef, t_vec3 normal, t_color color)
