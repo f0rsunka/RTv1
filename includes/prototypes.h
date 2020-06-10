@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:10:56 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 12:58:23 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 13:29:50 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ void		arguments_errors(int n);
 void		validate_errors(int n);
 void		lights_errors(int n);
 void		primitives_errors(int n);
+void		material_errors(int n);
 void		write_error(char *reason);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:17:34 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 13:11:02 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 13:23:06 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define INVALIDE_STRUCT		LIGHTS_ERROR + 1
 # define WINDOW_MIN				INVALIDE_STRUCT + 1
 # define WINDOW_MAX				WINDOW_MIN + 1
+# define PRIMITIVES_MIN			WINDOW_MAX + 1
+# define PRIMITIVES_MAX			PRIMITIVES_MIN + 1
 
 /*
 ** *********************************** **
@@ -51,7 +53,7 @@
 ** *********************************** **
 */
 
-# define MALLOC_ERROR			WINDOW_MAX + 1
+# define MALLOC_ERROR			PRIMITIVES_MAX + 1
 
 /*
 ** *********************************** **
@@ -74,8 +76,6 @@
 ** *********************************** **
 */
 
-# define PRIMITIVES_MIN			INTENSITY_TOO_MUCH + 1
-# define PRIMITIVES_MAX			PRIMITIVES_MIN + 1
 # define NEGATIVE_VAL_RADIUS	PRIMITIVES_MAX + 1
 # define MAX_VAL_RADIUS			NEGATIVE_VAL_RADIUS + 1
 # define CYL_COEF_NOT_EXIST		MAX_VAL_RADIUS + 1
@@ -85,6 +85,15 @@
 # define CONE_COEF_NOT_VALID	CYL_COEF_NOT_VALID + 1
 # define CONE_COEF_DELIM_ZERO	CONE_COEF_NOT_VALID + 1
 # define PLANE_NORMAL_ZERO		CONE_COEF_DELIM_ZERO + 1
+
+/*
+** *********************************** **
+** *********************************** **
+**             material errors         **
+** *********************************** **
+** *********************************** **
+*/
+
 # define SPECULAR_OVERFLOW		PLANE_NORMAL_ZERO + 1
 # define COLOR_OVERFLOW			SPECULAR_OVERFLOW + 1
 # define COLOR_NOT_ENOUGH		COLOR_OVERFLOW + 1

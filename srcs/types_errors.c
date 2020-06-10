@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 13:38:01 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 13:06:03 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 13:46:09 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	validate_errors(int n)
 		write_error("RTv1: too small window.\n");
 	if (n == WINDOW_MAX)
 		write_error("RTv1: too big window.\n");
+	if (n == PRIMITIVES_MIN)
+		write_error("RTv1: invalide file.\n");
+	if (n == PRIMITIVES_MAX)
+		write_error("RTv1: too much count of primitives.\n");
 }
 
 void	lights_errors(int n)
@@ -51,18 +55,14 @@ void	lights_errors(int n)
 		write_error("RTv1: too much count of lights.\n");
 	if (n == LIGHT_MIN)
 		write_error("RTv1: too few count of lights.\n");
-	if (n === INTENSITY_NOT_ENOUGH)
+	if (n == INTENSITY_NOT_ENOUGH)
 		write_error("RTv1: low intensity value.\n");
-	if (n === INTENSITY_TOO_MUCH)
+	if (n == INTENSITY_TOO_MUCH)
 		write_error("RTv1: too high intensity value.\n");
 }
 
 void	primitives_errors(int n)
 {
-	if (n == PRIMITIVES_MAX)
-		write_error("RTv1: too few count of primitives.\n");
-	if (n == PRIMITIVES_MIN)
-		write_error("RTv1: too much count of primitives.\n");
 	if (n == NEGATIVE_VAL_RADIUS)
 		write_error("RTv1: primitive's radius can't be negative.\n");
 	if (n == MAX_VAL_RADIUS)
@@ -86,6 +86,10 @@ void	primitives_errors(int n)
 		write_error("RTv1: cone's coefficients cannot equal to 0.\n");
 	if (n == PLANE_NORMAL_ZERO)
 		write_error("RTv1: plane's normal cannot equal to 0.\n");
+}
+
+void	material_errors(int n)
+{
 	if (n == SPECULAR_OVERFLOW)
 		write_error("RTv1: specular's value is too big.\n");
 	if (n == COLOR_OVERFLOW)

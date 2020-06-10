@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:57:23 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 13:02:21 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 13:31:46 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_material(t_material mat)
 	if (mat.specular >= 1000)
 		rtv_error(SPECULAR_OVERFLOW);
 	if (mat.color.r > 255 || mat.color.g > 255 || mat.color.b > 255)
-		rtv_error(COLOR_OVERFLOW); 
+		rtv_error(COLOR_OVERFLOW);
 	if (mat.color.r < 0 || mat.color.g < 0 || mat.color.b < 0)
 		rtv_error(COLOR_NOT_ENOUGH);
 }
