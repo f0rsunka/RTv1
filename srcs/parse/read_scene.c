@@ -121,5 +121,8 @@ void		read_scene(t_rtv *r, char *filename)
 			continue;
 		rtv_error(INVALIDE_STRUCT);
 	}
+	(is_read[0]) ? 0 : rtv_error(PRIMITIVES_MIN);
+	(is_read[1]) ? 0 : rtv_error(LIGHT_MIN);
+	ft_memdel((void**)&line);
 	close(fd);
 }

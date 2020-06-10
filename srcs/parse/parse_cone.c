@@ -28,6 +28,7 @@ t_cone		*create_cone(int fd, char **line)
 		ft_memdel((void **)&cone);
 		rtv_error(INVALIDE_STRUCT);
 	}
+	cone->coef = mult_vec(cone->coef, cone->coef);
 	check_coefficients_cone(cone->coef);
 	check_material(cone->material);
 	cone->material.color = float_to_byte(cone->material.color);

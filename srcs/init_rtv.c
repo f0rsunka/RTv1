@@ -14,7 +14,7 @@
 
 void	init_camera(t_rtv *r)
 {
-	r->camera = (t_vec3){0.0f, -5.0f, 5.0f};
+	r->camera = (t_vec3){0.0f, 0.0f, 0.0f};
 }
 
 void	init_flags(t_flag *flag)
