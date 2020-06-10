@@ -14,7 +14,7 @@
 
 void		parse_light(int fd, char **line, t_light *light)
 {
-	short	bitmask;
+	int		bitmask;
 	size_t	i;
 
 	bitmask = 0;

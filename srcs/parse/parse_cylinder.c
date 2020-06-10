@@ -15,7 +15,7 @@
 t_cylinder	*create_cylinder(int fd, char **line)
 {
 	t_cylinder	*cylinder;
-	short		bitmask;
+	int			bitmask;
 	size_t		i;
 
 	bitmask = 0;

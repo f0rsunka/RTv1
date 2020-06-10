@@ -15,7 +15,7 @@
 t_sphere	*create_sphere(int fd, char **line)
 {
 	t_sphere	*sphere;
-	short		bitmask;
+	int			bitmask;
 	size_t		i;
 
 	bitmask = 0;

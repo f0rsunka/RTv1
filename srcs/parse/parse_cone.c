@@ -15,7 +15,7 @@
 t_cone		*create_cone(int fd, char **line)
 {
 	t_cone	*cone;
-	short	bitmask;
+	int		bitmask;
 	size_t	i;
 
 	bitmask = 0;
