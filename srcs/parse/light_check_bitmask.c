@@ -73,6 +73,7 @@ size_t			light_check_bitmask(short *bitmask, t_light *light, char **line,
 		intensity_check_keyed_float(bitmask, *line, light);
 		type_check_keyed_int(bitmask, *line, light);
 		i++;
+		ft_memdel((void**)line);
 	}
 	return (i);
 }
