@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:47:24 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 13:06:44 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:06:50 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		parse_light(int fd, char **line, t_light *light)
 {
-	short	bitmask;
+	int		bitmask;
 	size_t	i;
 
 	bitmask = 0;

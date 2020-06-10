@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 19:41:46 by f0rsunka          #+#    #+#             */
-/*   Updated: 2020/06/10 12:45:47 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:07:06 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_sphere	*create_sphere(int fd, char **line)
 {
 	t_sphere	*sphere;
-	short		bitmask;
+	int			bitmask;
 	size_t		i;
 
 	bitmask = 0;
