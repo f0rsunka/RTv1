@@ -6,7 +6,7 @@
 /*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:08:37 by cvernius          #+#    #+#             */
-/*   Updated: 2020/06/10 00:09:35 by f0rsunka         ###   ########.fr       */
+/*   Updated: 2020/06/10 23:23:13 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		main(int ac, char **av)
 	check_read_file(ac, av);
 	rtv = (t_rtv *)malloc(sizeof(t_rtv));
 	(rtv == NULL ? rtv_error(MALLOC_ERROR) : 1);
+	ft_bzero(rtv, sizeof(t_rtv));
 	read_scene(rtv, av[1]);
 	init_rtv(rtv);
 	main_render(rtv);
