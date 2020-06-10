@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-void	check_read_file(int ac, char **scene)
+void		check_read_file(int ac, char **scene)
 {
 	int fd;
 
@@ -71,7 +71,7 @@ void		read_lights(t_rtv *r, int fd, char **line)
 	(count > 3 ? rtv_error(LIGHT_MAX) : 0);
 }
 
-int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
+int			check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
 {
 	if (!**line)
 	{
@@ -97,11 +97,11 @@ int 		check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd)
 	return (0);
 }
 
-void        read_scene(t_rtv *r, char *filename)
+void		read_scene(t_rtv *r, char *filename)
 {
 	int				fd;
 	char			*line;
-	int 			status;
+	int				status;
 	unsigned char	is_read[2];
 
 	line = 0;
@@ -115,7 +115,7 @@ void        read_scene(t_rtv *r, char *filename)
 			status = get_next_line(fd, &line);
 			(status < 0 ? rtv_error(GNL_ERROR) : 0);
 			if (status == 0)
-			break ;
+				break ;
 		}
 		if (check_read(&line, r, is_read, fd))
 			continue;

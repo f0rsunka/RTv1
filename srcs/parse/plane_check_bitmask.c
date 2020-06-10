@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-static void		offset_check_keyed_double(short *bitmask, char *line,
+static void		offset_check_keyed_double(int *bitmask, char *line,
 														t_plane *plane)
 {
 	if (read_keyed_double(line, "    offset_x:", &(plane->offset.x)))
@@ -23,7 +23,7 @@ static void		offset_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 2u;
 }
 
-static void		normal_check_keyed_double(short *bitmask, char *line,
+static void		normal_check_keyed_double(int *bitmask, char *line,
 														t_plane *plane)
 {
 	if (read_keyed_double(line, "    normal_x:", &(plane->normal.x)))
@@ -34,7 +34,7 @@ static void		normal_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 5u;
 }
 
-static void		coef_check_keyed_double(short *bitmask, char *line,
+static void		coef_check_keyed_double(int *bitmask, char *line,
 														t_plane *plane)
 {
 	if (read_keyed_double(line, "    coef_x:", &(plane->coef.x)))
@@ -45,7 +45,7 @@ static void		coef_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 11u;
 }
 
-static void		material_check_keyed_double(short *bitmask, char *line,
+static void		material_check_keyed_double(int *bitmask, char *line,
 														t_plane *plane)
 {
 	if (read_keyed_float(line, "    color_r:", &(plane->material.color.r)))
@@ -56,9 +56,15 @@ static void		material_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 8u;
 	if (read_keyed_float(line, "    specular:", &(plane->material.specular)))
 		*bitmask += 1u << 12u;
+	if (read_keyed_double(line, "    angle_x", &(plane->angle.x)))
+		*bitmask += 1u << 13u;
+	if (read_keyed_double(line, "    angle_y:", &(plane->angle.y)))
+		*bitmask += 1u << 14u;
+	if (read_keyed_double(line, "    angle_z:", &(plane->angle.z)))
+		*bitmask += 1u << 15u;
 }
 
-size_t			plane_check_bitmask(short *bitmask, t_plane *plane,
+size_t			plane_check_bitmask(int *bitmask, t_plane *plane,
 														char **line, int fd)
 {
 	int		status;

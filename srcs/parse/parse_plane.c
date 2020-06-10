@@ -15,7 +15,7 @@
 t_plane	*create_plane(int fd, char **line)
 {
 	t_plane	*plane;
-	short	bitmask;
+	int		bitmask;
 	size_t	i;
 
 	bitmask = 0;
@@ -23,14 +23,13 @@ t_plane	*create_plane(int fd, char **line)
 	(plane == NULL ? rtv_error(MALLOC_ERROR) : 0);
 	ft_memdel((void**)line);
 	i = plane_check_bitmask(&bitmask, plane, line, fd);
-	if (bitmask != ((1u << 13u) - 1) || i != 13)
+	if (bitmask != ((1u << 16u) - 1) || i != 16)
 	{
 		ft_memdel((void **)&plane);
 		rtv_error(INVALIDE_STRUCT);
 	}
 	check_normal_plane(plane->normal);
 	check_material(plane->material);
-	plane->angle = (t_vec3){0.0f, 0.0f, 0.0f};
 	plane->material.color = float_to_byte(plane->material.color);
 	return (plane);
 }

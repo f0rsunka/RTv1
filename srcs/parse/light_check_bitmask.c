@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-static void		pos_check_keyed_double(short *bitmask, char *line,
+static void		pos_check_keyed_double(int *bitmask, char *line,
 																t_light *light)
 {
 	if (read_keyed_double(line, "    position_x:", &(light->position.x)))
@@ -23,7 +23,7 @@ static void		pos_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 2u;
 }
 
-static void		dir_check_keyed_double(short *bitmask, char *line,
+static void		dir_check_keyed_double(int *bitmask, char *line,
 																t_light *light)
 {
 	if (read_keyed_double(line, "    direction_x:", &(light->direction.x)))
@@ -34,7 +34,7 @@ static void		dir_check_keyed_double(short *bitmask, char *line,
 		*bitmask += 1u << 5u;
 }
 
-static void		intensity_check_keyed_float(short *bitmask, char *line,
+static void		intensity_check_keyed_float(int *bitmask, char *line,
 																t_light *light)
 {
 	if (read_keyed_float(line, "    intensity:", &(light->intensity)))
@@ -44,14 +44,14 @@ static void		intensity_check_keyed_float(short *bitmask, char *line,
 	}
 }
 
-static void		type_check_keyed_int(short *bitmask, char *line,
+static void		type_check_keyed_int(int *bitmask, char *line,
 																t_light *light)
 {
 	if (read_keyed_int(line, "    type:", &(light->type)))
 		*bitmask += 1u << 7u;
 }
 
-size_t			light_check_bitmask(short *bitmask, t_light *light, char **line,
+size_t			light_check_bitmask(int *bitmask, t_light *light, char **line,
 																	int fd)
 {
 	size_t	i;

@@ -161,15 +161,15 @@ int			read_keyed_float(char *line, char *key, float *data);
 int			read_keyed_int(char *line, char *key, int *data);
 void		parse_light(int fd, char **line, t_light *light);
 int			check_read(char **line, t_rtv *r, unsigned char is_read[2], int fd);
-size_t		cone_check_bitmask(short *bitmask, t_cone *cone, char **line,
+size_t		cone_check_bitmask(int *bitmask, t_cone *cone, char **line,
 																	int fd);
-size_t		cylinder_check_bitmask(short *bitmask, t_cylinder *cylinder,
+size_t		cylinder_check_bitmask(int *bitmask, t_cylinder *cylinder,
 														char **line, int fd);
-size_t		light_check_bitmask(short *bitmask, t_light *light, char **line,
+size_t		light_check_bitmask(int *bitmask, t_light *light, char **line,
 																	int fd);
-size_t		plane_check_bitmask(short *bitmask, t_plane *plane,
+size_t		plane_check_bitmask(int *bitmask, t_plane *plane,
 														char **line, int fd);
-size_t		sphere_check_bitmask(short *bitmask, t_sphere *sphere,
+size_t		sphere_check_bitmask(int *bitmask, t_sphere *sphere,
 														char **line, int fd);
 
 /*
