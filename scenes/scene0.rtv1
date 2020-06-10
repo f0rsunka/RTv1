@@ -6,7 +6,7 @@ lights:
     direction_x: 0
     direction_y: 0
     direction_z: 0
-    intensity: 40
+    intensity: 0.4
     type: 1
   light:
     position_x: 0
@@ -15,7 +15,7 @@ lights:
     direction_x: 0
     direction_y: 0
     direction_z: 0
-    intensity: 30
+    intensity: 0.3
     type: 2
   light:
     position_x: 0
@@ -24,7 +24,7 @@ lights:
     direction_x: 0
     direction_y: -3
     direction_z: 13
-    intensity: 30
+    intensity: 0.3
     type: 3
 
 objects:
@@ -32,7 +32,7 @@ objects:
     center_x: 1
     center_y: -3
     center_z: -6
-    radius: 50
+    radius: 0.5
     color_r: 181
     color_g: 188
     color_b: 255
@@ -44,7 +44,7 @@ objects:
     center_x: 6
     center_y: 1
     center_z: -6
-    radius: 200
+    radius: 2
     color_r: 217
     color_g: 188
     color_b: 255
@@ -114,4 +114,4 @@ objects:
     color_g: 151
     color_b: 255
     specular: 50
-    radius: 100
+    radius: 1
