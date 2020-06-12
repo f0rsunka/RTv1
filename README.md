@@ -15,6 +15,7 @@ Launching
 Enter "make" on the command line. Put ./RTv1 scenes/%scene_name% to the terminal. Enjoy (≧◡≦)
 
 Creators:
+
 	cvernius: raytracer engine
 	dmorrige: parsing scenes
 
