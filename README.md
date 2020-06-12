@@ -25,6 +25,6 @@ Creators:
 
 ![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/3.png)
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/5.png)
+![start camera position](https://github.com/f0rsunka/rtv1/raw/master/screenshots/5.png)
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/4.png)
+![rotate camera](https://github.com/f0rsunka/rtv1/raw/master/screenshots/4.png)
