@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_rtv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 18:02:16 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/17 15:26:21 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:27:23 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	init_camera(t_rtv *r)
 	// r->camera = (t_vec3){-49.0f, -50.0f, 0.0f};
 }
 
-void	init_flags(t_rtv *r)
+void	init_flags(t_flag *flag)
 {
-	r->flag.is_move = 0;
-	r->flag.is_rotate = 0;
+	flag->is_move = 0;
+	flag->is_rotate = 0;
 }
 
 void	ray_zero(t_ray *ray)
@@ -35,14 +35,15 @@ void	ray_zero(t_ray *ray)
 	ray->reverse_dir = (t_vec3){0.0f, 0.0f, 0.0f};
 }
 
-void	trace_zero(t_rtv *r)
+void	trace_zero(t_trace *trace)
 {
-	r->trace.from = (t_vec3){0.0f, 0.0f, 0.0f};
-	r->trace.to = (t_vec3){0.0f, 0.0f, 0.0f};
-	r->trace.dist_min = 0.0f;
+	trace->from = (t_vec3){0.0f, 0.0f, 0.0f};
+	trace->to = (t_vec3){0.0f, 0.0f, 0.0f};
+	trace->dist_min = 0.0f;
+	trace->dist_max = 0.0f;
 }
 
-void	closest_zero(t_closest_obj *cl)
+void	closest_zero(t_close_obj *cl)
 {
 	cl->obj = NULL;
 	cl->type = 0;
@@ -51,11 +52,3 @@ void	closest_zero(t_closest_obj *cl)
 	cl->mat.specular = 0.0f;
 	cl->color = (t_color){0.0f, 0.0f, 0.0f};
 }
-
-// t_viewport	init_viewport(void)
-// {
-// 	t_viewport viewport;
-
-// 	viewport = (t_viewport){1, 1, 1};
-// 	return (viewport);
-// }

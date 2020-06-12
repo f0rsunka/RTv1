@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vec_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:36:06 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/16 16:36:24 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/10 11:09:30 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/libvector.h"
 
-t_vec3 	vec_add(t_vec3 v1, t_vec3 v2)
+t_vec3	vec_add(t_vec3 v1, t_vec3 v2)
 {
 	t_vec3 v;
 

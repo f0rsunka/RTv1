@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+        */
+/*   By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 22:22:28 by cvernius          #+#    #+#             */
-/*   Updated: 2020/03/04 22:28:57 by cvernius         ###   ########.fr       */
+/*   Updated: 2020/06/09 12:25:31 by f0rsunka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_color	byte_to_float(t_color col)
 	col.r = col.r * 255;
 	col.g = col.g * 255;
 	col.b = col.b * 255;
-	return (col);	
+	return (col);
 }
 
 int		compare_color(t_color c1, t_color c2)

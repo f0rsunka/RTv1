@@ -3,17 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
+#    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/04 17:57:04 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/16 19:52:35 by cvernius         ###   ########.fr        #
+#    Updated: 2020/06/12 14:54:24 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SHELL = /bin/zsh
+
 PINK = \033[38;2;200;150;200m
 BLUE = \033[38;2;200;200;250m
+DEFAULT = "\033[0;0m"
+GREEN = "\033[0;32m"
+DEEP_BLUE = "\033[0;34m"
 
-NAME = rtv1
+NAME = RTv1
 
 SRC_DIR = ./srcs
 
@@ -23,28 +28,47 @@ INCL_DIR = ./includes
 
 C_FILES = main.c \
 		  init_rtv.c \
-		  init_light.c \
 		  sdl_data.c \
-		  init_primitive.c \
-		  init_sphere.c \
 		  render.c \
 		  raytrace.c \
-		  intersect_primitive.c \
-		  quadratic_equation.c \
-		  calculate_coefficients.c \
+		  intersect_primitives.c \
+		  primitives_trace.c \
+		  calculate_quadratic_equation.c \
 		  color.c \
 		  put_pixel.c \
 		  light.c \
 		  normal.c \
-		  diffuse.c \
-		  specular.c \
-		  shadow.c \
+		  raytrace_to_light.c \
 		  affine_transform.c \
-		  events.c
+		  events.c \
+		  types_errors.c \
+		  put_rtv_errors.c \
+		  validate.c \
+		  types_lightning.c
+
+C_FILES_PARSING = 	create_scene_light.c \
+                    create_scene_primitives.c \
+                    create_scene.c \
+                    parse_cone.c \
+                    parse_cylinder.c \
+                    parse_light.c \
+                    parse_plane.c \
+                    parse_sphere.c \
+                    read_key.c \
+                    read_scene.c \
+					cone_check_bitmask.c \
+					cylinder_check_bitmask.c \
+					light_check_bitmask.c \
+					plane_check_bitmask.c \
+					sphere_check_bitmask.c
 
 OBJ_FILES = $(C_FILES:.c=.o)
+OBJ_FILES_PARSING = $(C_FILES_PARSING:.c=.o)
 
-RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
+RAW_OBJ_FILES = $(addprefix $(OBJ_DIR)/1_,$(OBJ_FILES))
+RAW_OBJ_FILES_PARSING = $(addprefix $(OBJ_DIR)/2_,$(OBJ_FILES_PARSING))
+DEPS = $(RAW_OBJ_FILES:.o=.d)
+DEPS_PARSING = $(RAW_OBJ_FILES_PARSING:.o=.d)
 
 SDL_DIR		=	./SDL
 SDL_DIST	=	$(PWD)/SDL/dist
@@ -59,46 +83,57 @@ detected_OS := $(shell uname)
 
 ifeq ($(detected_OS),Linux)
 
-	# LIBS_A := ./libft/libft.a ./libvector/libvector.a -lOpenCL
 	SDL_FLAGS := -lOpenCL
-	# LIBS_O := ./libft/*.o ./libvector/*.o ./mlx_libs/minilibx/*.o
-	# LIBMAKE := ./mlx_libs/minilibx
-	# MLX_FLAGS := -L ./mlx_libs/minilibx -lmlx_Linux -lXext -lX11 -lm
 
 endif
 
 ifeq ($(detected_OS),Darwin) 
 
-	# LIBS_A = ./libft/libft.a ./libvector/libvector.a -framework OpenCL
 	SDL_FLAGS = -framework OpenCL
-	# LIBS_O = ./libft/*.o ./libvector/*.o ./mlx_libs/minilibx_macos/*.o
-	# LIBMAKE = ./mlx_libs/minilibx_macos
-	# MLX_FLAGS = -L ./mlx_libs/minilibx_macos -lm -lmlx -framework OpenGL -framework Appkit
 
 endif
 
-NON_EXISTET = tfbil
+CFLAGS_ERRORS = -Wall -Wextra -Werror
+CFLAGS_OPTIMIZATIONS = -O3 -funroll-loops
+CFLAGS_DEPENDENCIES = -MMD -MP
+CFLAGS_INCLUDES = -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include
+CFLAGS_DEBUG = -O0 -pg -g -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer
 
-CFLAGS += -Wall -Wextra
-# CFLAGS += -Werror
-CFLAGS += -g
-# CFLAGS += -O2
+CFLAGS_FINAL =	$(CFLAGS_INTERNAL) \
+				$(CFLAGS_ERRORS) $(CFLAGS_OPTIMIZATIONS) \
+				$(CFLAGS_DEPENDENCIES) $(CFLAGS_INCLUDES) \
+				$(CFLAGS)
 
-all: $(OBJ_DIR) $(NAME) $(NON_EXISTET)
+LDFLAGS =	$(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm $(SDL_LINK)
 
-debug:
-	CFLAGS="-g -fno-omit-frame-pointer" $(MAKE) all
+.PHONY: all debug clean clean_libs clean_SDL clean_self fclean re
 
-$(NON_EXISTET):
-	@make -C ./libft
+all:
+	@echo "$(BLUE)" "Making libvector" $(DEFAULT)
+	@echo -n $(DEEP_BLUE)
+	$(MAKE) -C ./libvector
+	@echo -n $(DEFAULT)
+
+	@echo "$(BLUE)" "Making libft" $(DEFAULT)
+	@echo -n $(DEEP_BLUE)
+	$(MAKE) -C ./libft
+	@echo -n $(DEFAULT)
+
+	@echo "$(BLUE)" "Making rtv" $(DEFAULT)
+	@echo -n $(GREEN)
+	$(MAKE) $(NAME)
+	@echo -n $(DEFAULT)
+
+debug: clean_self clean_libs
+	CFLAGS="$(CFLAGS_DEBUG)" $(MAKE) -C ./libvector
+	CFLAGS="$(CFLAGS_DEBUG)" $(MAKE) -C ./libft
+	CFLAGS="$(CFLAGS_DEBUG)" $(MAKE)
 
 $(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
-$(NAME): $(SDL_DIST) $(RAW_OBJ_FILES)
-	@make -C ./libvector
-	@make -sC ./libft
-	@gcc $(RAW_OBJ_FILES) $(LIBFT_FLAGS) $(LIBVECTOR_FLAGS) -lm -o $(NAME) $(SDL_LINK)
+$(NAME): ./libvector/libvector.a ./libft/libft.a $(SDL_DIST) $(RAW_OBJ_FILES) $(RAW_OBJ_FILES_PARSING)
+	gcc -o $(NAME) $(RAW_OBJ_FILES) $(RAW_OBJ_FILES_PARSING) $(LDFLAGS)
 	@echo "$(PINK)(*≧ω≦*)  $(BLUE)Mama, ya sobralsya  $(PINK)(*≧ω≦*)"
 
 $(SDL_DIST):
@@ -112,20 +147,30 @@ $(SDL_DIST):
 
 #### К о м п и л я ц и я ####
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/*.h
-	@gcc $(CFLAGS) -I $(INCL_DIR) -I $(SDL_INCLUDE) -I ./libvector/include -I ./libft/include -c $< -o $@
+-include $(DEPS)
+$(OBJ_DIR)/1_%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS_FINAL) -c $< -o $@
 
-clean:
-	@rm -rf $(RAW_OBJ_FILES)
-	@rm -rf ./libft/*.o
-	@rm -rf ./libvector/*.o
-	# @rm -rf $(SDL_DIR)/tmp
+-include $(DEPS)
+$(OBJ_DIR)/2_%.o: $(SRC_DIR)/parse/%.c | $(OBJ_DIR)
+	gcc $(CFLAGS_FINAL) -c $< -o $@
+
+clean: clean_libs clean_SDL clean_self
+
+clean_libs:
+	$(MAKE) -C ./libft clean
+	$(MAKE) -C ./libvector clean
+
+clean_SDL:
+	rm -rf $(SDL_DIR)/tmp
+
+clean_self:
+	rm -rfv $(OBJ_DIR)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@rm -rf $(OBJ_DIR)
-	@rm -rf ./libft/libft.a
-	@rm -rf ./libvector/libvector.a
-	# @rm -rf $(SDL_DIST)
+	rm -rf $(NAME)
+	$(MAKE) -C ./libft fclean
+	$(MAKE) -C ./libvector fclean
+	rm -rf $(SDL_DIST)
 
 re: fclean all

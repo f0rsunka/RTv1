@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cvernius <cvernius@student.42.fr>          +#+  +:+       +#+         #
+#    By: f0rsunka <f0rsunka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/16 16:38:28 by cvernius          #+#    #+#              #
-#    Updated: 2020/03/16 16:40:22 by cvernius         ###   ########.fr        #
+#    Updated: 2020/06/12 14:50:04 by f0rsunka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,30 +20,29 @@ SRC = vec_add.c \
 	  vec_normalize.c \
 	  mult_vec.c \
 	  division_vec.c \
-	  quadrat_vec.c
+	  mult_matrix.c
 
 OBJ = $(SRC:.c=.o)
+DEPS = $(OBJ:.o=.d)
 
 HEADER = ./include
 
-FLAGS = -Wall -Wextra -Werror -c
+CFLAGS_FINAL = -Wall -Wextra -Werror -MMD -MP $(CFLAGS)
 
-all: $(NAME) $(OBJ)
+all: $(NAME)
 
-%.o: %.c *.h
-	@gcc -c $< -I $(HEADER)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+-include $(DEPS)
+%.o: %.c
+	gcc $(CFLAGS_FINAL) -c $< -I $(HEADER)
 
-$(NAME):
-	@gcc $(FLAGS) $(SRC) -I $(HEADER)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
-	@rm -f $(OBJ)
+	rm -fv $(OBJ) $(DEPS)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
