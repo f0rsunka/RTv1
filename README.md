@@ -16,15 +16,15 @@ Enter "make" on the command line. Put ./RTv1 scenes/%scene_name% to the terminal
 
 Creators:
 
-	cvernius: raytracer engine
-	dmorrige: parsing scenes
+	f0rsunka aka cvernius: raytracer engine
+	berriestime aka dmorrige: parsing scenes
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/1.jpg)
+![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/1.png)
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/2.jpg)
+![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/2.png)
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/3.jpg)
+![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/3.png)
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/5.jpg)
+![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/5.png)
 
-![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/4.jpg)
+![](https://github.com/f0rsunka/rtv1/raw/master/screenshots/4.png)
