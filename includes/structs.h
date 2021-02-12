@@ -103,7 +103,7 @@ typedef struct		s_sphere
 
 typedef struct		s_plane
 {
-	t_vec3			major_vec;
+	t_vec3			center;
 	t_vec3			normal;
 	t_material		material;
 }					t_plane;
@@ -130,9 +130,18 @@ typedef struct 		s_rtv
 	t_closest_obj	closest;
 	t_ray			ray;
 	t_scene			*scene;
-	// t_viewport		viewport;
+	// t_viewport		viewport
 	t_light			*light;
 	t_flag			flag;
 }					t_rtv;
+
+typedef struct      s_object
+{
+    t_vec3			center;
+    t_vec3			normal;
+    float			radius;
+    t_vec3			offset;
+    t_material		material;
+}                   t_object;
 
 #endif

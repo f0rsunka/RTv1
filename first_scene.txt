@@ -1,0 +1,8 @@
+plane {6, 8, -1}
+plane {6,7,8}
+plane
+sphere
+cone
+cylinder
+
+

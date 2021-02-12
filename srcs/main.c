@@ -44,13 +44,19 @@ int		main_render(t_rtv *r)
 	return (1);
 }
 
-int		main(void)
+int		main(int ac, char **av)
 {
-	t_rtv	*rtv;
+    t_rtv *rtv;
 
-	rtv = (t_rtv*)malloc(sizeof(t_rtv));
-	(rtv == NULL ? exit (99) : 1);
-	init_rtv(rtv);
-	main_render(rtv);
-	return (0);
+    if (ac != 2)
+    {
+        write(1, "Invalid arguments number, expected 1 argument for *.rtv1 scene file!\n", 69);
+        exit(1);
+    }
+    rtv = (t_rtv *) malloc(sizeof(t_rtv));
+    (rtv == NULL ? exit(99) : 1);
+    init_rtv(rtv);
+    init_scene(av[1], rtv);
+    main_render(rtv);
+    return (0);
 }
